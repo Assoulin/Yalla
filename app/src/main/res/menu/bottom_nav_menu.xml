@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_surprise"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/surprise_me" />
+    <item
+
+        android:id="@+id/navigation_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search"
+        />
+
+    <item
+        android:id="@+id/navigation_yalla_specials"
+        android:icon="@android:drawable/star_big_on"
+        android:title="@string/yalla_morning" />
+
+    <item
+        android:id="@+id/navigation_restaurants"
+        android:icon="@drawable/ic_baseline_food_bank_24"
+        android:title="@string/all_restaurants" />
+
+
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+
+</menu>

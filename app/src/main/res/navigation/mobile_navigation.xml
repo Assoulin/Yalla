@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.yalla.ui.nav.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/navigation_surprise"
+        android:name="com.example.yalla.ui.nav.surprise.SurpriseFragment"
+        android:label="fragment_surprise"
+        tools:layout="@layout/fragment_surprise" />
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.yalla.ui.nav.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/navigation_yalla_specials"
+        android:name="com.example.yalla.ui.nav.yalla_specials.YallaSpecialsFragment"
+        android:label="fragment_yalla_specials"
+        tools:layout="@layout/fragment_yalla_specials" />
+    <fragment
+        android:id="@+id/navigation_restaurants"
+        android:name="com.example.yalla.ui.nav.restaurants.RestaurantsFragment"
+        android:label="fragment_restaurants"
+        tools:layout="@layout/fragment_restaurants" />
+</navigation>

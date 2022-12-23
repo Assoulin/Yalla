@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Yalla</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="surprise_me">יאללה הפתעה</string>
+    <string name="all_restaurants">כל המסעדות</string>
+    <string name="yalla_morning">Yalla Goods</string>
+    <string name="link_to_yalla_al_haboker_service">link to Yalla-Al-Haboker service</string>
+    <string name="milk_based">חלבי</string>
+    <string name="vegetarian">טבעוני</string>
+    <string name="all">הכל</string>
+    <string name="meat_based">בשרי</string>
+    <string name="search">חיפוש</string>
+    <string name="home">בית</string>
+    <string name="search_yalla">חפשו ב-Yalla…</string>
+</resources>
