@@ -4,78 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.nav.restaurants.RestaurantsFragment">
+    tools:context=".ui.nav.restaurants.RestaurantsFragment"
+
+    android:background="@drawable/wall2"
+
+    >
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:id="@+id/floatingActionButton"
+        android:elevation="16dp"
+        android:layoutDirection="rtl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_delivery_dining_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        android:contentDescription="@string/settings" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flow"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
         tools:listitem="@layout/restaurant_item" />
 
-    <ImageButton
-        android:contentDescription="@string/link_to_yalla_al_haboker_service"
-        android:id="@+id/image_btn_link"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.566"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
-
-    <CheckBox
-        android:layoutDirection="rtl"
-        android:id="@+id/checkBox"
+    <com.google.android.material.chip.ChipGroup
+        app:flow_horizontalAlign="center"
+        android:id="@+id/chipGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/milk_based"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:text="@string/vegetarian"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:text="@string/all"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:text="@string/meat_based"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:constraint_referenced_ids="checkBox3,checkBox2,checkBox,checkBox4"
+        android:textColor="#D81B60"
+        android:background="@color/orange"
+        android:elevation="10dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_btn_link" />
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meat_based"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/milk_based"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vegan"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mehadrin"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asian"
+            android:textColor="@color/turquoise"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="false"
+            android:text="@string/italian"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/burger"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sushi"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vegetarian"
+            android:textColor="#D81B60"
+            app:chipBackgroundColor="@color/white" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
+        tools:text="משלוח לכתובתך" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

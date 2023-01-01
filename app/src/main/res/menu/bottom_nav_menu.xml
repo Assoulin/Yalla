@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_yalla_specials"
         android:icon="@android:drawable/star_big_on"
-        android:title="@string/yalla_morning" />
+        android:title="@string/yalla_goodies" />
 
     <item
         android:id="@+id/navigation_restaurants"

@@ -17,7 +17,7 @@ class RestaurantsAdapter(val restaurants: List<Restaurant>) :
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val restaurant = restaurants[position]
         with(holder.binding){
-            tvName.text = restaurant.name
+            tvName.text = restaurant.restaurantName
             tvDescription.text = restaurant.description
         }
         TODO("Not yet implemented")

@@ -1,21 +1,28 @@
 package com.example.yalla.ui.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import java.net.URL
+import java.time.LocalTime
 
+@Entity
 data class Restaurant(
-    val name: String,
+    @SerializedName("restaurant_id")
+    @PrimaryKey
+    val restaurantId:Int,
+    @SerializedName("restaurant_name")
+    val restaurantName: String,
+
     val description: String,
-    val posterURL: URL,
-    val isOn: Boolean,
-    val category: List<String>,
-    val dishes: List<Dish>,
-    val deliveryPrice: Double,
-) {
-    class Dish(
-        val dishName: String,
-        val description: String,
-        val posterURL: String,
-        val price: Double,
-        val category: String,
-    )
-}
+    @SerializedName("image_url")
+    val imageURL: URL,
+
+    @SerializedName("is_active")
+    val isActive: Boolean,
+
+    val openingHours:Int,
+
+    val cuisine: Int,
+
+)
