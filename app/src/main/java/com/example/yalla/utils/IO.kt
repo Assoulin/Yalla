@@ -1,4 +1,4 @@
-package com.example.lec12.utils
+package com.example.yalla.utils
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

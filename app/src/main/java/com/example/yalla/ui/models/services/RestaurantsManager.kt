@@ -1,11 +1,5 @@
 package com.example.yalla.ui.models.services
 
-import com.example.lec12.utils.IO
-import com.example.yalla.ui.models.Restaurant
-import org.json.JSONArray
-import org.json.JSONObject
-import java.net.URL
-
 const val API_URL = ""
 
 class RestaurantsManager {
