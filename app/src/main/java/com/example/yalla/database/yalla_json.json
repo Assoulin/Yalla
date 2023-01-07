@@ -1,29 +1,5 @@
 [
   {
-    "addresses": [
-      {
-        "address_id": 1,
-        "destination_id": 1,
-        "street": "ארלוזורוב",
-        "house_number": 57,
-        "entrance": "-",
-        "location_comment": "null"
-      }
-    ]
-  },
-  {
-    "customers": [
-      {
-        "customer_id": 1,
-        "customer_name": "אסולין, ניסים",
-        "email": "email",
-        "password": "password",
-        "phone_number": "phone_number",
-        "address_id": 1
-      }
-    ]
-  },
-  {
     "destinations": [
       {
         "destination_id": 1,
@@ -100,6 +76,56 @@
     ]
   },
   {
+    "addresses": [
+      {
+        "address_id": 1,
+        "destination_id": 1,
+        "street": "ארלוזורוב",
+        "house_number": 57,
+        "entrance": "-",
+        "location_comment": "null"
+      }
+    ]
+  },
+  {
+    "customers": [
+      {
+        "customer_id": 1,
+        "customer_name": "אסולין, ניסים",
+        "email": "email",
+        "password": "password",
+        "phone_number": "phone_number",
+        "address_id": 1
+      }
+    ]
+  },
+  {
+    "restaurants": [
+      {
+        "restaurant_id": 1,
+        "restaurant_name": "restaurant's name",
+        "description": "restaurant's desc",
+        "image_url": "restaurant's image url",
+        "is_active": true,
+        "schedule_id": 1,
+        "address_id": 1,
+        "cuisine": "cuisine"
+      }
+    ]
+  },
+  {
+    "restaurants_schedules": [
+      {
+        "schedule_id": 2,
+        "restaurant_id": 1,
+        "day_of_week": 1,
+        "opening_hour": "08:00:00",
+        "closing_hour": "15:00:00"
+
+      }
+    ]
+  },
+  {
     "destinations_restaurants": [
       {
         "destination_id": 1,
@@ -127,8 +153,6 @@
       }
     ]
   },
-
-
   {
     "employees": [
       {
@@ -150,7 +174,42 @@
         "address_id": 1,
         "is_delivery": true,
         "is_cash": false,
+        "total_order_price": 234.0,
         "payment_authorization": "234230-example-3450/Paid in cash."
+      }
+    ]
+  },
+  {
+    "orders_details": [
+      {
+        "order_details_id": 1,
+        "order_id": 6,
+        "diner_name": "מאור",
+        "requests": "מדיום-וול, עגבנייה, חסה, הערות לקוח: לוודא שזה בלי בצל ובלי חריף.",
+        "dish_id": 1,
+        "quantity": 1,
+        "base_price": 55.20,
+        "additions_price": 12.0
+      },
+      {
+        "order_details_id": 2,
+        "order_id": 6,
+        "diner_name": "מורן",
+        "requests": "וול-דן, עגבנייה, חסה, הערות לקוח: לוודא שזה בלי בצל ובלי חריף.",
+        "dish_id": 1,
+        "quantity": 1,
+        "base_price": 55.20,
+        "additions_price": 12.0
+      },
+      {
+        "order_details_id": 3,
+        "order_id": 6,
+        "diner_name": "-",
+        "requests": "בקבוק זכוכית",
+        "dish_id": 1,
+        "quantity": 2,
+        "base_price": 18.00,
+        "additions_price": 0.0
       }
     ]
   },
@@ -172,65 +231,10 @@
       {
         "order_details_id": 1,
         "order_id": 6,
+
         "addition_id": 1,
         "quantity": 1,
         "total_price": 4.0
-      }
-    ]
-  },
-  {
-    "orders_details": [
-      {
-        "order_details_id": 1,
-        "order_id": 6,
-        "diner_name": "מאור",
-        "requests": "מדיום-וול, עגבנייה, חסה, הערות לקוח: לוודא שזה בלי בצל ובלי חריף.",
-        "dish_id": 1,
-        "quantity": 1,
-        "price": 55.20
-      },
-      {
-        "order_details_id": 2,
-        "order_id": 6,
-        "diner_name": "מורן",
-        "requests": "וול-דן, עגבנייה, חסה, הערות לקוח: לוודא שזה בלי בצל ובלי חריף.",
-        "dish_id": 1,
-        "quantity": 1,
-        "price": 55.20
-      },
-      {
-        "order_details_id": 3,
-        "order_id": 6,
-        "diner_name": "-",
-        "requests": "בקבוק זכוכית",
-        "dish_id": 1,
-        "quantity": 2,
-        "price": 18.00
-      }
-    ]
-  },
-  {
-    "restaurants": [
-      {
-        "restaurant_id": 1,
-        "restaurant_name": "restaurant's name",
-        "description": "restaurant's desc",
-        "image_url": "restaurant's image url",
-        "is_active": true,
-        "schedule_id": 1,
-        "address_id": 1,
-        "cuisine": "cuisine"
-      }
-    ]
-  },
-  {
-    "restaurants_schedules": [
-      {
-        "restaurant_id": 1,
-        "day_of_week": 1,
-        "opening_hour": "1899-12-30 08:00:00",
-        "closing_hour": "1899-12-30 15:00:00",
-        "schedule_id": 2
       }
     ]
   }

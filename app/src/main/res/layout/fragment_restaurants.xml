@@ -36,21 +36,20 @@
         tools:listitem="@layout/restaurant_item" />
 
     <com.google.android.material.chip.ChipGroup
-        app:flow_horizontalAlign="center"
+        android:paddingHorizontal="20dp"
+        android:layoutDirection="rtl"
         android:id="@+id/chipGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="#D81B60"
-        android:background="@color/orange"
-        android:elevation="10dp"
-
+        app:chipSpacingHorizontal="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
-        tools:ignore="RtlSymmetry">
+        app:singleSelection="false">
 
         <com.google.android.material.chip.Chip
+
             android:id="@+id/chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,6 +126,7 @@
             android:text="@string/vegetarian"
             android:textColor="#D81B60"
             app:chipBackgroundColor="@color/white" />
+
     </com.google.android.material.chip.ChipGroup>
 
     <TextView
