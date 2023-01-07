@@ -26,4 +26,5 @@
     <string name="restaurant_poster">restaurant poster</string>
     <string name="like_the_restaurant_button">like the restaurant button</string>
     <string name="settings">settings</string>
+    <string name="back_to_previous_screen">back to previous screen</string>
 </resources>
