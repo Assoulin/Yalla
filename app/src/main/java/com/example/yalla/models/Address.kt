@@ -8,18 +8,18 @@ import androidx.room.Relation
 import com.google.gson.annotations.SerializedName
 @Entity
 data class Address(
-    @SerializedName("destination_id")
-    val destinationId: Int,
-    val entrance: String?,
-    @SerializedName("house_number")
-    val houseNumber: Int=0,
-    val apartment:Int=0,
-    @SerializedName("location_comment")
-    val locationComment: String,
-    val street: String,
     @SerializedName("address_id")
     @PrimaryKey(autoGenerate = true)
-    val addressId: Int=0,
+    val addressId: Int,
+    @SerializedName("destination_id")
+    val destinationId: Int,
+    val street: String,
+    @SerializedName("house_number")
+    val houseNumber: Int?,
+    val entrance: String?,
+    val apartment:Int?,
+    @SerializedName("location_comment")
+    val locationComment: String,
 )
 
 data class AddressOrders(
@@ -29,7 +29,7 @@ data class AddressOrders(
         parentColumn = "addressId",
         entityColumn = "orderId"
     )
-    val orders: List<Order>
+    val orders: List<Order>?
 )
 data class AddressCustomers(
     @Embedded
@@ -38,5 +38,5 @@ data class AddressCustomers(
         parentColumn = "addressId",
         entityColumn = "customerId"
     )
-    val customers: List<Customer>
+    val customers: List<Customer>?
 )

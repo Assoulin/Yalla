@@ -16,8 +16,8 @@ data class yallaItem(
     val employees: List<Employee>?,
     val orders: List<Order>?,
     @SerializedName("orders_details")
-    val orderDetails: List<OrderDetails>?,
+    val orderDetails: List<OrderDetail>?,
     val restaurants: List<Restaurant>?,
     @SerializedName("restaurants_schedules")
-    val schedules: List<Schedule>?
+    val dailySchedules: List<DailySchedule>?
 )

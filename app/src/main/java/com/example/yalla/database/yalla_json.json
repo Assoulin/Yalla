@@ -83,6 +83,7 @@
         "street": "ארלוזורוב",
         "house_number": 57,
         "entrance": "-",
+        "apartment": 3,
         "location_comment": "null"
       }
     ]
@@ -90,12 +91,12 @@
   {
     "customers": [
       {
-        "customer_id": 1,
-        "customer_name": "אסולין, ניסים",
+        "customer_name": "אורח",
         "email": "email",
         "password": "password",
         "phone_number": "phone_number",
-        "address_id": 1
+        "address_id": 1,
+        "customer_id": 1
       }
     ]
   },
@@ -114,13 +115,21 @@
     ]
   },
   {
-    "restaurants_schedules": [
+    "daily_schedules": [
       {
         "schedule_id": 2,
         "restaurant_id": 1,
         "day_of_week": 1,
         "opening_hour": "08:00:00",
         "closing_hour": "15:00:00"
+
+      },
+      {
+        "schedule_id": 3,
+        "restaurant_id": 1,
+        "day_of_week": 2,
+        "opening_hour": "08:00:00",
+        "closing_hour": "16:00:00"
 
       }
     ]
@@ -136,20 +145,55 @@
     ]
   },
   {
+    "menu_titles": [
+      {
+        "menu_title_id": 1,
+        "restaurant_id": 1,
+        "title_name": "ראשונות",
+        "title_description": "לפתוח תרעב קצת"
+      }
+    ]
+  },
+  {
     "dishes": [
       {
         "dish_id": 1,
         "dish_name": "קולה",
+        "description": "תיאור מנה",
         "price": 10.0,
         "restaurant_id": 1,
-        "description": "תיאור מנה",
-        "available": true,
-        "image_url": "כתובת אתר",
-        "group_tag": "חלבי בשרי וכו'",
         "category_tag": "מה סוג המאכל",
-        "course": "משקאות קלים/ראשונות/עיקריות/קינוחים",
+        "group_tag": "חלבי בשרי וכו'",
         "kosher_tag": "מהדרין, רבנות, בדצ",
+        "menu_title_id": 5,
+        "image_url": "כתובת אתר",
+        "available": true,
         "require_quantity": true
+      }
+    ]
+  },
+  {
+    "additions": [
+      {
+        "addition_id": 1,
+        "dish_id": 4,
+        "addition_name": "זיתים",
+        "price": 4.0,
+        "image_url": "קישור",
+        "available": true,
+        "require_quantity": false
+      }
+    ]
+  },
+  {
+    "additions_details": [
+      {
+        "order_details_id": 1,
+        "order_id": 6,
+
+        "addition_id": 1,
+        "quantity": 1,
+        "total_price": 4.0
       }
     ]
   },
@@ -210,31 +254,6 @@
         "quantity": 2,
         "base_price": 18.00,
         "additions_price": 0.0
-      }
-    ]
-  },
-  {
-    "additions": [
-      {
-        "addition_id": 1,
-        "dish_id": 4,
-        "addition_name": "זיתים",
-        "price": 4.0,
-        "image_url": "קישור",
-        "available": true,
-        "require_quantity": false
-      }
-    ]
-  },
-  {
-    "additions_details": [
-      {
-        "order_details_id": 1,
-        "order_id": 6,
-
-        "addition_id": 1,
-        "quantity": 1,
-        "total_price": 4.0
       }
     ]
   }

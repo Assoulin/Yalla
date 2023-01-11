@@ -12,6 +12,7 @@ data class Restaurant(
     @SerializedName("restaurant_id")
     @PrimaryKey
     val restaurantId: Int,
+    //Address
     @SerializedName("address_id")
     val addressId: Int,
     val cuisine: String,
@@ -20,14 +21,32 @@ data class Restaurant(
     val imageUrl: String,
     @SerializedName("is_active")
     val isActive: Boolean,
-
     @SerializedName("restaurant_name")
     val restaurantName: String,
+    //Schedule
     @SerializedName("schedule_id")
     val scheduleId: Int
 )
 
 //Views
+data class RestaurantDishes(
+    @Embedded
+    val restaurant: Restaurant,
+    @Relation(
+        parentColumn = "restaurantId",
+        entityColumn = "dishId"
+    )
+    val dishes: List<Dish>
+)
+data class RestaurantMenuTitles(
+    @Embedded
+    val restaurant: Restaurant,
+    @Relation(
+        parentColumn = "restaurantId",
+        entityColumn = "menuTitleId"
+    )
+    val menuTitle: List<MenuTitle>
+)
 data class RestaurantAddress(
     @Embedded
     val restaurant: Restaurant,
@@ -45,5 +64,5 @@ data class RestaurantSchedule(
         parentColumn = "restaurantId",
         entityColumn = "scheduleId"
     )
-    val schedule: Schedule
+    val dailySchedules: List<DailySchedule>
 )

@@ -24,5 +24,5 @@ data class EmployeeOrders(
         parentColumn = "employeeId",
         entityColumn = "orderId"
     )
-    val orders: List<Order>
+    val orders: List<Order>?
 )

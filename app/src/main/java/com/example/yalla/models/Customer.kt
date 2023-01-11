@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Customer(
+    //In the UI, Address object must be uploaded before Customer build!
     @SerializedName("address_id")
     val addressId: Int,
     @SerializedName("customer_name")
@@ -31,5 +32,14 @@ data class CustomerOrders(
         parentColumn = "customerId",
         entityColumn = "orderId"
     )
-    val reviews: List<Order>
+    val reviews: List<Order>?
+)
+data class CustomerAddress(
+    @Embedded
+    val customer: Customer,
+    @Relation(
+        parentColumn = "customerId",
+        entityColumn = "addressId"
+    )
+    val customerAddress: Address
 )

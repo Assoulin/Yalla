@@ -14,22 +14,26 @@ data class Dish(
     @PrimaryKey
     @SerializedName("dish_id")
     val dishId: Int,
-    @SerializedName("restaurant_id")
-    val restaurantId: Int,
-    val available: Boolean,
-    @SerializedName("category_tag")
-    val categoryTag: String,
-    val course: String,
-    val description: String,
     @SerializedName("dish_name")
     val dishName: String,
+    val description: String,
+    val price: Double,
+    //Restaurant
+    @SerializedName("restaurant_id")
+    val restaurantId: Int,
+    //Asian, Italian, Eastern, Sushi, Pizza etc', mainly meant for search!
+    @SerializedName("category_tag")
+    val categoryTag: String,
     @SerializedName("group_tag")
     val groupTag: String,
-    @SerializedName("image_url")
-    val imageUrl: String,
     @SerializedName("kosher_tag")
     val kosherTag: String,
-    val price: Double,
+    //MenuTitle
+    @SerializedName("menu_title_id")
+    val menuTitleId: Int,
+    @SerializedName("image_url")
+    val imageUrl: String,
+    val available: Boolean,
     @SerializedName("require_quantity")
     val requireQuantity: Boolean,
 
@@ -38,6 +42,10 @@ data class Dish(
         DecimalFormat("#.##").format(price) + "₪"
 }
 
+
+
+
+//Views
 data class DishWithOrderDetails(
     @Embedded
     val dish: Dish,
@@ -45,7 +53,16 @@ data class DishWithOrderDetails(
         parentColumn = "dishId",
         entityColumn = "orderDetailsId"
     )
-    val orderDetails: List<OrderDetails>
+    val orderDetails: List<OrderDetail>
+)
+data class DishAdditions(
+    @Embedded
+    val dish: Dish,
+    @Relation(
+        parentColumn = "dishId",
+        entityColumn = "additionId"
+    )
+    val additions: List<Addition>
 )
 
 

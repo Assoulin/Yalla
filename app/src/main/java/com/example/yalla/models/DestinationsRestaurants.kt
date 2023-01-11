@@ -10,17 +10,18 @@ data class DestinationsRestaurants(
     val destinationId: Int,
     @SerializedName("restaurant_id")
     val restaurantId: Int,
-    @SerializedName("delivery_price")
-    val deliveryPrice: Int,
     @SerializedName("delivery_time")
     val deliveryTime: Int,
-)
+    @SerializedName("delivery_price")
+    val deliveryPrice: Int,
+){
+    fun deliveryPriceToString(): String = "${deliveryPrice}₪"
+}
 
 @Entity(primaryKeys = ["destinationId","restaurantId"])
 data class DestinationsRestaurantsCrossRef(
     val destinationId: Int,
     val restaurantId: Int,
-
     )
 
 data class DestinationRestaurantRelation(
