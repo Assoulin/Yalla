@@ -18,19 +18,15 @@ data class DestinationsRestaurants(
     fun deliveryPriceToString(): String = "${deliveryPrice}₪"
 }
 
-@Entity(primaryKeys = ["destinationId","restaurantId"])
-data class DestinationsRestaurantsCrossRef(
-    val destinationId: Int,
-    val restaurantId: Int,
-    )
 
-data class DestinationRestaurantRelation(
+
+data class RestaurantsByDestination(
     @Embedded
-    val restaurant: Restaurant,
+    val destination: Destination,
     @Relation(
-        parentColumn = "restaurantId",
-        entityColumn = "destinationId",
-        associateBy = Junction(DestinationsRestaurantsCrossRef::class)
+        parentColumn = "destinationId",
+        entityColumn = "restaurantId",
+        associateBy = Junction(DestinationsRestaurants::class)
     )
-    val restaurantDestinations: List<Destination>
+    val restaurants: List<Restaurant>
 )

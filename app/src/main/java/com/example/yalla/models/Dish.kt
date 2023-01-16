@@ -1,10 +1,7 @@
 package com.example.yalla.models
 
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import java.text.DecimalFormat
 
@@ -43,8 +40,6 @@ data class Dish(
 }
 
 
-
-
 //Views
 data class DishWithOrderDetails(
     @Embedded
@@ -55,12 +50,24 @@ data class DishWithOrderDetails(
     )
     val orderDetails: List<OrderDetail>
 )
-data class DishAdditions(
+
+
+@Entity (tableName = "dish_Additions" , primaryKeys = ["dishId", "additionId"])
+data class DishAdditionsCrossRef(
+    @SerializedName("dish_id")
+    val dishId: Int,
+    @SerializedName("addition_id")
+    val additionId: Int
+)
+
+
+data class AdditionsByDish(
     @Embedded
     val dish: Dish,
     @Relation(
         parentColumn = "dishId",
-        entityColumn = "additionId"
+        entityColumn = "additionId",
+        associateBy = Junction(DishAdditionsCrossRef::class)
     )
     val additions: List<Addition>
 )

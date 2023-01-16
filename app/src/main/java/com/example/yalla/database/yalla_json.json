@@ -251,6 +251,14 @@
     ]
   },
   {
+    "dish_additions": [
+      {
+        "dish_id": 1,
+        "addition_id": 1
+      }
+    ]
+  },
+  {
     "additions_details": [
       {
         "order_details_id": 1,
