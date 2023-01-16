@@ -23,12 +23,12 @@
         android:id="@+id/iv_restaurant_poster"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/restaurant_poster"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/restaurant_poster" />
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:gravity="center"

@@ -108,9 +108,17 @@
         "description": "restaurant's desc",
         "image_url": "restaurant's image url",
         "is_active": true,
-        "schedule_id": 1,
         "address_id": 1,
         "cuisine": "cuisine"
+      },
+      {
+        "restaurant_id": 2,
+        "restaurant_name": "ג'אפן ג'אפן JAPAN JAPAN",
+        "description": "אסייתי, סושי",
+        "image_url": "https://scontent.ftlv1-1.fna.fbcdn.net/v/t39.30808-6/295693364_3252553091553717_3416053021214829987_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=A8CsSxB-ujkAX8IddbN&_nc_ht=scontent.ftlv1-1.fna&oh=00_AfBuB_f0s4bG4D0lbjPQW8KwTfWriaPVwCms9NcNHWuC6w&oe=63C8B824",
+        "is_active": true,
+        "address_id": 2,
+        "cuisine": "אסייתי, סושי"
       }
     ]
   },
@@ -118,24 +126,82 @@
     "daily_schedules": [
       {
         "schedule_id": 2,
-        "restaurant_id": 1,
+        "restaurant_id": 2,
         "day_of_week": 1,
-        "opening_hour": "08:00:00",
-        "closing_hour": "15:00:00"
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
 
       },
       {
         "schedule_id": 3,
-        "restaurant_id": 1,
+        "restaurant_id": 2,
         "day_of_week": 2,
-        "opening_hour": "08:00:00",
-        "closing_hour": "16:00:00"
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+
+      },
+      {
+        "schedule_id": 4,
+        "restaurant_id": 2,
+        "day_of_week": 3,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+
+      },
+      {
+        "schedule_id": 5,
+        "restaurant_id": 2,
+        "day_of_week": 4,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+
+      },
+      {
+        "schedule_id": 6,
+        "restaurant_id": 2,
+        "day_of_week": 5,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+
+      },
+      {
+        "schedule_id": 7,
+        "restaurant_id": 2,
+        "day_of_week": 6,
+        "opening_hour": "11:00:00",
+        "closing_hour": "14:00:00"
+
+      },
+      {
+        "schedule_id": 8,
+        "restaurant_id": 2,
+        "day_of_week": 7,
+        "opening_hour": "18:00:00",
+        "closing_hour": "23:00:00"
 
       }
     ]
   },
   {
     "destinations_restaurants": [
+      {
+        "destination_id": 1,
+        "restaurant_id": 1,
+        "delivery_time": 30,
+        "delivery_price": 25
+      },
+      {
+        "destination_id": 1,
+        "restaurant_id": 1,
+        "delivery_time": 30,
+        "delivery_price": 25
+      },
+      {
+        "destination_id": 1,
+        "restaurant_id": 1,
+        "delivery_time": 30,
+        "delivery_price": 25
+      },
       {
         "destination_id": 1,
         "restaurant_id": 1,
@@ -176,7 +242,6 @@
     "additions": [
       {
         "addition_id": 1,
-        "dish_id": 4,
         "addition_name": "זיתים",
         "price": 4.0,
         "image_url": "קישור",

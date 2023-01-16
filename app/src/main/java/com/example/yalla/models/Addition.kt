@@ -20,14 +20,12 @@ data class Addition(
     val price: Double,
     @SerializedName("image_url")
     val imageUrl: String,
-
     val available: Boolean,
     @SerializedName("require_quantity")
     val requireQuantity: Boolean,
 ) {
     fun priceToString(): String =
         DecimalFormat("#.##").format(price) + "₪"
-
 }
 
 //Views

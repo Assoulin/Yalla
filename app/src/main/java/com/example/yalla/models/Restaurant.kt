@@ -23,9 +23,6 @@ data class Restaurant(
     val isActive: Boolean,
     @SerializedName("restaurant_name")
     val restaurantName: String,
-    //Schedule
-    @SerializedName("schedule_id")
-    val scheduleId: Int
 )
 
 //Views
