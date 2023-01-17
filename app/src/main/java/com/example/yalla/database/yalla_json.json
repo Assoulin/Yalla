@@ -254,7 +254,8 @@
     "dish_additions": [
       {
         "dish_id": 1,
-        "addition_id": 1
+        "addition_id": 1,
+        "extra_price": 1.4
       }
     ]
   },

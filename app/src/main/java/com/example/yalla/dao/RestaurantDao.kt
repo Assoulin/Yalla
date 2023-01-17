@@ -1,5 +1,6 @@
 package com.example.yalla.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -10,13 +11,16 @@ import java.time.LocalTime
 
 @Dao
 interface RestaurantDao {
+    //Should we use LiveData? What is the rule for using it.
     @Query("SELECT * FROM Destination")
-    suspend fun getDestinations(): List<Destination>
+    fun getDestinations(): List<Destination>
 
     //TODO: Ask a teacher about how the joint object looks like
     @Transaction
-    @Query("SELECT * FROM DestinationsRestaurants WHERE destinationId=:chosenDestinationId  ORDER BY restaurantId")
+    @Query("SELECT * FROM DestinationsRestaurants WHERE destinationId=:chosenDestinationId LIMIT 1")
     suspend fun getRestaurantsByDestination(chosenDestinationId:Int): RestaurantsByDestination
+
+
 
     @Query("SELECT * FROM DailySchedule WHERE dayOfWeek =:today ORDER BY restaurantId")
     suspend fun getDailyScheduleForToday(today: Int): List<DailySchedule>

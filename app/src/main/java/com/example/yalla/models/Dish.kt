@@ -57,7 +57,9 @@ data class DishAdditionsCrossRef(
     @SerializedName("dish_id")
     val dishId: Int,
     @SerializedName("addition_id")
-    val additionId: Int
+    val additionId: Int,
+    @SerializedName("extra_price")
+    val extraPrice: Double,
 )
 
 
