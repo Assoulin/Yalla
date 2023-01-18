@@ -6,11 +6,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import com.google.gson.annotations.SerializedName
-@Entity
+@Entity("addresses")
 data class Address(
     @SerializedName("address_id")
     @PrimaryKey(autoGenerate = true)
-    val addressId: Int,
+    val addressId: Int=0,
     @SerializedName("destination_id")
     val destinationId: Int,
     val street: String,
@@ -19,7 +19,7 @@ data class Address(
     val entrance: String?,
     val apartment:Int?,
     @SerializedName("location_comment")
-    val locationComment: String,
+    val locationComment: String?,
 )
 
 data class AddressOrders(

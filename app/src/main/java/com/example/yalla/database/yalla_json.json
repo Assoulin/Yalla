@@ -1,6 +1,6 @@
 [
   {
-    "destinations": [
+    "destination": [
       {
         "destination_id": 1,
         "destination_name": "אריאל"
@@ -76,7 +76,7 @@
     ]
   },
   {
-    "addresses": [
+    "address": [
       {
         "address_id": 1,
         "destination_id": 1,
@@ -85,23 +85,32 @@
         "entrance": "-",
         "apartment": 3,
         "location_comment": "null"
+      },
+      {
+        "address_id": 2,
+        "destination_id": 1,
+        "street": "הבנאי",
+        "house_number": 6,
+        "entrance": "-",
+        "apartment": 0,
+        "location_comment": "קניון מגה אור, קומה ב, אריאל"
       }
     ]
   },
   {
-    "customers": [
+    "customer": [
       {
+        "customer_id": 1,
         "customer_name": "אורח",
         "email": "email",
         "password": "password",
         "phone_number": "phone_number",
-        "address_id": 1,
-        "customer_id": 1
+        "address_id": 1
       }
     ]
   },
   {
-    "restaurants": [
+    "restaurant": [
       {
         "restaurant_id": 1,
         "restaurant_name": "restaurant's name",
@@ -130,7 +139,6 @@
         "day_of_week": 1,
         "opening_hour": "11:00:00",
         "closing_hour": "23:00:00"
-
       },
       {
         "schedule_id": 3,
@@ -138,7 +146,6 @@
         "day_of_week": 2,
         "opening_hour": "11:00:00",
         "closing_hour": "23:00:00"
-
       },
       {
         "schedule_id": 4,
@@ -146,7 +153,6 @@
         "day_of_week": 3,
         "opening_hour": "11:00:00",
         "closing_hour": "23:00:00"
-
       },
       {
         "schedule_id": 5,
@@ -154,7 +160,6 @@
         "day_of_week": 4,
         "opening_hour": "11:00:00",
         "closing_hour": "23:00:00"
-
       },
       {
         "schedule_id": 6,
@@ -162,7 +167,6 @@
         "day_of_week": 5,
         "opening_hour": "11:00:00",
         "closing_hour": "23:00:00"
-
       },
       {
         "schedule_id": 7,
@@ -170,7 +174,6 @@
         "day_of_week": 6,
         "opening_hour": "11:00:00",
         "closing_hour": "14:00:00"
-
       },
       {
         "schedule_id": 8,
@@ -178,7 +181,6 @@
         "day_of_week": 7,
         "opening_hour": "18:00:00",
         "closing_hour": "23:00:00"
-
       }
     ]
   },
@@ -235,6 +237,20 @@
         "image_url": "כתובת אתר",
         "available": true,
         "require_quantity": true
+      },
+      {
+        "dish_id": 1,
+        "dish_name": "אגרול ירקות",
+        "description": "2 גלילי בצק דק מטוגנים במילוי נבטיםת כרוב סלרי פטריות שמפניוןתבצל ירוק",
+        "price": 30.0,
+        "restaurant_id": 2,
+        "category_tag": "אסיאתי",
+        "group_tag": "פרווה'",
+        "kosher_tag": "מהדרין, רבנות, בדצ",
+        "menu_title_id": 2,
+        "image_url": "https://files.geteat.co.il/atmos/2/images/menu/md-item626ee713c72f1.jpg",
+        "available": true,
+        "require_quantity": false
       }
     ]
   },
@@ -264,7 +280,6 @@
       {
         "order_details_id": 1,
         "order_id": 6,
-
         "addition_id": 1,
         "quantity": 1,
         "total_price": 4.0

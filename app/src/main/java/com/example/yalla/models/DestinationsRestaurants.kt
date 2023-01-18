@@ -1,6 +1,7 @@
 package com.example.yalla.models
 
 
+import androidx.annotation.NonNull
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
@@ -9,6 +10,7 @@ data class DestinationsRestaurants(
     @SerializedName("destination_id")
     val destinationId: Int,
     @SerializedName("restaurant_id")
+    @ColumnInfo(index = true)
     val restaurantId: Int,
     @SerializedName("delivery_time")
     val deliveryTime: Int,
