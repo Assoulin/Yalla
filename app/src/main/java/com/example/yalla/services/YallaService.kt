@@ -1,6 +1,8 @@
 package com.example.yalla.services
 
+import com.example.yalla.BuildConfig
 import com.example.yalla.BuildConfig.BASE_URL
+import com.example.yalla.models.responses.DestinationsResponse
 import com.example.yalla.network.TokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,8 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-interface YallaService {
 
+
+interface YallaService {
+    @GET(BuildConfig.DESTINATIONS)
+    suspend fun getDestinations(): DestinationsResponse
 
     //Setup:
     companion object {

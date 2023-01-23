@@ -1,12 +1,23 @@
 package com.example.yalla.dao
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.yalla.models.*
 
 @Dao
 interface RestaurantDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addRestaurants(restaurants: List<Restaurant>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addDishes(dishes: List<Dish>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addDestinations(destinations: List<Destination>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)
+
+
     //Should we use LiveData? What is the rule for using it.
     @Query("SELECT * FROM Destination")
     fun getDestinations(): List<Destination>
@@ -14,7 +25,7 @@ interface RestaurantDao {
     //TODO: Ask a teacher about how the joint object looks like
     @Transaction
     @Query("SELECT * FROM Destination WHERE destinationId=:chosenDestinationId LIMIT 1")
-    suspend fun getRestaurantsByDestination(chosenDestinationId:Int): RestaurantsByDestination
+    suspend fun getRestaurantsByDestination(chosenDestinationId: Int): RestaurantsByDestination
 
     @Query("SELECT * FROM DailySchedule WHERE dayOfWeek =:today ORDER BY restaurantId")
     suspend fun getDailyScheduleForToday(today: Int): List<DailySchedule>
@@ -27,10 +38,5 @@ interface RestaurantDao {
     @Query("SELECT * FROM dish WHERE restaurantId =:chosenDishId")
     suspend fun getAdditionsByDish(chosenDishId: Int): AdditionsByDish
 
-    //Search tools:
-    @Query("SELECT * FROM restaurant ORDER BY restaurantId")
-    suspend fun getRestaurants(): List<Restaurant>
 
-    @Query("SELECT * FROM dish ORDER BY categoryTag")
-    suspend fun getDishes():List<Dish>
 }

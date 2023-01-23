@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 import com.google.gson.annotations.SerializedName
 
-@Entity("destinations")
+@Entity
 data class Destination(
     @SerializedName("destination_id")
     @PrimaryKey

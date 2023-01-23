@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import com.google.gson.annotations.SerializedName
-@Entity("addresses")
+@Entity
 data class Address(
     @SerializedName("address_id")
     @PrimaryKey(autoGenerate = true)

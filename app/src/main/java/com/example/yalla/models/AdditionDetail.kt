@@ -7,14 +7,14 @@ import com.google.gson.annotations.SerializedName
 
 //פרטי תוספת למנה
 @Entity
-data class AdditionDetails(
+data class AdditionDetail(
     @SerializedName("addition_details_id")
     @PrimaryKey
-    val additionDetailsId: Int,
+    val additionDetailId: Int,
 
     //OrderDetails
     @SerializedName("order_details_id")
-    val orderDetailsId: Int,
+    val orderDetailId: Int,
     //Addition
     @SerializedName("addition_id")
     val additionId: Int,

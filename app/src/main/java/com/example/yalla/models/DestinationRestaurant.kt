@@ -1,12 +1,11 @@
 package com.example.yalla.models
 
 
-import androidx.annotation.NonNull
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @Entity(primaryKeys = ["destinationId", "restaurantId"])
-data class DestinationsRestaurants(
+data class DestinationRestaurant(
     @SerializedName("destination_id")
     val destinationId: Int,
     @SerializedName("restaurant_id")
@@ -28,7 +27,7 @@ data class RestaurantsByDestination(
     @Relation(
         parentColumn = "destinationId",
         entityColumn = "restaurantId",
-        associateBy = Junction(DestinationsRestaurants::class)
+        associateBy = Junction(DestinationRestaurant::class)
     )
     val restaurants: List<Restaurant>
 )

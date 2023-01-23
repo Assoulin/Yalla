@@ -32,7 +32,7 @@ data class AdditionsOfOrderDetail(
     val orderDetail: OrderDetail,
     @Relation(
         parentColumn = "orderDetailId",
-        entityColumn = "additionDetailsId"
+        entityColumn = "additionDetailId"
     )
-    val additionDetails: List<AdditionDetails>?
+    val additionDetails: List<AdditionDetail>?
 )

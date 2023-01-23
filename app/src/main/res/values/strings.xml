@@ -28,4 +28,5 @@
     <string name="settings">settings</string>
     <string name="back_to_previous_screen">back to previous screen</string>
     <string name="dish_poster">dish poster</string>
+    <string name="where_do_we_send_the_order">לאן מזמינים?</string>
 </resources>

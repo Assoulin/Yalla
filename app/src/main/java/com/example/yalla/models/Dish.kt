@@ -53,7 +53,7 @@ data class DishWithOrderDetails(
 
 
 @Entity (tableName = "dish_Additions" , primaryKeys = ["dishId", "additionId"])
-data class DishAdditionsCrossRef(
+data class DishAddition(
     @SerializedName("dish_id")
     val dishId: Int,
     @SerializedName("addition_id")
@@ -70,7 +70,7 @@ data class AdditionsByDish(
     @Relation(
         parentColumn = "dishId",
         entityColumn = "additionId",
-        associateBy = Junction(DishAdditionsCrossRef::class)
+        associateBy = Junction(DishAddition::class)
     )
     val additions: List<Addition>
 )
