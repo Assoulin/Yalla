@@ -1,5 +1,6 @@
 package com.example.yalla.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.yalla.models.*
 
@@ -20,7 +21,7 @@ interface RestaurantDao {
 
     //Should we use LiveData? What is the rule for using it.
     @Query("SELECT * FROM Destination")
-    fun getDestinations(): List<Destination>
+    fun getDestinations(): LiveData<List<Destination>>
 
     //TODO: Ask a teacher about how the joint object looks like
     @Transaction

@@ -5,15 +5,22 @@ import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class YallaRepository(private val yallaService: YallaService) {
+class YallaRepository(val restaurantDao: RestaurantDao) {
 
-    suspend fun getDestinations() = yallaService.getDestinations()
+    fun getDestinations() = restaurantDao.getDestinations()
+
+    suspend fun refreshDestinations(){
+            withContext(Dispatchers.IO){
+                with(YallaService.create()) {
+                    //get data from API:
+                    val destinations = allDestinations().destinations
+
+                    //save data to Room:
+                    restaurantDao.addDestinations(destinations)
+
+                }
+            }
+        }
+    }
 
 
-
-//    suspend fun refreshRestaurants(){
-//        withContext(Dispatchers.IO){
-//            //TODO: YallaService
-//        }
-    //}
-}

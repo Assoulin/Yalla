@@ -14,7 +14,7 @@ import retrofit2.http.GET
 
 interface YallaService {
     @GET(BuildConfig.DESTINATIONS)
-    suspend fun getDestinations(): DestinationsResponse
+    suspend fun allDestinations(): DestinationsResponse
 
     //Setup:
     companion object {

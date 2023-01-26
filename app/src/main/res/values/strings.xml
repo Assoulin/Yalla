@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Yalla</string>
+    <string name="app_name">יאללה</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -29,4 +29,7 @@
     <string name="back_to_previous_screen">back to previous screen</string>
     <string name="dish_poster">dish poster</string>
     <string name="where_do_we_send_the_order">לאן מזמינים?</string>
+    <string name="wallpaper">wallpaper</string>
+    <string name="no_internet_connection">אין חיבור אינטרנט</string>
+    <string name="try_again">נסה שוב</string>
 </resources>
