@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.address.AddressFragment">
+
+    <TextView
+        android:id="@+id/tv_top_separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/turquoise"
+        app:layout_constraintBottom_toTopOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#D9F08323"
+        android:text="@string/where_exactly"
+        android:textAlignment="center"
+        android:textColor="#CCFFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_bottom_separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_top_separator"
+        tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/tv_bottom_separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9008683"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="24dp"
+        android:elevation="6dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bottom_separator"
+        app:cardBackgroundColor="#59FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|top">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                android:hint="@string/street"
+                android:textColorHint="#99FFFFFF"
+                app:boxBackgroundColor="#E6008683"
+                app:counterEnabled="true"
+                app:counterMaxLength="24"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="none"
+                    android:digits=" אבגדהוזחטיכלמנסעצפקרשת"
+                    android:ems="10"
+                    android:hint="@string/street"
+                    android:inputType="text"
+                    android:maxLength="24"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="#00008683"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_house_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                android:hint="@string/house_number"
+                android:textColorHint="#99FFFFFF"
+                app:boxBackgroundColor="#E6008683"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="postalAddress"
+                    android:ems="10"
+                    android:hint="@string/house_number"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="#00008683"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck"
+                    android:digits="1234567890"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_entrance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                android:hint="@string/entrance"
+                android:textColorHint="#99FFFFFF"
+                app:boxBackgroundColor="#E6008683"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/entrance"
+                    android:autofillHints="none"
+                    android:importantForAutofill="auto"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="#00008683"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck"
+                    android:digits=" אבגדהוזחטיכלמנסעצפקרשת1234567890"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_apt_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                android:hint="@string/apt_number"
+                android:textColorHint="#99FFFFFF"
+                app:boxBackgroundColor="#E6008683"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/apt_number"
+                    android:autofillHints="none"
+                    android:importantForAutofill="auto"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="#00008683"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck"
+                    android:digits="1234567890"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_location_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                android:hint="@string/location_instructions"
+                android:textColorHint="#99FFFFFF"
+                app:boxBackgroundColor="#E6008683"
+                app:counterEnabled="true"
+                app:counterMaxLength="70"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעצפקרשת1234567890 "
+                    android:hint="@string/location_instructions"
+                    android:importantForAutofill="auto"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLength="70"
+                    android:maxLines="3"
+                    android:textColor="@color/white"
+                    android:textColorHint="#00008683"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded,TextContrastCheck"
+                    android:autofillHints="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="45dp"
+        android:backgroundTint="#A6F08323"
+        android:clickable="false"
+        android:elevation="10dp"
+        android:paddingVertical="15dp"
+        android:text="@string/done"
+        android:textColor="#546E7A"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

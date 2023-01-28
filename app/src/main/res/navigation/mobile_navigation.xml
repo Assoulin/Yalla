@@ -12,26 +12,28 @@
     <fragment
         android:id="@+id/navigation_surprise"
         android:name="com.example.yalla.network.surprise.SurpriseFragment"
-        android:label="fragment_surprise"
         tools:layout="@layout/fragment_surprise" />
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.yalla.ui.nav.home.HomeFragment"
-        android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/navigation_yalla_specials"
         android:name="com.example.yalla.ui.nav.yalla_specials.YallaSpecialsFragment"
-        android:label="fragment_yalla_specials"
         tools:layout="@layout/fragment_yalla_specials" />
     <fragment
         android:id="@+id/navigation_restaurants"
         android:name="com.example.yalla.ui.nav.restaurants.RestaurantsFragment"
-        android:label="fragment_restaurants"
         tools:layout="@layout/fragment_restaurants" />
     <fragment
         android:id="@+id/chooseDestinationFragment"
-        android:name="com.example.yalla.ui.nav.choose_destination.ChooseDestinationFragment"
-
-        tools:layout="@layout/fragment_choose_destination" />
+        android:name="com.example.yalla.ui.address.choose_destination.ChooseDestinationFragment"
+        tools:layout="@layout/fragment_choose_destination" >
+        <action
+            android:id="@+id/action_chooseDestinationFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.yalla.ui.address.AddressFragment"/>
 </navigation>

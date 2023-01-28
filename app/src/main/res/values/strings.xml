@@ -32,4 +32,12 @@
     <string name="wallpaper">wallpaper</string>
     <string name="no_internet_connection">אין חיבור אינטרנט</string>
     <string name="try_again">נסה שוב</string>
+    <string name="arrow_back">arrow back</string>
+    <string name="where_exactly">לאן להגיע?</string>
+    <string name="house_number">מספר בית *</string>
+    <string name="apt_number">מספר דירה (אם יש)</string>
+    <string name="entrance">כניסה (אם יש)</string>
+    <string name="street">רחוב *</string>
+    <string name="location_instructions">הנחיות לשליח</string>
+    <string name="done">סיימתי</string>
 </resources>

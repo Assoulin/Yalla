@@ -5,7 +5,7 @@ import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class YallaRepository(val restaurantDao: RestaurantDao) {
+class YallaRepository(private val restaurantDao: RestaurantDao) {
 
     fun getDestinations() = restaurantDao.getDestinations()
 

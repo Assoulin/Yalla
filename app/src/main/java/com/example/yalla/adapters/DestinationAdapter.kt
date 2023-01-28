@@ -23,7 +23,7 @@ class DestinationAdapter(
 
         with(holder.binding) {
             btnDestination.text = destination.destinationName
-            root.setOnClickListener {
+            btnDestination.setOnClickListener {
                 onDestinationClicked.invoke(destination)
             }
         }

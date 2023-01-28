@@ -5,9 +5,8 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     android:gravity="center|top"
-    tools:context=".ui.nav.choose_destination.ChooseDestinationFragment">
+    tools:context=".ui.address.choose_destination.ChooseDestinationFragment">
 
     <ProgressBar
         android:id="@+id/progress_loading"
@@ -74,27 +73,30 @@
         tools:listitem="@layout/destination_item" />
 
     <androidx.cardview.widget.CardView
-        android:visibility="gone"
-        tools:visibility="visible"
         android:id="@+id/card_error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp">
+
             <TextView
-                android:layout_marginEnd="8dp"
                 android:id="@+id/text_error"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:padding="8dp"
                 tools:text="TextView" />
+
             <Button
                 android:id="@+id/button_error_confirm"
                 android:layout_width="wrap_content"

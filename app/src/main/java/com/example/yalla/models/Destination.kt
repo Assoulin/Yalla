@@ -14,6 +14,8 @@ data class Destination(
     val destinationId: Int,
     @SerializedName("destination_name")
     val destinationName: String,
+    @SerializedName("require_address")
+    val requireAddress: Boolean,
     )
 
 //View

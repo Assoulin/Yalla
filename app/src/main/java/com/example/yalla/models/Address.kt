@@ -19,7 +19,7 @@ data class Address(
     val entrance: String?,
     val apartment:Int?,
     @SerializedName("location_comment")
-    val locationComment: String?,
+    val locationInstructions: String?,
 )
 
 data class AddressOrders(

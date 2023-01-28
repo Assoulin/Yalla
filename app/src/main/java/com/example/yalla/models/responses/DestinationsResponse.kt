@@ -5,5 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 class DestinationsResponse(
     @SerializedName("destination")
-    val destinations: List<Destination>
+    val destinations: List<Destination>,
+
 )
