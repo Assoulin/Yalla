@@ -24,7 +24,7 @@ interface YallaService {
                 level = HttpLoggingInterceptor.Level.BODY
             }
 
-            //Add the Api Key
+            //Add the Api Key (will be relevant in the next module)
             val client = OkHttpClient.Builder().apply {
                 addInterceptor(TokenInterceptor())
                 addInterceptor(logger)

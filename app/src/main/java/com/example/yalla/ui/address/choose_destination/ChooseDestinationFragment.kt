@@ -35,6 +35,7 @@ class ChooseDestinationFragment : Fragment() {
         _binding = FragmentChooseDestinationBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     private val onDestinationSelected: (Destination) -> Unit = { chosenDestination ->
         val json = Gson().toJson(chosenDestination)
         Toast.makeText(
@@ -51,7 +52,7 @@ class ChooseDestinationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.destinationsLive.observe(viewLifecycleOwner){ destinationList ->
+        viewModel.destinationsLive.observe(viewLifecycleOwner) { destinationList ->
             binding.rvDestinations.adapter =
                 DestinationAdapter(destinationList, onDestinationSelected)
         }
@@ -59,11 +60,16 @@ class ChooseDestinationFragment : Fragment() {
 
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {
+                binding.rvDestinations.visibility = View.INVISIBLE
                 binding.cardError.visibility = View.VISIBLE
                 binding.textError.text = getString(R.string.no_internet_connection)
-                binding.buttonErrorConfirm.setOnClickListener {
-                    //Todo: viewModel.manageInternetAvailability()
-                    println("I'm here")
+                binding.buttonTryAgain.setOnClickListener {
+                    binding.cardError.visibility = View.INVISIBLE
+                    viewModel.manageInternetAvailability()
+                }
+            } else {
+                binding.buttonTryAgain.setOnClickListener {
+                    binding.rvDestinations.visibility = View.VISIBLE
                 }
             }
         }

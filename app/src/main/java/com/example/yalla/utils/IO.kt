@@ -4,8 +4,11 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL
 
+
 class IO {
+
     companion object {
+
         fun fetchFromUrl(address: String, callback: (response: String) -> Unit) {
             Thread {
                 val url = URL(address)

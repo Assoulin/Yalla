@@ -25,28 +25,18 @@ class ChooseDestinationViewModel(application: Application) : AndroidViewModel(ap
     val loading: LiveData<Boolean> = _loading
 
     init {
+        manageInternetAvailability()
+    }
+
+    fun manageInternetAvailability() {
         viewModelScope.launch {
             if (YallaApplication.networkStatusChecker.hasInternet()) {
                 _loading.value = true
                 YallaApplication.repository.refreshDestinations()
                 _loading.value = false
-
             } else {
                 _errors.value = NO_INTERNET
             }
         }
     }
-
-//    fun manageInternetAvailability() {
-//        viewModelScope.launch {
-//            if (YallaApplication.networkStatusChecker.hasInternet()) {
-//                _loading.value = true
-//                YallaApplication.repository.refreshDestinations()
-//                _loading.value = false
-//
-//            } else {
-//                _errors.value = NO_INTERNET
-//            }
-//        }
-//    }
 }

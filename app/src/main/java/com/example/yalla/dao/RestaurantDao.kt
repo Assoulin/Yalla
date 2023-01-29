@@ -13,10 +13,13 @@ interface RestaurantDao {
 //    suspend fun addDishes(dishes: List<Dish>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addDestination(destinations: Destination)
+    suspend fun insertDestination(destinations: Destination)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addDestinations(destinations: List<Destination>)
+    suspend fun insertDestinations(destinations: List<Destination>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)

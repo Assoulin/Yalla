@@ -40,4 +40,7 @@
     <string name="street">רחוב *</string>
     <string name="location_instructions">הנחיות לשליח</string>
     <string name="done">סיימתי</string>
+    <string name="adaptive_title">לאן להגיע ב%s?</string>
+    <string name="obligated_field">זהו שדה חובה</string>
+    <string name="min_street_length">על שם הרחוב להיות באורך 2 תווים לפחות</string>
 </resources>
