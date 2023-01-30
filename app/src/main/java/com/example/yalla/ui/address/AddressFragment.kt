@@ -1,5 +1,6 @@
 package com.example.yalla.ui.address
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Color.WHITE
 import androidx.lifecycle.ViewModelProvider
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import com.example.yalla.R
 import com.example.yalla.databinding.FragmentAddressBinding
@@ -19,13 +21,12 @@ const val CHOSEN_DESTINATION_TAG = "chosenDestination"
 const val NOT_REQUIRED_STRING = "-"
 const val NOT_REQUIRED_INT = 0
 const val EMPTY_STRING = ""
+
 class AddressFragment : Fragment() {
     private var _binding: FragmentAddressBinding? = null
     private val binding: FragmentAddressBinding get() = _binding!!
 
     private lateinit var viewModel: AddressViewModel
-
-
 
 
     override fun onCreateView(
@@ -42,26 +43,27 @@ class AddressFragment : Fragment() {
         val chosenDestination = Gson().fromJson(
             requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
         )
+        requireAddressDoneListener(chosenDestination)
+        editListener()
 
         binding.tvTitle.text = getString(R.string.adaptive_title, chosenDestination.destinationName)
-
         if (chosenDestination.requireAddress) {
             binding.tiStreet.editText!!.addTextChangedListener {
                 it?.let {
-                     val isValid = it.toString().trim().length >= 2
+                    val isValid = it.toString().trim().length >= 2
                     viewModel.streetValidationPassedLive.value = isValid
-                    if (!isValid){
+                    if (!isValid) {
                         binding.tiStreet.error = getString(R.string.min_street_length)
-                    }else{
+                    } else {
                         binding.tiStreet.error = EMPTY_STRING
                     }
                 }
             }
             binding.tiHouseNumber.editText!!.addTextChangedListener {
                 it?.let { input ->
-                    if (input.isEmpty()){
+                    if (input.isEmpty()) {
                         binding.tiHouseNumber.error = getString(R.string.obligated_field)
-                    }else{
+                    } else {
                         binding.tiHouseNumber.error = EMPTY_STRING
                     }
                     viewModel.houseNumberValidationPassedLive.value = input.isNotEmpty()
@@ -74,20 +76,7 @@ class AddressFragment : Fragment() {
                         if (isClickable) {
                             this.setBackgroundColor(Color.parseColor("#E6F08323"))
                             this.setTextColor(WHITE)
-                            binding.btnDone.setOnClickListener {
-                                val address = viewModel.makeNewAddress(
-                                    chosenDestination = chosenDestination,
-                                    street = binding.tiStreet.editText!!.text.toString().trim(),
-                                    houseNumber = binding.tiHouseNumber.editText!!.text.toString()
-                                        .toInt(),
-                                    entrance = binding.tiEntrance.editText!!.text.toString().trim(),
-                                    apartment = binding.tiAptNumber!!.editText!!.text.toString()
-                                        .toInt(),
-                                    locationInstructions = binding.tiLocationInstructions.editText!!
-                                        .text.toString()
-                                        .trim()
-                                )
-                            }
+                            requireAddressConfirmListener(chosenDestination)
                         } else {
                             this.setBackgroundColor(Color.parseColor("#A6F08323"))
                             this.setTextColor(Color.parseColor("#546E7A"))
@@ -105,22 +94,106 @@ class AddressFragment : Fragment() {
             binding.tiStreet.visibility = View.GONE
             binding.tiHouseNumber.visibility = View.GONE
             binding.tiEntrance.visibility = View.GONE
-            binding.tiAptNumber!!.visibility = View.GONE
-            binding.btnDone.setOnClickListener {
-                viewModel.makeNewAddress(
-                    chosenDestination = chosenDestination,
-                    street = NOT_REQUIRED_STRING,
-                    houseNumber = NOT_REQUIRED_INT,
-                    entrance = NOT_REQUIRED_STRING,
-                    apartment = NOT_REQUIRED_INT,
-                    locationInstructions = binding.tiLocationInstructions.editText!!.text.toString()
-                        .trim()
-                )
-            }
+            binding.tiAptNumber.visibility = View.GONE
+
+            notRequireAddressDoneListener(chosenDestination)
+
         }
     }
 
+    private fun requireAddressConfirmListener(chosenDestination: Destination) {
+        binding.btnConfirm.setOnClickListener {
+            viewModel.makeAndSaveNewAddress(
+                chosenDestination = chosenDestination,
+                street = binding.tiStreet.editText!!.text.toString().trim(),
+                houseNumber = binding.tiHouseNumber.editText!!.text.toString()
+                    .toInt(),
+                entrance = binding.tiEntrance.editText?.text?.toString()?.trim(),
+                apartment = binding.tiAptNumber.editText!!.text?.toString()?.toIntOrNull(),
+                locationInstructions = binding.tiLocationInstructions.editText?.text?.toString()
+                    ?.trim()
+            )
 
+        }
+    }
+
+    private fun editListener() {
+        binding.btnEdit.setOnClickListener{
+                binding.formCardView.visibility = View.VISIBLE
+                binding.cardConfirm.visibility = View.INVISIBLE
+
+            }
+
+    }
+
+    private fun requireAddressDoneListener(chosenDestination: Destination) {
+        binding.btnDone.setOnClickListener {
+            binding.formCardView.visibility = View.INVISIBLE
+            binding.cardConfirm.visibility = View.VISIBLE
+            //hide the keyboard
+            hideKeyboard()
+
+            //Todo: Add requireAddressValidations()
+
+            binding.tvFullAddress.apply {
+                text = getString(
+                    R.string.full_address_summary,
+                    binding.tiStreet.editText!!.text.toString().trim(),
+                    binding.tiHouseNumber.editText!!.text.toString(),
+                    chosenDestination.destinationName
+                )
+            }
+            binding.tvApt.apply {
+                var aptOrNone =
+                    binding.tiAptNumber.editText!!.text.toString().trim()
+                if (aptOrNone == "") {
+                    aptOrNone = getString(R.string.none)
+                }
+                text = getString(R.string.apt_summary, aptOrNone)
+            }
+            binding.tvEntrance.apply {
+                var entranceOrNull =
+                    binding.tiEntrance.editText!!.text.toString().trim()
+                if (entranceOrNull == "") {
+                    entranceOrNull = getString(R.string.none)
+                }
+                text = getString(R.string.entrance_summary, entranceOrNull)
+            }
+            binding.tvInstructions.apply {
+                var instructionsOrNone =
+                    binding.tiLocationInstructions.editText!!.text.toString().trim()
+                if (instructionsOrNone == "") {
+                    instructionsOrNone = getString(R.string.none)
+                }
+                text = instructionsOrNone
+            }
+
+        }
+    }
+
+    private fun notRequireAddressDoneListener(chosenDestination: Destination) {
+        binding.btnDone.setOnClickListener {
+            hideKeyboard()
+            binding.formCardView.visibility = View.INVISIBLE
+            binding.cardConfirm.visibility = View.VISIBLE
+
+            //Todo: Add notRequireAddressValidations()
+            binding.tvFullAddress.text = chosenDestination.destinationName
+            binding.tvInstructions.apply {
+                var instructionsOrNone =
+                    binding.tiLocationInstructions.editText!!.text.toString().trim()
+                if (instructionsOrNone == "") {
+                    instructionsOrNone = getString(R.string.none)
+                }
+                text = instructionsOrNone
+            }
+            }
+        }
+    private fun hideKeyboard() {
+        with(requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager) {
+            hideSoftInputFromWindow(requireView().windowToken, 0)
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

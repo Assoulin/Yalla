@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
@@ -24,13 +25,14 @@
         android:text="@string/where_exactly"
         android:textAlignment="center"
         android:textColor="#CCFFFFFF"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_bottom_separator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_top_separator"
         tools:ignore="TextContrastCheck" />
+
     <TextView
         android:id="@+id/tv_bottom_separator"
         android:layout_width="0dp"
@@ -41,169 +43,362 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/form_card_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#739ED6DF"
+        android:layout_marginBottom="16dp"
         android:elevation="6dp"
+        app:cardBackgroundColor="#59FFFFFF"
         app:cardCornerRadius="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_done"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_bottom_separator">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center|top">
+            android:layout_marginVertical="3dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_street"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                android:hint="@string/street"
-                android:textColorHint="#99FFFFFF"
-                app:boxBackgroundColor="#E6008683"
-                app:counterEnabled="true"
-                app:counterMaxLength="24"
-                app:errorEnabled="true">
+                android:gravity="center|top"
+                android:orientation="vertical">
 
-                <EditText
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="postalAddress"
-                    android:ems="10"
+                    android:layout_margin="8dp"
                     android:hint="@string/street"
-                    android:inputType="text"
-                    android:maxLength="24"
-                    android:maxLines="1"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="#00008683"
-                    android:textSize="25sp"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890אבגדהוזחטיכלמנסעצפקרשת' "/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textColorHint="#99FFFFFF"
+                    app:boxBackgroundColor="#E6008683"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="24"
+                    app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_house_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                android:hint="@string/house_number"
-                android:textColorHint="#99FFFFFF"
-                app:boxBackgroundColor="#E6008683"
-                app:counterEnabled="true"
-                app:counterMaxLength="10"
-                app:errorEnabled="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="postalAddress"
+                        android:digits="אבגדהוזחטיכלמנסעפצקרשתםןףץך "
+                        android:ems="10"
+                        android:hint="@string/street"
+                        android:inputType="text"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="#00008683"
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_house_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="postalAddress"
-                    android:ems="10"
+                    android:layout_margin="8dp"
                     android:hint="@string/house_number"
-                    android:inputType="text"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="#00008683"
-                    android:textSize="25sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textColorHint="#99FFFFFF"
+                    app:boxBackgroundColor="#E6008683"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_entrance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                android:hint="@string/entrance"
-                android:textColorHint="#99FFFFFF"
-                app:boxBackgroundColor="#E6008683"
-                app:counterEnabled="true"
-                app:counterMaxLength="10"
-                app:errorEnabled="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="postalAddress"
+                        android:digits="1234567890"
+                        android:ems="10"
+                        android:hint="@string/house_number"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="#00008683"
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_entrance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="auto"
-                    android:ems="10"
+                    android:layout_margin="8dp"
                     android:hint="@string/entrance"
-                    android:inputType="text"
-                    android:maxLength="25"
-                    android:maxLines="1"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="#00008683"
-                    android:textSize="25sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textColorHint="#99FFFFFF"
+                    app:boxBackgroundColor="#E6008683"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ti_location_instructions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                android:hint="@string/location_instructions"
-                android:textColorHint="#99FFFFFF"
-                app:boxBackgroundColor="#E6008683"
-                app:counterEnabled="true"
-                app:counterMaxLength="70"
-                app:errorEnabled="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:digits=" אבגדהוזחטיכלמנסעצפקרשת1234567890"
+                        android:ems="10"
+                        android:hint="@string/entrance"
+                        android:importantForAutofill="auto"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="#00008683"
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:hint="@string/location_instructions"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_apt_number"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:importantForAutofill="auto"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:maxLength="70"
-                    android:lineBreakWordStyle="phrase"
-                    android:gravity="right"
-                    android:maxLines="3"
-                    android:textColor="@color/white"
-                    android:textColorHint="#00008683"
-                    android:textSize="20sp"
-                    tools:ignore="RtlHardcoded"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890אבגדהוזחטיכלמנסעצפקרשת' "/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:hint="@string/apt_number"
+                    android:textColorHint="#99FFFFFF"
+                    app:boxBackgroundColor="#E6008683"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="5"
+                    app:errorEnabled="true">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="postalAddress"
+                        android:digits="1234567890"
+                        android:ems="10"
+                        android:hint="@string/apt_number"
+                        android:inputType="text"
+                        android:maxLength="5"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="#00008683"
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_location_instructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:hint="@string/location_instructions"
+                    android:textColorHint="#99FFFFFF"
+                    app:boxBackgroundColor="#E6008683"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="140"
+                    app:errorEnabled="true">
 
-        </LinearLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעפצקרשתםןףץך1234567890 "
+                        android:hint="@string/location_instructions"
+                        android:importantForAutofill="auto"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:maxLength="140"
+                        android:maxLines="4"
+                        android:minLines="3"
+                        android:nestedScrollingEnabled="true"
+                        android:outlineProvider="background"
+                        android:textColor="@color/white"
+                        android:textColorHint="#00008683"
+                        android:textSize="15sp"
+                        tools:ignore="RtlHardcoded,TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:backgroundTint="#A6F08323"
+                    android:clickable="false"
+                    android:elevation="10dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/done"
+                    android:textColor="@color/turquoise"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btn_done"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_confirm"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginBottom="65dp"
-        android:backgroundTint="#A6F08323"
-        android:clickable="false"
-        android:elevation="10dp"
-        android:text="@string/done"
-        android:textColor="#546E7A"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_marginHorizontal="12dp"
+        android:backgroundTint="#E69ED6DF"
+        android:visibility="invisible"
+        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:id="@+id/ll_full_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_full_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/delivery_address"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_full_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textSize="20sp"
+                    tools:text="ארלוזורוב 57, חיפה" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_entrance_and_apt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/ll_full_address">
+
+                <TextView
+                    android:id="@+id/tv_entrance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    tools:text="כניסה: א" />
+
+                <TextView
+                    android:id="@+id/tv_apt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    tools:text="דירה: 124" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_instructions_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/delivery_instructions"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/ll_entrance_and_apt"
+                app:layout_constraintStart_toStartOf="@id/ll_entrance_and_apt"
+                app:layout_constraintTop_toBottomOf="@+id/ll_entrance_and_apt" />
+
+            <TextView
+                android:id="@+id/tv_instructions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions_title"
+                tools:text="נקודות ששליח צריך להיות ערני לגביהן בזמן פגישת הלקוח בכתובת היעד סתם כי בא לי לדבר" />
+
+
+            <Button
+                android:id="@+id/btn_edit"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:elevation="10dp"
+                android:padding="12dp"
+                android:text="@string/edit"
+                android:textColor="@color/turquoise"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:elevation="10dp"
+                android:padding="12dp"
+                android:text="@string/confirm"
+                android:textColor="@color/turquoise"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.95" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

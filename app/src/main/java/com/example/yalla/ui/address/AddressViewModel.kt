@@ -14,22 +14,30 @@ class AddressViewModel : ViewModel() {
     var streetValidationPassedLive = MutableLiveData(false)
     var houseNumberValidationPassedLive = MutableLiveData(false)
 
-    fun makeNewAddress(
+    fun makeAndSaveNewAddress(
         chosenDestination: Destination,
         street: String,
         houseNumber: Int,
-        entrance: String,
-        apartment: Int,
-        locationInstructions: String
+        entrance: String?,
+        apartment: Int?,
+        locationInstructions: String?
     ) {
+        var roomEntrance = entrance
+        if (roomEntrance == EMPTY_STRING){
+            roomEntrance = NOT_REQUIRED_STRING
+        }
+        var roomLocationInstructions = locationInstructions
+        if (roomLocationInstructions == EMPTY_STRING){
+            roomLocationInstructions = NOT_REQUIRED_STRING
+        }
         saveFullAddress(
             chosenDestination, Address(
                 destinationId = chosenDestination.destinationId,
                 street = street,
                 houseNumber = houseNumber,
-                entrance = entrance,
-                apartment = apartment,
-                locationInstructions = locationInstructions
+                entrance = roomEntrance,
+                apartment = apartment?: NOT_REQUIRED_INT,
+                locationInstructions = roomLocationInstructions
             )
         )
     }

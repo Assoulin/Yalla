@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/form_card_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="14dp"
@@ -179,7 +179,7 @@
                     app:boxCornerRadiusBottomEnd="5dp"
                     app:boxCornerRadiusBottomStart="5dp"
                     app:counterEnabled="true"
-                    app:counterMaxLength="10"
+                    app:counterMaxLength="5"
                     app:errorEnabled="true">
 
                     <EditText
@@ -190,7 +190,7 @@
                         android:ems="10"
                         android:hint="@string/apt_number"
                         android:inputType="text"
-                        android:maxLength="10"
+                        android:maxLength="5"
                         android:maxLines="1"
                         android:minHeight="48dp"
                         android:singleLine="true"
@@ -218,13 +218,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="none"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעצפקרשת1234567890 "
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעפצקרשתםןףץך1234567890 "
                         android:hint="@string/location_instructions"
                         android:importantForAutofill="auto"
                         android:inputType="textMultiLine|textCapSentences"
                         android:maxLength="140"
-                        android:minLines="3"
                         android:maxLines="4"
+                        android:minLines="3"
                         android:nestedScrollingEnabled="true"
                         android:outlineProvider="background"
                         android:textColor="@color/white"
@@ -243,12 +243,153 @@
                     android:elevation="10dp"
                     android:paddingVertical="10dp"
                     android:text="@string/done"
-                    android:textColor="#546E7A"
+                    android:textColor="@color/turquoise"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     tools:ignore="TextContrastCheck" />
             </LinearLayout>
         </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:backgroundTint="#E69ED6DF"
+        android:visibility="invisible"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:id="@+id/ll_full_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_full_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/delivery_address"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_full_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    tools:text="ארלוזורוב 57, חיפה" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_entrance_and_apt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/ll_full_address">
+
+                <TextView
+                    android:id="@+id/tv_entrance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    tools:text="כניסה: א" />
+
+                <TextView
+                    android:id="@+id/tv_apt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    tools:text="דירה: 124" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_instructions_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/delivery_instructions"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/ll_entrance_and_apt"
+                app:layout_constraintStart_toStartOf="@id/ll_entrance_and_apt"
+                app:layout_constraintTop_toBottomOf="@+id/ll_entrance_and_apt" />
+
+            <TextView
+                android:id="@+id/tv_instructions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions_title"
+                tools:text="נקודות ששליח צריך להיות ערני לגביהן בזמן פגישת הלקוח בכתובת היעד סתם כי בא לי לדבר" />
+
+
+            <Button
+                android:id="@+id/btn_edit"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:padding="12dp"
+                android:elevation="10dp"
+                android:text="@string/edit"
+                android:textColor="@color/turquoise"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:padding="12dp"
+                android:elevation="10dp"
+                android:text="@string/confirm"
+                android:textColor="@color/turquoise"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 

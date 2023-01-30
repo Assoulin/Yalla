@@ -43,4 +43,12 @@
     <string name="adaptive_title">לאן להגיע ב%s?</string>
     <string name="obligated_field">זהו שדה חובה</string>
     <string name="min_street_length">על שם הרחוב להיות באורך 2 תווים לפחות</string>
+    <string name="confirm">אישור</string>
+    <string name="edit">עריכה</string>
+    <string name="full_address_summary"> %s %s, %s.</string>
+    <string name="none">אין</string>
+    <string name="delivery_instructions">הנחיות לשליח:</string>
+    <string name="delivery_address">כתובת למשלוח:</string>
+    <string name="apt_summary">דירה:%s</string>
+    <string name="entrance_summary">כניסה:%s</string>
 </resources>

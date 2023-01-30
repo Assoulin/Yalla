@@ -87,5 +87,4 @@ class ChooseDestinationFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }
