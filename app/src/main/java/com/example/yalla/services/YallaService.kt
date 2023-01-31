@@ -2,7 +2,9 @@ package com.example.yalla.services
 
 import com.example.yalla.BuildConfig
 import com.example.yalla.BuildConfig.BASE_URL
+import com.example.yalla.models.responses.AddressResponse
 import com.example.yalla.models.responses.DestinationsResponse
+import com.example.yalla.models.responses.RestaurantsResponse
 import com.example.yalla.network.TokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,6 +17,12 @@ import retrofit2.http.GET
 interface YallaService {
     @GET(BuildConfig.DESTINATIONS)
     suspend fun allDestinations(): DestinationsResponse
+
+    @GET(BuildConfig.RESTAURANTS)
+    suspend fun allRestaurants(): RestaurantsResponse
+
+    @GET(BuildConfig.ADDRESSES)
+    suspend fun allAddresses(): AddressResponse
 
     //Setup:
     companion object {

@@ -13,21 +13,40 @@ interface RestaurantDao {
 //    suspend fun addDishes(dishes: List<Dish>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDestination(destinations: Destination)
+    suspend fun insertDestination(destination: Destination)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestinations(destinations: List<Destination>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAddress(address: Address)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAddresses(addresses: List<Address>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertRestaurant(restaurant: Restaurant)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertRestaurants(restaurants: List<Restaurant>)
+
+    //Entity that does not exist in the API
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)
 
-
-    //Should we use LiveData? What is the rule for using it.
     @Query("SELECT * FROM Destination")
     fun getDestinations(): LiveData<List<Destination>>
+
+//    @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:")
+//    fun getRestaurants(): LiveData<List<Restaurant>>
+
+    @Query("SELECT * FROM Address WHERE addressId=:currentAddressId")
+    fun getAddress(currentAddressId:Int): LiveData<Address>
+
+
 
 //    //TODO: Ask a teacher about how the joint object looks like
 //    @Transaction

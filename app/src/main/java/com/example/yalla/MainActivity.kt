@@ -11,12 +11,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.yalla.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -25,21 +24,20 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         val graph = navController.graph
         graph.setStartDestination(R.id.chooseDestinationFragment)
-        navController.setGraph(graph,null)
+        navController.setGraph(graph, null)
 
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.chooseDestinationFragment,
+//                R.id.chooseDestinationFragment,
                 R.id.navigation_search,
                 R.id.navigation_surprise,
                 R.id.navigation_yalla_specials,
                 R.id.navigation_restaurants
             )
         )
-
-       setupActionBarWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
     override fun onSupportNavigateUp(): Boolean {

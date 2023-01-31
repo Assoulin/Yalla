@@ -2,13 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_surprise"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/ic_baseline_card_giftcard_24"
         android:title="@string/surprise_me" />
     <item
 
         android:id="@+id/navigation_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/search"
+
         />
 
     <item

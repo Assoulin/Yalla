@@ -28,11 +28,17 @@
         <action
             android:id="@+id/action_navigation_restaurants_to_restaurantMenu"
             app:destination="@id/restaurantMenu" />
+        <action
+            android:id="@+id/action_navigation_restaurants_to_chooseDestinationFragment"
+            app:destination="@id/chooseDestinationFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseDestinationFragment"
         android:name="com.example.yalla.ui.address.choose_destination.ChooseDestinationFragment"
         tools:layout="@layout/fragment_choose_destination" >
+        <action
+            android:id="@+id/action_chooseDestinationFragment_to_navigation_restaurants"
+            app:destination="@id/navigation_restaurants" />
         <action
             android:id="@+id/action_chooseDestinationFragment_to_addressFragment"
             app:destination="@id/addressFragment" />

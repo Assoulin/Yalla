@@ -24,6 +24,7 @@
         android:textColor="#D17523"
         android:textSize="19sp"
         android:textStyle="bold"
+        android:backgroundTint="@color/pale_blue"
         android:typeface="sans"
         tools:ignore="TextContrastCheck"
         tools:text="שם היעד" />

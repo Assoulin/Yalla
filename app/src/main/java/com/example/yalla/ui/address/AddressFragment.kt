@@ -23,14 +23,15 @@ const val NOT_REQUIRED_INT = 0
 const val EMPTY_STRING = ""
 
 class AddressFragment : Fragment() {
+    private lateinit var viewModel: AddressViewModel
+
     private var _binding: FragmentAddressBinding? = null
     private val binding: FragmentAddressBinding get() = _binding!!
 
-    private lateinit var viewModel: AddressViewModel
-
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(this)[AddressViewModel::class.java]
         _binding = FragmentAddressBinding.inflate(inflater, container, false)
@@ -118,11 +119,11 @@ class AddressFragment : Fragment() {
     }
 
     private fun editListener() {
-        binding.btnEdit.setOnClickListener{
-                binding.formCardView.visibility = View.VISIBLE
-                binding.cardConfirm.visibility = View.INVISIBLE
+        binding.btnEdit.setOnClickListener {
+            binding.formCardView.visibility = View.VISIBLE
+            binding.cardConfirm.visibility = View.INVISIBLE
 
-            }
+        }
 
     }
 
@@ -187,8 +188,9 @@ class AddressFragment : Fragment() {
                 }
                 text = instructionsOrNone
             }
-            }
         }
+    }
+
     private fun hideKeyboard() {
         with(requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager) {
             hideSoftInputFromWindow(requireView().windowToken, 0)
