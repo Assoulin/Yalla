@@ -18,8 +18,12 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestinations(destinations: List<Destination>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAddress(address: Address)
+//    @Query("insert into address (destinationId,street,houseNumber,entrance,apartment,locationInstructions)" +
+//            " VALUES(:addressModel.destinationId,:addressModel.street,:addressModel.houseNumber,:addressModel.entrance,:addressModel.apartment,:addressModel.locationInstructions) "
+//    + "if not exist (select * from address WHERE street =:addressModel.street AND houseNumber =:addressModel.houseNumber)")
+//    @Transaction
+    @Insert
+    suspend fun insertAddress(addressModel: Address)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAddresses(addresses: List<Address>)
@@ -33,6 +37,10 @@ interface RestaurantDao {
     //Entity that does not exist in the API
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
+
+    //MovieGenreCrossRef:
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    suspend fun add(restaurantsByDestination: RestaurantsByDestination)
 
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)

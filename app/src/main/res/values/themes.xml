@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Yalla" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/pale_blue</item>
+        <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryVariant">@color/pale_blue</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -10,9 +10,9 @@
         <item name="colorSecondaryVariant">@color/pale_blue</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/pale_blue</item>
-        <item name="android:navigationBarColor">@color/turquoise</item>
+        <item name="android:statusBarColor">@color/orange</item>
+        <item name="android:navigationBarColor">@color/smoky_white</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/open_sans_hebrew_regular</item>
+        <item name="fontFamily">@font/open_sans_hebrew_italic</item>
     </style>
 </resources>

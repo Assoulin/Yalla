@@ -1,4 +1,5 @@
 package com.example.yalla.repository
+
 import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.Address
 import com.example.yalla.models.FullAddressRoom
@@ -31,16 +32,29 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
 
                 val restaurants = allRestaurants().restaurants
                 val addresses = allAddresses().addresses
-                //save data to Room:
+                val destinationsRestaurants = allDestinationsRestaurants().destinationsRestaurants
+//                for (destinationRestaurant in destinationsRestaurants) {
+//                    for (destination in destinations) {
+//                        for (restaurant in restaurants) {
+//                            if (destinationRestaurant.destinationId == destination.destinationId && destinationRestaurant.restaurantId == restaurant.restaurantId){
+//                                //Todo: restaurantDao.add()
+//                            }
+//                        }
+//                    }
+//                }
 
+                //save data to Room:
                 restaurantDao.insertRestaurants(restaurants)
                 restaurantDao.insertAddresses(addresses)
+
             }
         }
     }
+
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom) {
         restaurantDao.insertFullAddress(fullAddressRoom)
     }
+
     suspend fun insertAddress(address: Address) {
         restaurantDao.insertAddress(address)
     }
