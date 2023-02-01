@@ -11,42 +11,38 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
 
     fun getDestinations() = restaurantDao.getDestinations()
 
+    fun getRestaurantsByDestination(chosenDestinationId:Int) = restaurantDao.getRestaurantsByDestination(chosenDestinationId)
+
     fun getAddress(currentAddressId: Int) = restaurantDao.getAddress(currentAddressId)
 
     //take new data from the api and saves it to the Room DB
-    suspend fun refreshDestinations() {
+//    suspend fun refreshDestinations() {
+//        withContext(Dispatchers.IO) {
+//            with(YallaService.create()) {
+//
+//                //get data from API:
+//
+//
+//                //save data to Room:
+//
+//            }
+//        }
+//    }
+
+    suspend fun refreshRoomFromAPI() {
         withContext(Dispatchers.IO) {
             with(YallaService.create()) {
                 //get data from API:
                 val destinations = allDestinations().destinations
-                //save data to Room:
-                restaurantDao.insertDestinations(destinations)
-            }
-        }
-    }
-
-    suspend fun refreshRestaurants() {
-        withContext(Dispatchers.IO) {
-            with(YallaService.create()) {
-                //get data from API:
-
                 val restaurants = allRestaurants().restaurants
                 val addresses = allAddresses().addresses
                 val destinationsRestaurants = allDestinationsRestaurants().destinationsRestaurants
-//                for (destinationRestaurant in destinationsRestaurants) {
-//                    for (destination in destinations) {
-//                        for (restaurant in restaurants) {
-//                            if (destinationRestaurant.destinationId == destination.destinationId && destinationRestaurant.restaurantId == restaurant.restaurantId){
-//                                //Todo: restaurantDao.add()
-//                            }
-//                        }
-//                    }
-//                }
 
                 //save data to Room:
+                restaurantDao.insertDestinationsRestaurants(destinationsRestaurants)
                 restaurantDao.insertRestaurants(restaurants)
                 restaurantDao.insertAddresses(addresses)
-
+                restaurantDao.insertDestinations(destinations)
             }
         }
     }

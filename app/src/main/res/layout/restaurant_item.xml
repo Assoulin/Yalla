@@ -60,11 +60,10 @@
 
         <ImageView
             android:id="@+id/iv_poster"
-
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:contentDescription="@string/restaurant_poster"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

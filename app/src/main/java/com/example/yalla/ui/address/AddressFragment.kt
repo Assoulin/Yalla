@@ -40,10 +40,11 @@ class AddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //make the Destination object again:
+        //rebuild the Destination object:
         val chosenDestination = Gson().fromJson(
             requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
         )
+
         requireAddressDoneListener(chosenDestination)
         editListener()
 

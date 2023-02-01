@@ -25,7 +25,7 @@ interface YallaService {
     @GET(BuildConfig.ADDRESSES)
     suspend fun allAddresses(): AddressResponse
 
-    @GET(BuildConfig.DESTINATION_RESTAURANT)
+    @GET(BuildConfig.DESTINATION_RESTAURANTS)
     suspend fun allDestinationsRestaurants(): DestinationsRestaurantsResponse
 
     //Setup:

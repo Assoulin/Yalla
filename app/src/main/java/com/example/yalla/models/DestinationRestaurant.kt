@@ -4,12 +4,12 @@ package com.example.yalla.models
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
-@Entity(primaryKeys = ["destinationId", "restaurantId"])
+@Entity
 data class DestinationRestaurant(
+    @PrimaryKey
     @SerializedName("destination_id")
     val destinationId: Int,
     @SerializedName("restaurant_id")
-    @ColumnInfo(index = true)
     val restaurantId: Int,
     @SerializedName("delivery_time")
     val deliveryTime: Int,
@@ -18,7 +18,6 @@ data class DestinationRestaurant(
 ){
     fun deliveryPriceToString(): String = "${deliveryPrice}₪"
 }
-
 
 
 data class RestaurantsByDestination(

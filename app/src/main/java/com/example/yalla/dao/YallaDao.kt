@@ -34,16 +34,20 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRestaurants(restaurants: List<Restaurant>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDestinationsRestaurants(destinationRestaurants: List<DestinationRestaurant>)
+
+    //    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)
+
     //Entity that does not exist in the API
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
-    //MovieGenreCrossRef:
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun add(restaurantsByDestination: RestaurantsByDestination)
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)
+    @Query("SELECT * FROM Destination WHERE destinationId=:chosenDestinationId")
+    fun getRestaurantsByDestination(chosenDestinationId:Int): LiveData<RestaurantsByDestination>
+
 
     @Query("SELECT * FROM Destination")
     fun getDestinations(): LiveData<List<Destination>>

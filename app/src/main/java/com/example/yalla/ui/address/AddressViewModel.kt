@@ -48,11 +48,7 @@ class AddressViewModel : ViewModel() {
 
         viewModelScope.launch {
             YallaApplication.repository.insertAddress(address)
-//            val roomAddress = YallaApplication.repository.getAddress(address.addressId)
-//            withContext(Dispatchers.IO){
-//
-//            }
-//            roomAddress.observe()
+
             YallaApplication.repository.insertFullAddress(
                 FullAddressRoom(address, destination)
             )

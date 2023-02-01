@@ -44,7 +44,7 @@ class ChooseDestinationFragment : Fragment() {
             Toast.LENGTH_LONG
         ).show()
         findNavController().navigate(
-            R.id.action_chooseDestinationFragment_to_addressFragment,
+            R.id.action_chooseDestinationFragment_to_navigation_restaurants,
             bundleOf(Pair(CHOSEN_DESTINATION_TAG, json))
         )
     }
@@ -52,11 +52,13 @@ class ChooseDestinationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rvDestinations.layoutManager = GridLayoutManager(requireContext(), COLUMN_NUMBER)
+
         viewModel.destinationsLive.observe(viewLifecycleOwner) { destinationList ->
             binding.rvDestinations.adapter =
                 DestinationAdapter(destinationList, onDestinationSelected)
         }
-        binding.rvDestinations.layoutManager = GridLayoutManager(requireContext(), COLUMN_NUMBER)
+
 
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {

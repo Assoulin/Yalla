@@ -32,7 +32,7 @@ class ChooseDestinationViewModel(application: Application) : AndroidViewModel(ap
         viewModelScope.launch {
             if (YallaApplication.networkStatusChecker.hasInternet()) {
                 _loading.value = true
-                YallaApplication.repository.refreshDestinations()
+                YallaApplication.repository.refreshRoomFromAPI()
                 _loading.value = false
             } else {
                 _errors.value = NO_INTERNET

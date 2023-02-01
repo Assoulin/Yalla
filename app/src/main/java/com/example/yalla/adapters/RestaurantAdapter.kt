@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.RestaurantItemBinding
 import com.example.yalla.models.Restaurant
 import com.squareup.picasso.Picasso
+import retrofit2.http.Url
+import java.net.URL
 
 class RestaurantAdapter(private val restaurants: List<Restaurant>) :
     RecyclerView.Adapter<RestaurantViewHolder>() {
@@ -22,7 +24,7 @@ class RestaurantAdapter(private val restaurants: List<Restaurant>) :
             tvDescription.text = restaurant.description
             tvName.text = restaurant.restaurantName
             //todo: add delivery price+schedule+like button
-            Picasso.get().load(restaurant.imageUrl).into(this.ivPoster)
+            Picasso.get().load("https://drive.google.com/file/d/1wP9pY7IFukRgzRsUBpTbSfyg_9O4tLdz/view?usp=share_link").into(this.ivPoster)
         }
     }
 
