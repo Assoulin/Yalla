@@ -8,7 +8,7 @@ import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.*
 
 
-const val DB_VERSION = 3
+const val DB_VERSION = 2
 const val DB_NAME = "YallaDatabase"
 @Database(
     entities = [

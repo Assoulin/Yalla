@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:background="@color/pale_blue"
+            android:background="@color/pale_smoky_white"
             android:layoutDirection="ltr"
             android:visibility="gone" />
 

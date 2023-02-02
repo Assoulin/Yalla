@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="24dp"
-            android:background="@color/pale_blue"
+            android:background="@color/pale_smoky_white"
             app:layout_constraintBottom_toTopOf="@+id/tv_separator3" />
 
         <TextView

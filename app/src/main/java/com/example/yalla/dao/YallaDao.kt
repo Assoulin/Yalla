@@ -44,8 +44,8 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
-
-    @Query("SELECT * FROM Destination WHERE destinationId=:chosenDestinationId")
+    @Transaction
+    @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
     fun getRestaurantsByDestination(chosenDestinationId:Int): LiveData<RestaurantsByDestination>
 
 

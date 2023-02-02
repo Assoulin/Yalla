@@ -7,11 +7,13 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginBottom="12dp"
-    android:padding="0dp"
-    app:cardCornerRadius="16dp"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="14dp"
+    android:layoutDirection="rtl"
+    android:background="@drawable/gradient"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="16dp">
+    app:cardElevation="8dp">
 
 
     <com.google.android.material.button.MaterialButton
@@ -19,13 +21,13 @@
         android:layout_width="105dp"
         android:layout_height="90dp"
         android:insetTop="0dp"
+        android:insetBottom="1dp"
         android:layout_marginTop="3dp"
-        android:insetBottom="0dp"
-        android:padding="5dp"
-        android:textColor="#D17523"
+        app:cornerRadius="15dp"
+        android:textColor="@color/orange"
+        android:textColorHighlight="@color/black"
         android:textSize="20sp"
-        android:backgroundTint="@color/pale_blue"
-        android:typeface="sans"
+        android:backgroundTint="@color/pale_smoky_white"
         tools:ignore="TextContrastCheck"
         tools:text="שם היעד" />
 

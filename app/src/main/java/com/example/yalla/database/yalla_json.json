@@ -185,23 +185,17 @@
     ]
   },
   {
-    "destination_restaurants": [
+    "destination_restaurant": [
       {
         "destination_id": 1,
-        "restaurant_ids": [
-          1,
-          2
-        ],
+        "restaurant_id": 1,
         "delivery_time": 30,
         "delivery_price": 15
       },
       {
-        "destination_id": 2,
-        "restaurant_ids": [
-          1,
-          2
-        ],
-        "delivery_time": 30,
+        "destination_id": 1,
+        "restaurant_id": 2,
+        "delivery_time": 35,
         "delivery_price": 15
       }
     ]

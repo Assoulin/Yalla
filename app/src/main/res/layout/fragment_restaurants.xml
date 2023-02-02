@@ -21,137 +21,157 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:elevation="16dp"
-        android:layoutDirection="rtl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/pale_blue"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_delivery_dining_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/settings"
+        app:borderWidth="3dp"
         android:focusable="true"
-        android:contentDescription="@string/settings" />
+        android:layoutDirection="rtl"
+        android:src="@drawable/ic_baseline_location_city_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/orange"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rv_category_tags"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_restaurants"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        app:layout_constraintTop_toBottomOf="@+id/rv_category_tags"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/restaurant_item" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/orange"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_category_tags"/>
 
-    <com.google.android.material.chip.ChipGroup
+    <androidx.recyclerview.widget.RecyclerView
         android:paddingHorizontal="20dp"
         android:layoutDirection="rtl"
-        android:id="@+id/chipGroup"
+        android:id="@+id/rv_category_tags"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:background="@color/smoky_white"
+        android:layout_height="90dp"
         android:layout_marginTop="8dp"
         app:chipSpacingHorizontal="4dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
-        app:singleSelection="false">
+        app:singleSelection="false"
+        tools:listitem="@layout/category_tag_item">
 
-        <com.google.android.material.chip.Chip
+<!--        <com.google.android.material.chip.Chip-->
 
-            android:id="@+id/chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/meat_based"
-            app:chipBackgroundColor="@color/white" />
+<!--            android:id="@+id/chip"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/meat_based"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/milk_based"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/milk_based"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/smoky_white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/vegan"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/vegan"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mehadrin"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip4"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/mehadrin"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/asian"
-            android:textColor="@color/smoky_white"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip5"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/asian"-->
+<!--            android:textColor="@color/smoky_white"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="false"
-            android:text="@string/italian"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip6"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:checkable="false"-->
+<!--            android:text="@string/italian"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/burger"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip7"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/burger"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pizza"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip8"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/pizza"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sushi"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip9"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/sushi"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/vegetarian"
-            android:textColor="#D81B60"
-            app:chipBackgroundColor="@color/white" />
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chip10"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/vegetarian"-->
+<!--            android:textColor="#D81B60"-->
+<!--            app:chipBackgroundColor="@color/white" />-->
 
-    </com.google.android.material.chip.ChipGroup>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/tv_address"
+        android:id="@+id/tv_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:textSize="19sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
         app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
-        tools:text="משלוח לכתובתך" />
+        tools:text="מסעדות זמינות במשלוח ליעד" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

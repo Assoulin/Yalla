@@ -24,7 +24,7 @@ class RestaurantAdapter(private val restaurants: List<Restaurant>) :
             tvDescription.text = restaurant.description
             tvName.text = restaurant.restaurantName
             //todo: add delivery price+schedule+like button
-            Picasso.get().load("https://drive.google.com/file/d/1wP9pY7IFukRgzRsUBpTbSfyg_9O4tLdz/view?usp=share_link").into(this.ivPoster)
+            Picasso.get().load(restaurant.imageUrl).into(this.ivPoster)
         }
     }
 
