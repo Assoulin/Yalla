@@ -181,6 +181,55 @@
         "day_of_week": 7,
         "opening_hour": "18:00:00",
         "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 9,
+        "restaurant_id": 1,
+        "day_of_week": 1,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 10,
+        "restaurant_id": 1,
+        "day_of_week": 2,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 11,
+        "restaurant_id": 1,
+        "day_of_week": 3,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 12,
+        "restaurant_id": 1,
+        "day_of_week": 4,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 13,
+        "restaurant_id": 1,
+        "day_of_week": 5,
+        "opening_hour": "11:00:00",
+        "closing_hour": "23:00:00"
+      },
+      {
+        "schedule_id": 14,
+        "restaurant_id": 1,
+        "day_of_week": 6,
+        "opening_hour": "11:00:00",
+        "closing_hour": "14:00:00"
+      },
+      {
+        "schedule_id": 15,
+        "restaurant_id": 1,
+        "day_of_week": 7,
+        "opening_hour": "18:00:00",
+        "closing_hour": "23:00:00"
       }
     ]
   },

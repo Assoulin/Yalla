@@ -20,3 +20,8 @@ data class DailySchedule(
     @SerializedName("closing_hour")
     val closingHour: String,
 )
+//{
+//    fun isOpenForOrdersMessage(): String {
+//        TODO("Not yet implemented")
+//    }
+//}

@@ -1,15 +1,16 @@
 package com.example.yalla.models
 
-import com.google.gson.annotations.SerializedName
-
 data class RestaurantForRv(
-    val restaurant: Restaurant,
+    val restaurant: Restaurant,//
+    //Need to upload to git and connect with a service
     val openingHour: String,
     val closingHour: String,
+    //need to make a new query for AddressByRestaurant
     val address: Address?,
-    val deliveryPrice: String?,
-    val estimatedDeliveryTime: String?,
-    val isLikedByUser: Boolean = false
+    //
+    val deliveryPrice: String?,//
+    val estimatedDeliveryTime: String?,//
+//    val isLikedByUser: Boolean = false
 ) {
     constructor(
         restaurant: Restaurant,
@@ -17,7 +18,8 @@ data class RestaurantForRv(
         address: Address?,
         deliveryPrice: String?,
         estimatedDeliveryTime: String?,
-        isLikedByUser: Boolean = false
+//        isOpenForOrdersMessage: String?,
+//        isLikedByUser: Boolean = false
     ) : this(
         restaurant = restaurant,
         openingHour = dailySchedule.openingHour,
@@ -25,6 +27,7 @@ data class RestaurantForRv(
         address = address,
         deliveryPrice = deliveryPrice,
         estimatedDeliveryTime = estimatedDeliveryTime,
-        isLikedByUser = isLikedByUser
+//        isOpenForOrdersMessage = estimatedDeliveryTime,
+//        isLikedByUser = isLikedByUser
     )
 }

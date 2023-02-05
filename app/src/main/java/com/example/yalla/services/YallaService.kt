@@ -2,10 +2,7 @@ package com.example.yalla.services
 
 import com.example.yalla.BuildConfig
 import com.example.yalla.BuildConfig.BASE_URL
-import com.example.yalla.models.responses.AddressResponse
-import com.example.yalla.models.responses.DestinationsResponse
-import com.example.yalla.models.responses.DestinationsRestaurantsResponse
-import com.example.yalla.models.responses.RestaurantsResponse
+import com.example.yalla.models.responses.*
 import com.example.yalla.network.TokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,6 +24,10 @@ interface YallaService {
 
     @GET(BuildConfig.DESTINATION_RESTAURANTS)
     suspend fun allDestinationsRestaurants(): DestinationsRestaurantsResponse
+
+    @GET(BuildConfig.DAILY_SCHEDULE)
+    suspend fun allDailySchedules(): DailySchedulesResponse
+
 
     //Setup:
     companion object {

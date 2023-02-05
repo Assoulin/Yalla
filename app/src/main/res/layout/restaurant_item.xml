@@ -4,29 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:clickable="true"
+    android:layout_margin="10dp"
     app:cardCornerRadius="8dp"
+    android:background="@color/white"
+    app:cardElevation="6dp">
 
-    app:cardElevation="16dp"
-    android:focusable="true">
-    <!--        android:layoutDirection="rtl"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient">
 
-        <TextView
-            android:id="@+id/tv_flower2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/separator"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_opening_hours"
-            app:layout_constraintTop_toBottomOf="@+id/tv_separator" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -49,13 +36,14 @@
             android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="monospace"
             android:maxLines="2"
             android:paddingStart="2dp"
-            android:textSize="12sp"
 
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_like"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
@@ -66,7 +54,6 @@
             android:id="@+id/iv_poster"
             android:layout_width="0dp"
             android:layout_height="150dp"
-
             android:contentDescription="@string/restaurant_poster"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,92 +63,119 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
+            android:id="@+id/tv_image_separator"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
+            android:background="@color/smoky_white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_poster" />
 
-        <TextView
-            android:id="@+id/tv_opening_hours"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:maxLines="1"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_flower"
-            app:layout_constraintTop_toBottomOf="@+id/tv_separator"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="הזמנה עד 20:00" />
-
-        <ImageView
-            android:id="@+id/iv_bike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:contentDescription="@string/bike_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_separator"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_delivery_dining_24" />
-
-        <TextView
-            android:id="@+id/tv_separator"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:background="#9A9797"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
-
-        <TextView
-            android:id="@+id/tv_delivery_price"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_bike"
-            app:layout_constraintTop_toBottomOf="@+id/tv_separator"
-            tools:text="15₪" />
-
-        <TextView
-            android:id="@+id/tv_flower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/separator"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_delivery_price"
-            app:layout_constraintTop_toBottomOf="@+id/tv_separator" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/smoky_white"
-            android:clickable="true"
             android:contentDescription="@string/like_the_restaurant_button"
-            android:focusable="true"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_separator"
             app:layout_constraintStart_toStartOf="@+id/tv_separator"
+            app:layout_constraintTop_toBottomOf="@+id/tv_image_separator"
             app:srcCompat="@drawable/ic_baseline_insert_emoticon_24"
             tools:ignore="RedundantDescriptionCheck" />
 
+        <TextView
+            android:id="@+id/tv_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/smoky_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:background="@color/pale_smoky_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_separator">
+
+            <ImageView
+                android:id="@+id/iv_bike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="@string/bike_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_separator"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_baseline_delivery_dining_24" />
+
+            <TextView
+                android:id="@+id/tv_delivery_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_bike"
+                app:layout_constraintTop_toBottomOf="@+id/tv_separator"
+                tools:text="15₪" />
+
+            <TextView
+                android:id="@+id/tv_flower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/separator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_delivery_price"
+                app:layout_constraintTop_toBottomOf="@+id/tv_separator" />
+
+            <TextView
+                android:id="@+id/tv_opening_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:maxLines="1"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_flower"
+                app:layout_constraintTop_toBottomOf="@+id/tv_separator"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="הזמנה עד 20:00" />
+
+            <TextView
+                android:id="@+id/tv_flower2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/separator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_opening_hours"
+                app:layout_constraintTop_toBottomOf="@+id/tv_separator" />
+
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

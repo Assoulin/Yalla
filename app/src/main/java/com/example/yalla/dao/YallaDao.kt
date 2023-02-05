@@ -18,7 +18,7 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestinations(destinations: List<Destination>)
 
-//    @Query("insert into address (destinationId,street,houseNumber,entrance,apartment,locationInstructions)" +
+    //    @Query("insert into address (destinationId,street,houseNumber,entrance,apartment,locationInstructions)" +
 //            " VALUES(:addressModel.destinationId,:addressModel.street,:addressModel.houseNumber,:addressModel.entrance,:addressModel.apartment,:addressModel.locationInstructions) "
 //    + "if not exist (select * from address WHERE street =:addressModel.street AND houseNumber =:addressModel.houseNumber)")
 //    @Transaction
@@ -37,8 +37,11 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestinationsRestaurants(destinationRestaurants: List<DestinationRestaurant>)
 
-    //    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addDailySchedules(dailySchedules: List<DailySchedule>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDailySchedules(dailySchedules: List<DailySchedule>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDailySchedule(dailySchedule: DailySchedule)
 
     //Entity that does not exist in the API
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -46,7 +49,7 @@ interface RestaurantDao {
 
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
-    fun getRestaurantsByDestination(chosenDestinationId:Int): LiveData<RestaurantsByDestination>
+    fun getRestaurantsByDestination(chosenDestinationId: Int): LiveData<RestaurantsByDestination>
 
 
     @Query("SELECT * FROM Destination")
@@ -56,8 +59,23 @@ interface RestaurantDao {
 //    fun getRestaurants(): LiveData<List<Restaurant>>
 
     @Query("SELECT * FROM Address WHERE addressId=:currentAddressId")
-    fun getAddress(currentAddressId:Int): LiveData<Address>
+    fun getAddress(currentAddressId: Int): LiveData<Address>
 
+    @Query("SELECT * FROM DailySchedule WHERE restaurantId=:chosenRestaurantId AND dayOfWeek=:dayOfWeek LIMIT 1")
+    fun getTodayScheduleByRestaurant(
+        chosenRestaurantId: Int,
+        dayOfWeek: Int
+    ): LiveData<DailySchedule>
+
+    @Transaction
+    @Query("SELECT * FROM Restaurant WHERE addressId=:addressId")
+    fun getRestaurantAddress(addressId: Int): LiveData<RestaurantAddress>
+
+    @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId AND restaurantId=:restaurantId LIMIT 1")
+    fun getDeliveryDetails(
+        chosenDestinationId: Int,
+        restaurantId: Int
+    ): LiveData<DestinationRestaurant>
 
 
 //    //TODO: Ask a teacher about how the joint object looks like

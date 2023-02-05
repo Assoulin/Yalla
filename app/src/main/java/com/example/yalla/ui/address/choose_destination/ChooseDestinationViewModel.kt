@@ -13,6 +13,7 @@ import com.example.yalla.models.Destination
 import kotlinx.coroutines.launch
 
 const val NO_INTERNET = 1
+const val HAS_INTERNET = 2
 
 class ChooseDestinationViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -34,6 +35,7 @@ class ChooseDestinationViewModel(application: Application) : AndroidViewModel(ap
                 _loading.value = true
                 YallaApplication.repository.refreshRoomFromAPI()
                 _loading.value = false
+                _errors.value = HAS_INTERNET
             } else {
                 _errors.value = NO_INTERNET
             }

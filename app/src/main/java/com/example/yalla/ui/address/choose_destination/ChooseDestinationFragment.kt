@@ -70,9 +70,7 @@ class ChooseDestinationFragment : Fragment() {
                     viewModel.manageInternetAvailability()
                 }
             } else {
-                binding.buttonTryAgain.setOnClickListener {
                     binding.rvDestinations.visibility = View.VISIBLE
-                }
             }
         }
 

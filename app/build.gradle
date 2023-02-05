@@ -28,7 +28,7 @@ android {
         buildConfigField('String', 'RESTAURANTS', apiKeyProperties['RESTAURANTS'])
         buildConfigField('String', 'ADDRESSES', apiKeyProperties['ADDRESSES'])
         buildConfigField('String', 'DESTINATION_RESTAURANTS', apiKeyProperties['DESTINATION_RESTAURANTS'])
-
+        buildConfigField('String', 'DAILY_SCHEDULE', apiKeyProperties['DAILY_SCHEDULE'])
     }
 
     buildTypes {
