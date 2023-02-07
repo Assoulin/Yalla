@@ -20,7 +20,7 @@
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fab_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/pale_blue"
@@ -31,7 +31,7 @@
         app:borderWidth="3dp"
         android:focusable="true"
         android:layoutDirection="rtl"
-        android:src="@drawable/ic_baseline_location_city_24"
+        android:src="@drawable/ic_baseline_settings_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
@@ -75,7 +75,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
+        app:layout_constraintTop_toBottomOf="@+id/fab_settings"
         app:singleSelection="false"
         tools:listitem="@layout/category_tag_item">
 
@@ -168,9 +168,9 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#000"
-        app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_settings"
+        app:layout_constraintEnd_toStartOf="@+id/fab_settings"
+        app:layout_constraintTop_toTopOf="@+id/fab_settings"
         tools:text="מסעדות זמינות במשלוח ליעד" />
 
 

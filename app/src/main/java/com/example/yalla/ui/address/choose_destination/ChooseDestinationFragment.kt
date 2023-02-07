@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +17,7 @@ import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.google.gson.Gson
 
 const val COLUMN_NUMBER = 3
+
 
 class ChooseDestinationFragment : Fragment() {
     private lateinit var viewModel: ChooseDestinationViewModel
@@ -31,18 +31,15 @@ class ChooseDestinationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         viewModel = ViewModelProvider(this)[ChooseDestinationViewModel::class.java]
         _binding = FragmentChooseDestinationBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     private val onDestinationSelected: (Destination) -> Unit = { chosenDestination ->
         val json = Gson().toJson(chosenDestination)
-        Toast.makeText(
-            requireContext(),
-            chosenDestination.destinationName,
-            Toast.LENGTH_LONG
-        ).show()
         findNavController().navigate(
             R.id.action_chooseDestinationFragment_to_navigation_restaurants,
             bundleOf(Pair(CHOSEN_DESTINATION_TAG, json))
@@ -58,27 +55,24 @@ class ChooseDestinationFragment : Fragment() {
             binding.rvDestinations.adapter =
                 DestinationAdapter(destinationList, onDestinationSelected)
         }
-
-
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {
+
                 binding.rvDestinations.visibility = View.INVISIBLE
                 binding.cardError.visibility = View.VISIBLE
                 binding.textError.text = getString(R.string.no_internet_connection)
                 binding.buttonTryAgain.setOnClickListener {
-                    binding.cardError.visibility = View.INVISIBLE
+                    binding.cardError.visibility = View.GONE
                     viewModel.manageInternetAvailability()
                 }
-            } else {
-                    binding.rvDestinations.visibility = View.VISIBLE
             }
         }
-
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
                 binding.progressLoading.visibility = View.VISIBLE
             } else {
                 binding.progressLoading.visibility = View.GONE
+                binding.rvDestinations.visibility = View.VISIBLE
             }
         }
     }

@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yalla.R
 import com.example.yalla.adapters.RestaurantAdapter
 import com.example.yalla.databinding.FragmentRestaurantsBinding
 import com.example.yalla.models.Destination
+import com.example.yalla.models.Restaurant
 import com.example.yalla.models.RestaurantForRv
 import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -65,5 +68,16 @@ class RestaurantsFragment : Fragment() {
                     RestaurantAdapter(restaurantsByDestination.restaurants)
             }
 
+        binding.fabSettings.setOnClickListener {
+            bottomNavView.visibility = View.GONE
+            findNavController().navigate(
+                R.id.chooseDestinationFragment,
+            )
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
