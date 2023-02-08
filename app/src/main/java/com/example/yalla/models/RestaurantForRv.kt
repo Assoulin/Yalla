@@ -1,33 +1,73 @@
 package com.example.yalla.models
 
+import android.os.Build
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
+import java.util.*
+
+const val CLOSED = "closed"
+const val WILL_CLOSE_IN = "תסגר בעוד "
+
 data class RestaurantForRv(
-    val restaurant: Restaurant,//
-    //Need to upload to git and connect with a service
+    val restaurantId: Int,
+    val addressId: Int,
+    val cuisine: String,
+    val description: String,
+    val imageUrl: String,
+    val isActive: Boolean,
+    val restaurantName: String,
     val openingHour: String,
     val closingHour: String,
-    //need to make a new query for AddressByRestaurant
-    val address: Address?,
-    //
-    val deliveryPrice: String?,//
-    val estimatedDeliveryTime: String?,//
-//    val isLikedByUser: Boolean = false
+    val destinationId: Int,
+    val street: String,
+    val houseNumber: Int?,
+    val entrance: String?,
+    val apartment: Int?,
+    val locationInstructions: String?,
+    val deliveryPrice: String?,
+    val estimatedDeliveryTime: String?,
 ) {
-    constructor(
-        restaurant: Restaurant,
-        dailySchedule: DailySchedule,
-        address: Address?,
-        deliveryPrice: String?,
-        estimatedDeliveryTime: String?,
-//        isOpenForOrdersMessage: String?,
-//        isLikedByUser: Boolean = false
-    ) : this(
-        restaurant = restaurant,
-        openingHour = dailySchedule.openingHour,
-        closingHour = dailySchedule.closingHour,
-        address = address,
-        deliveryPrice = deliveryPrice,
-        estimatedDeliveryTime = estimatedDeliveryTime,
-//        isOpenForOrdersMessage = estimatedDeliveryTime,
-//        isLikedByUser = isLikedByUser
-    )
+    val getDeliveryPrice
+        get() = "₪$deliveryPrice"
+
+    val getOpeningStatusMessage
+        get() = "${closingHour.slice(0..4)} ~ ${openingHour.slice(0..4)}"
+
+    fun getOpenStatusMessage(): String {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val openingHour: LocalTime =
+                LocalTime.of(
+                    openingHour.slice(0..1).toInt(),
+                    openingHour.slice(3..4).toInt()
+                )
+            val closingHour: LocalTime =
+                LocalTime.of(
+                    closingHour.slice(0..1).toInt(),
+                    closingHour.slice(3..4).toInt()
+                )
+            val nowTimeHourMinute: LocalTime =
+                LocalTime.now(ZoneId.of("Asia/Jerusalem"))
+                    .truncatedTo(ChronoUnit.MINUTES)
+
+            if (nowTimeHourMinute.isAfter(closingHour)) {
+                return CLOSED
+            } else if (nowTimeHourMinute.isBefore(openingHour)) {
+                return CLOSED
+            } else {
+                return WILL_CLOSE_IN +
+                        closingHour
+                            .minusHours(nowTimeHourMinute.hour.toLong())
+                            .minusMinutes(nowTimeHourMinute.minute.toLong())
+                            .toString()
+            }
+        } else {
+            return getOpeningStatusMessage
+        }
+
+//        val israelLocale = Locale.Builder().setLanguage("iw").setRegion("IL").build()
+//        val timeFormat: DateFormat = SimpleDateFormat("HH:mm", israelLocale)
+//        timeFormat.timeZone = TimeZone.getTimeZone("Asia/Jerusalem")
+//        val curTime = timeFormat.format(Date())
+    }
 }

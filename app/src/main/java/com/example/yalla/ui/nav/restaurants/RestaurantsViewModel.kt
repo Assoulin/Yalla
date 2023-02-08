@@ -1,21 +1,21 @@
 package com.example.yalla.ui.nav.restaurants
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.yalla.YallaApplication
-import com.example.yalla.models.DailySchedule
-import com.example.yalla.models.DestinationRestaurant
-import com.example.yalla.models.RestaurantForRv
-import com.example.yalla.models.RestaurantsByDestination
+import com.example.yalla.models.*
+import com.example.yalla.utils.BaseViewModel
+import java.util.*
 
-class RestaurantsViewModel : ViewModel() {
-//    fun getRestaurantsForRv(chosenDestinationId: Int): LiveData<List<RestaurantForRv>>{
-//        val restaurantForRvList = mutableListOf<RestaurantForRv>()
-//        getLiveRestaurantsByDestinationId(chosenDestinationId).observe(RestaurantsFragment().)
-//    }
+class RestaurantsViewModel : BaseViewModel() {
+    private val currentDay =
+        Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
 
     fun getLiveRestaurantsByDestinationId(chosenDestinationId: Int): LiveData<RestaurantsByDestination> =
         YallaApplication.repository.getRestaurantsByDestination(chosenDestinationId)
+
+    fun getRestaurantsForRv(chosenDestinationId: Int): LiveData<List<RestaurantForRv>> =
+        YallaApplication.repository.getRestaurantsForRv(chosenDestinationId, currentDay)
+
 
     fun getRestaurantAddress(addressId: Int) =
         YallaApplication.repository.getRestaurantAddress(addressId)

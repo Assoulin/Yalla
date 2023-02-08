@@ -15,6 +15,7 @@ data class Restaurant(
     //Address
     @SerializedName("address_id")
     val addressId: Int,
+    //cuisine categories are separated by coma + space (, )
     val cuisine: String,
     val description: String,
     @SerializedName("image_url")

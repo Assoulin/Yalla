@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.nav.search.SearchFragment">
 
+    <include layout="@layout/error_message_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar"
         android:layout_width="0dp"
@@ -18,6 +23,7 @@
         app:queryHint="@string/search_yalla" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="409dp"
         android:layout_height="681dp"
         android:layout_marginStart="1dp"

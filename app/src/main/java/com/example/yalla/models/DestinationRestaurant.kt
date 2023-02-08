@@ -31,3 +31,17 @@ data class RestaurantsByDestination(
     )
     val restaurants: List<Restaurant>
 )
+
+@Entity(tableName = "restaurant_by_destination")
+data class RestaurantsByDestinationRoom(
+    @PrimaryKey
+    val destinationId: Int,
+    val restaurantId: Int,
+    val addressId: Int,
+    val cuisine: String,
+    val description: String,
+    val imageUrl: String,
+    val isActive: Boolean,
+    val restaurantName: String,
+)
+

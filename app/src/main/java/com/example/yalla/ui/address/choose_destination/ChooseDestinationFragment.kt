@@ -2,13 +2,13 @@ package com.example.yalla.ui.address.choose_destination
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.yalla.utils.BaseFragment
 import com.example.yalla.R
 import com.example.yalla.adapters.DestinationAdapter
 import com.example.yalla.databinding.FragmentChooseDestinationBinding
@@ -17,9 +17,10 @@ import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.google.gson.Gson
 
 const val COLUMN_NUMBER = 3
+const val SHOW = true
+const val HIDE = false
 
-
-class ChooseDestinationFragment : Fragment() {
+class ChooseDestinationFragment : BaseFragment() {
     private lateinit var viewModel: ChooseDestinationViewModel
 
     private var _binding: FragmentChooseDestinationBinding? = null
@@ -57,21 +58,20 @@ class ChooseDestinationFragment : Fragment() {
         }
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {
-
                 binding.rvDestinations.visibility = View.INVISIBLE
-                binding.cardError.visibility = View.VISIBLE
-                binding.textError.text = getString(R.string.no_internet_connection)
-                binding.buttonTryAgain.setOnClickListener {
-                    binding.cardError.visibility = View.GONE
+                manageCardErrorVisibility(SHOW)
+                mangeTextInTextError()
+                buttonTryAgain.setOnClickListener {
+                    manageCardErrorVisibility(HIDE)
                     viewModel.manageInternetAvailability()
                 }
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
-                binding.progressLoading.visibility = View.VISIBLE
+                manageProgressLoadingVisibility(SHOW)
             } else {
-                binding.progressLoading.visibility = View.GONE
+                manageProgressLoadingVisibility(HIDE)
                 binding.rvDestinations.visibility = View.VISIBLE
             }
         }

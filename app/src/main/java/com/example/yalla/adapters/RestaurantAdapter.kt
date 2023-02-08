@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.RestaurantItemBinding
-import com.example.yalla.models.Restaurant
-import com.squareup.picasso.Picasso
-import retrofit2.http.Url
-import java.net.URL
+import com.example.yalla.models.CLOSED
 
-class RestaurantAdapter(private val restaurants: List<Restaurant>) :
+import com.example.yalla.models.RestaurantForRv
+import com.squareup.picasso.Picasso
+
+
+class RestaurantAdapter(private val restaurants: List<RestaurantForRv>) :
     RecyclerView.Adapter<RestaurantViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -18,13 +19,16 @@ class RestaurantAdapter(private val restaurants: List<Restaurant>) :
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        val restaurant = restaurants[position]
+        val restaurantForRv = restaurants[position]
 
         with(holder.binding) {
-            tvDescription.text = restaurant.description
-            tvName.text = restaurant.restaurantName
+
+            tvDescription.text = restaurantForRv.description
+            tvName.text = restaurantForRv.restaurantName
+            Picasso.get().load(restaurantForRv.imageUrl).into(ivPoster)
             //todo: add delivery price+schedule+like button
-            Picasso.get().load(restaurant.imageUrl).into(this.ivPoster)
+            tvDeliveryPrice.text = restaurantForRv.getDeliveryPrice
+            tvOpeningHours.text = restaurantForRv.getOpenStatusMessage()
         }
     }
 

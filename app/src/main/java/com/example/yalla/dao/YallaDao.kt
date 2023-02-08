@@ -1,5 +1,6 @@
 package com.example.yalla.dao
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.yalla.models.*
@@ -47,17 +48,27 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertRestaurantsByDestinations(restaurantsByDestinations: List<RestaurantsByDestination>)
-
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
     fun getRestaurantsByDestination(chosenDestinationId: Int): LiveData<RestaurantsByDestination>
 
+
+    @Transaction
+    @Query(
+        "select * from restaurant " +
+            "inner join destinationrestaurant on restaurant.restaurantId=destinationrestaurant.restaurantId " +
+            "and destinationrestaurant.destinationId=:chosenDestinationId and isActive=1 " +
+            "inner join address on restaurant.addressId=address.addressId " +
+            "inner join dailyschedule on dailyschedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
+    )
+    fun getRestaurantsForRv(
+        chosenDestinationId: Int,
+        currentDay: Int
+    ): LiveData<List<RestaurantForRv>>
+
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant")
     fun getRestaurantsByDestinations(): LiveData<RestaurantsByDestination>
-
 
     @Query("SELECT * FROM Destination")
     fun getDestinations(): LiveData<List<Destination>>

@@ -1,44 +1,19 @@
 package com.example.yalla.ui.address.choose_destination
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.yalla.YallaApplication
 
 
-
 import com.example.yalla.models.Destination
+import com.example.yalla.utils.BaseViewModel
 import kotlinx.coroutines.launch
 
 const val NO_INTERNET = 1
 const val HAS_INTERNET = 2
 
-class ChooseDestinationViewModel(application: Application) : AndroidViewModel(application) {
+class ChooseDestinationViewModel : BaseViewModel() {
 
-   val destinationsLive: LiveData<List<Destination>> = YallaApplication.repository.getDestinations()
-
-    private val _errors: MutableLiveData<Int> = MutableLiveData()
-    val errors: LiveData<Int> = _errors
-
-    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
-    val loading: LiveData<Boolean> = _loading
-
-    init {
-        manageInternetAvailability()
-    }
-
-    fun manageInternetAvailability() {
-        viewModelScope.launch {
-            if (YallaApplication.networkStatusChecker.hasInternet()) {
-                _loading.value = true
-                YallaApplication.repository.refreshRoomFromAPI()
-                _loading.value = false
-                _errors.value = HAS_INTERNET
-            } else {
-                _errors.value = NO_INTERNET
-            }
-        }
-    }
+    val destinationsLive: LiveData<List<Destination>> =
+        YallaApplication.repository.getDestinations()
 }

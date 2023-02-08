@@ -3,6 +3,7 @@ package com.example.yalla.repository
 import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.Address
 import com.example.yalla.models.FullAddressRoom
+import com.example.yalla.models.RestaurantsByDestination
 import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -24,20 +25,8 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getDeliveryDetails(chosenDestinationId: Int, restaurantId: Int) =
         restaurantDao.getDeliveryDetails(chosenDestinationId, restaurantId)
 
-
-    //take new data from the api and saves it to the Room DB
-//    suspend fun refreshDestinations() {
-//        withContext(Dispatchers.IO) {
-//            with(YallaService.create()) {
-//
-//                //get data from API:
-//
-//
-//                //save data to Room:
-//
-//            }
-//        }
-//    }
+    fun getRestaurantsForRv(chosenDestinationId:Int, currentDay:Int) =
+        restaurantDao.getRestaurantsForRv(chosenDestinationId,currentDay)
 
     suspend fun refreshRoomFromAPI() {
         withContext(Dispatchers.IO) {

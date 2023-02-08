@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tag_chip"
     android:layout_width="wrap_content"
+    android:textAlignment="center"
+    android:layout_marginStart="6dp"
     android:layout_height="wrap_content"
-    android:text="קטגוריה"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:text="קטגוריה"
     android:textColor="#D81B60"
+    android:elevation="2dp"
+    android:layoutDirection="rtl"
+    android:textSize="15sp"
     android:background="@color/smoky_white">
 </com.google.android.material.chip.Chip>
