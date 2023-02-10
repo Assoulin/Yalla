@@ -13,6 +13,7 @@ import com.example.yalla.adapters.FilterTagsAdapter
 import com.example.yalla.adapters.RestaurantAdapter
 import com.example.yalla.databinding.FragmentRestaurantsBinding
 import com.example.yalla.models.Destination
+import com.example.yalla.models.RestaurantsByDestination
 import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
@@ -20,6 +21,7 @@ import com.example.yalla.ui.address.choose_destination.SHOW
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 
+const val DELIMITER = ", "
 
 class RestaurantsFragment : BaseFragment() {
 
@@ -59,14 +61,13 @@ class RestaurantsFragment : BaseFragment() {
         viewModel.getLiveRestaurantsByDestinationId(chosenDestination.destinationId)
             .observe(viewLifecycleOwner) { restaurantsByDestination ->
 
-                val list = mutableSetOf("הכל")
-                restaurantsByDestination.restaurants.forEach { restaurant ->
-                    list.addAll(restaurant.cuisine.split(", "))
-                }
+                val listOfCuisineTags = getCuisineTags(restaurantsByDestination)
 
                 binding.rvCuisineTags.adapter = FilterTagsAdapter(
-                    list.toList()
-                )
+                    listOfCuisineTags.toList()
+                ){
+
+                }
             }
 
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
@@ -98,10 +99,24 @@ class RestaurantsFragment : BaseFragment() {
                 manageProgressLoadingVisibility(SHOW)
             } else {
                 manageProgressLoadingVisibility(HIDE)
-                binding.rvCuisineTags.visibility = View.VISIBLE
-                binding.rvRestaurants.visibility = View.VISIBLE
+                with(binding){
+                    tvTopSep.visibility = View.VISIBLE
+                    rvCuisineTags.visibility = View.VISIBLE
+                    clearSelection.visibility = View.VISIBLE
+                    tvBottomSep.visibility = View.VISIBLE
+                    rvRestaurants.visibility = View.VISIBLE
+                }
+
             }
         }
+    }
+
+    private fun getCuisineTags(restaurantsByDestination: RestaurantsByDestination): MutableSet<String> {
+        val list = mutableSetOf<String>()
+        restaurantsByDestination.restaurants.forEach { restaurant ->
+            list.addAll(restaurant.cuisine.split(DELIMITER))
+        }
+        return list
     }
 
     override fun onDestroy() {

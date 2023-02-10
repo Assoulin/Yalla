@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.CategoryTagItemBinding
-import com.example.yalla.databinding.RestaurantItemBinding
 
-class FilterTagsAdapter(private val filterTags: List<String>) :
+class FilterTagsAdapter(
+    private val filterTags: List<String>,
+    private val onTagClicked: (String) -> Unit
+) :
     RecyclerView.Adapter<FilterTagViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterTagViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -15,8 +17,11 @@ class FilterTagsAdapter(private val filterTags: List<String>) :
     }
 
     override fun onBindViewHolder(holder: FilterTagViewHolder, position: Int) {
-        val cuisineTag = filterTags[position]
-        holder.binding.tagChip.text = cuisineTag
+        val tagName = filterTags[position]
+        holder.binding.tagChip.text = tagName
+        holder.binding.tagChip.setOnClickListener {
+            onTagClicked.invoke(tagName)
+        }
     }
 
 
