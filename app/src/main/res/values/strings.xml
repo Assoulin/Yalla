@@ -53,4 +53,5 @@
     <string name="entrance_summary">כניסה:%s</string>
     <string name="delivery_to">במשלוח ל%s</string>
     <string name="clear_selection">נקה בחירה</string>
+    <string name="coming_soon">בקרוב!</string>
 </resources>

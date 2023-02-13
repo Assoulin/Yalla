@@ -1,10 +1,10 @@
 package com.example.yalla.models
 
 import android.os.Build
+import androidx.room.Ignore
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
-import java.util.*
 
 const val CLOSED = "closed"
 const val WILL_CLOSE_IN = "תסגר בעוד "
@@ -28,12 +28,18 @@ data class RestaurantForRv(
     val deliveryPrice: String?,
     val estimatedDeliveryTime: String?,
 ) {
+    @Ignore
+    var isLiked = false
+
     val getDeliveryPrice
         get() = "₪$deliveryPrice"
 
     val getOpeningStatusMessage
         get() = "${closingHour.slice(0..4)} ~ ${openingHour.slice(0..4)}"
 
+    fun unlike(){
+        isLiked = false
+    }
     fun getOpenStatusMessage(): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val openingHour: LocalTime =

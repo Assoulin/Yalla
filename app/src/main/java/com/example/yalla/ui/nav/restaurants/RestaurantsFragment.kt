@@ -2,6 +2,7 @@ package com.example.yalla.ui.nav.restaurants
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.example.yalla.adapters.FilterTagsAdapter
 import com.example.yalla.adapters.RestaurantAdapter
 import com.example.yalla.databinding.FragmentRestaurantsBinding
 import com.example.yalla.models.Destination
-import com.example.yalla.models.RestaurantsByDestination
+import com.example.yalla.models.RestaurantForRv
 import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
@@ -45,35 +46,19 @@ class RestaurantsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         //rebuild the Destination object:
         val chosenDestination = Gson().fromJson(
             requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
         )
-        binding.tvDestination.text =
-            getString(R.string.delivery_to, chosenDestination.destinationName)
-
-        //RV appliances:
-        binding.rvRestaurants.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rvCuisineTags.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
-        viewModel.getLiveRestaurantsByDestinationId(chosenDestination.destinationId)
-            .observe(viewLifecycleOwner) { restaurantsByDestination ->
-
-                val listOfCuisineTags = getCuisineTags(restaurantsByDestination)
-
-                binding.rvCuisineTags.adapter = FilterTagsAdapter(
-                    listOfCuisineTags.toList()
-                ){
-
-                }
-            }
+        initViews(chosenDestination)
 
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
             .observe(viewLifecycleOwner) { restaurantsForRv ->
-                binding.rvRestaurants.adapter =
-                    RestaurantAdapter(restaurantsForRv)
+                buildRvs(restaurantsForRv)
+                binding.clearSelection.setOnClickListener {
+                    buildRvs(restaurantsForRv)
+                }
             }
 
         binding.fabSettings.setOnClickListener {
@@ -99,7 +84,7 @@ class RestaurantsFragment : BaseFragment() {
                 manageProgressLoadingVisibility(SHOW)
             } else {
                 manageProgressLoadingVisibility(HIDE)
-                with(binding){
+                with(binding) {
                     tvTopSep.visibility = View.VISIBLE
                     rvCuisineTags.visibility = View.VISIBLE
                     clearSelection.visibility = View.VISIBLE
@@ -111,12 +96,64 @@ class RestaurantsFragment : BaseFragment() {
         }
     }
 
-    private fun getCuisineTags(restaurantsByDestination: RestaurantsByDestination): MutableSet<String> {
-        val list = mutableSetOf<String>()
-        restaurantsByDestination.restaurants.forEach { restaurant ->
-            list.addAll(restaurant.cuisine.split(DELIMITER))
+    private fun initViews(chosenDestination: Destination) {
+        binding.tvDestination.text =
+            getString(R.string.delivery_to, chosenDestination.destinationName)
+
+        //RV appliances:
+        binding.rvRestaurants.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvCuisineTags.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun buildRvs(restaurantsForRv: List<RestaurantForRv>) {
+        binding.rvRestaurants.adapter =
+            RestaurantAdapter(restaurantsForRv){
+                //Todo: change icon color to "#F0BD23" and save to room.
+            }
+
+        val cuisineTagsMap = getCuisineTagsMap(restaurantsForRv)
+
+        val mutableRestaurantsForRv = mutableSetOf<RestaurantForRv>()
+
+        binding.rvCuisineTags.adapter = FilterTagsAdapter(
+            cuisineTagsMap.keys.toList()
+        ) {
+            cuisineTagsMap[it.first] = it.second
+            resLoop@
+            for (res in restaurantsForRv) {
+                val cuisines = res.cuisine.split(DELIMITER)
+                for (i in 0 until (cuisines.size)) {
+                    if (cuisineTagsMap[cuisines[i]] == true) {
+                        mutableRestaurantsForRv.add(res)
+                        continue@resLoop
+                    } else if (i == cuisines.size - 1) {
+                        mutableRestaurantsForRv.remove(res)
+                    }
+                }
+            }
+            binding.rvRestaurants.adapter =
+                RestaurantAdapter(mutableRestaurantsForRv.toList()){
+                    //Todo: change icon color to "#F0BD23" and save to room.
+                }
         }
-        return list
+    }
+
+//    private fun navigateToResFrag(): (RestaurantForRv) -> Unit {
+//
+//    }
+
+    private fun getCuisineTagsMap(restaurantsForRv: List<RestaurantForRv>): MutableMap<String, Boolean> {
+        val set = mutableSetOf<String>()
+        val map = mutableMapOf<String, Boolean>()
+        restaurantsForRv.forEach { restaurant ->
+            set.addAll(restaurant.cuisine.split(DELIMITER))
+        }
+        for (s in set) {
+            map[s] = false
+        }
+        return map
     }
 
     override fun onDestroy() {

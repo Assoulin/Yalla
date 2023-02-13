@@ -45,8 +45,6 @@ abstract class BaseFragment : Fragment() {
     fun mangeTextInTextError(text: String = getString(R.string.no_internet_connection)) {
         textError.text = text
     }
-//    fun showLoadingMessage() {
-//
-//    }
+
 
 }
