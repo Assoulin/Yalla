@@ -1,5 +1,6 @@
 package com.example.yalla.ui.nav.restaurant_menu
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.yalla.R
+import com.example.yalla.models.RestaurantForRv
+import com.example.yalla.ui.nav.restaurants.CHOSEN_RESTAURANT
 
 class RestaurantMenu : Fragment() {
-
-    companion object {
-        fun newInstance() = RestaurantMenu()
-    }
 
     private lateinit var viewModel: ResturantMenuViewModel
 
@@ -24,6 +23,17 @@ class RestaurantMenu : Fragment() {
         return inflater.inflate(R.layout.fragment_restaurant_menu, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val chosenRest = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(CHOSEN_RESTAURANT, RestaurantForRv::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getParcelable(CHOSEN_RESTAURANT)
+        }
+        println(chosenRest.toString())
+
+    }
 
 
 }

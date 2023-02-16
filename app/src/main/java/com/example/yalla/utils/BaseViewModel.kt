@@ -23,11 +23,14 @@ abstract class BaseViewModel : ViewModel() {
         manageInternetAvailability()
     }
 
+    abstract suspend fun refresh()
+
     fun manageInternetAvailability() {
 
         viewModelScope.launch {
             if (YallaApplication.networkStatusChecker.hasInternet()) {
                 _loading.value = true
+//                refresh()
                 YallaApplication.repository.refreshRoomFromAPI()
                 _loading.value = false
                 _errors.value = HAS_INTERNET

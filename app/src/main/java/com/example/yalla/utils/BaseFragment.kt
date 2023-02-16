@@ -11,6 +11,7 @@ import com.example.yalla.R
 
 
 abstract class BaseFragment : Fragment() {
+
     private lateinit var cardError: CardView
     private lateinit var textError: TextView
     lateinit var buttonTryAgain: Button
@@ -45,6 +46,5 @@ abstract class BaseFragment : Fragment() {
     fun mangeTextInTextError(text: String = getString(R.string.no_internet_connection)) {
         textError.text = text
     }
-
 
 }

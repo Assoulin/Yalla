@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginHorizontal="30dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="3dp">
 
@@ -41,7 +42,7 @@
             <ImageView
                 android:id="@+id/iv_poster"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:contentDescription="@string/restaurant_poster"
                 android:scaleType="centerCrop"
                 tools:ignore="ImageContrastCheck"

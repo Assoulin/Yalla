@@ -1,20 +1,16 @@
 package com.example.yalla.adapters
-
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.RestaurantItemBinding
-
 import com.example.yalla.models.RestaurantForRv
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.NonDisposableHandle.parent
+
 
 
 class RestaurantAdapter(
     private val restaurants: List<RestaurantForRv>,
-//    private val onResClicked: (RestaurantForRv) -> Unit,
+    private val onResClicked: (RestaurantForRv) -> Unit,
     private val onLikeClicked: (Boolean) -> Unit,
 
 ) :
@@ -39,8 +35,7 @@ class RestaurantAdapter(
 
             }
             llRestaurant.setOnClickListener {
-//                onResClicked.invoke(restaurantForRv)
-
+                onResClicked.invoke(restaurantForRv)
             }
         }
     }

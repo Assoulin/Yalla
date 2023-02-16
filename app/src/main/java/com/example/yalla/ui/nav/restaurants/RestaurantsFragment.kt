@@ -2,12 +2,13 @@ package com.example.yalla.ui.nav.restaurants
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.yalla.MainActivity
 import com.example.yalla.utils.BaseFragment
 import com.example.yalla.R
 import com.example.yalla.adapters.FilterTagsAdapter
@@ -19,26 +20,27 @@ import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
 import com.example.yalla.ui.address.choose_destination.SHOW
+import com.example.yalla.utils.hideBnv
+import com.example.yalla.utils.hideToolbar
+import com.example.yalla.utils.showBnv
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
+import android.app.Activity as Activity1
 
 const val DELIMITER = ", "
+const val CHOSEN_RESTAURANT = "chosen restaurant"
 
 class RestaurantsFragment : BaseFragment() {
 
     private lateinit var viewModel: RestaurantsViewModel
-
     private var _binding: FragmentRestaurantsBinding? = null
     private val binding: FragmentRestaurantsBinding get() = _binding!!
-    lateinit var bottomNavView: BottomNavigationView
+    private lateinit var bottomNavView: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        bottomNavView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view).apply {
-            visibility = View.VISIBLE
-        }
         viewModel = ViewModelProvider(this)[RestaurantsViewModel::class.java]
         _binding = FragmentRestaurantsBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,6 +48,8 @@ class RestaurantsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as MainActivity).showBnv()
 
         //rebuild the Destination object:
         val chosenDestination = Gson().fromJson(
@@ -60,16 +64,18 @@ class RestaurantsFragment : BaseFragment() {
                     buildRvs(restaurantsForRv)
                 }
             }
-
+//
         binding.fabSettings.setOnClickListener {
-            bottomNavView.visibility = View.GONE
+            (requireActivity() as MainActivity).hideBnv()
             findNavController().navigate(
                 R.id.chooseDestinationFragment,
             )
         }
+//
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {
                 binding.rvCuisineTags.visibility = View.INVISIBLE
+                binding.clearSelectionFrame.visibility = View.INVISIBLE
                 binding.rvRestaurants.visibility = View.INVISIBLE
                 manageCardErrorVisibility(SHOW)
                 mangeTextInTextError()
@@ -85,13 +91,10 @@ class RestaurantsFragment : BaseFragment() {
             } else {
                 manageProgressLoadingVisibility(HIDE)
                 with(binding) {
-                    tvTopSep.visibility = View.VISIBLE
                     rvCuisineTags.visibility = View.VISIBLE
-                    clearSelection.visibility = View.VISIBLE
-                    tvBottomSep.visibility = View.VISIBLE
+                    clearSelectionFrame.visibility = View.VISIBLE
                     rvRestaurants.visibility = View.VISIBLE
                 }
-
             }
         }
     }
@@ -109,18 +112,19 @@ class RestaurantsFragment : BaseFragment() {
 
     private fun buildRvs(restaurantsForRv: List<RestaurantForRv>) {
         binding.rvRestaurants.adapter =
-            RestaurantAdapter(restaurantsForRv){
+            RestaurantAdapter(restaurantsForRv, navigateToResFrag()) {
                 //Todo: change icon color to "#F0BD23" and save to room.
             }
 
         val cuisineTagsMap = getCuisineTagsMap(restaurantsForRv)
-
         val mutableRestaurantsForRv = mutableSetOf<RestaurantForRv>()
 
         binding.rvCuisineTags.adapter = FilterTagsAdapter(
             cuisineTagsMap.keys.toList()
         ) {
             cuisineTagsMap[it.first] = it.second
+
+
             resLoop@
             for (res in restaurantsForRv) {
                 val cuisines = res.cuisine.split(DELIMITER)
@@ -133,16 +137,24 @@ class RestaurantsFragment : BaseFragment() {
                     }
                 }
             }
-            binding.rvRestaurants.adapter =
-                RestaurantAdapter(mutableRestaurantsForRv.toList()){
-                    //Todo: change icon color to "#F0BD23" and save to room.
-                }
+
+            if (mutableRestaurantsForRv.size == 0) {
+                buildRvs(restaurantsForRv)
+            } else {
+                binding.rvRestaurants.adapter =
+                    RestaurantAdapter(mutableRestaurantsForRv.toList(), navigateToResFrag()) {
+                        //Todo: change icon color to "#F0BD23" and save to room.
+                    }
+
+            }
         }
     }
 
-//    private fun navigateToResFrag(): (RestaurantForRv) -> Unit {
-//
-//    }
+    private fun navigateToResFrag(): (RestaurantForRv) -> Unit = {
+        val bundle = Bundle()
+        bundle.putParcelable(CHOSEN_RESTAURANT, it)
+        findNavController().navigate(R.id.action_navigation_restaurants_to_restaurantMenu, bundle)
+    }
 
     private fun getCuisineTagsMap(restaurantsForRv: List<RestaurantForRv>): MutableMap<String, Boolean> {
         val set = mutableSetOf<String>()

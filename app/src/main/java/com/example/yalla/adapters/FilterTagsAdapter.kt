@@ -1,15 +1,14 @@
 package com.example.yalla.adapters
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.CategoryTagItemBinding
 
-const val SELECTED = "#F08323"
-const val TEXT_SELECTED = Color.WHITE
-const val DEFAULT = "#E4E4E4"
-const val TEXT_DEFAULT = "#C2185B"
+const val TEXT_DEFAULT = Color.WHITE
+const val TEXT_SELECTED = "#C2185B"
 
 class FilterTagsAdapter(
     private val filterTags: List<String>,
@@ -31,12 +30,12 @@ class FilterTagsAdapter(
 
             setOnCheckedChangeListener { cuisineToggleBtn, isChecked ->
                 if (isChecked) {
-                    cuisineToggleBtn.setBackgroundColor(Color.parseColor(SELECTED))
-                    cuisineToggleBtn.setTextColor(TEXT_SELECTED)
+                    cuisineToggleBtn.setTextColor(Color.parseColor(TEXT_SELECTED))
+                    cuisineToggleBtn.elevation = 8f
                     onTagClicked.invoke(Pair(tagName, true))
                 } else {
-                    cuisineToggleBtn.setBackgroundColor(Color.parseColor(DEFAULT))
-                    cuisineToggleBtn.setTextColor(Color.parseColor(TEXT_DEFAULT))
+                    cuisineToggleBtn.elevation = 0f
+                    cuisineToggleBtn.setTextColor(TEXT_DEFAULT)
                     cuisineToggleBtn.background = background
                     onTagClicked.invoke(Pair(tagName, false))
                 }

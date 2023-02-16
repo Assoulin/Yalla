@@ -1,7 +1,9 @@
 package com.example.yalla.models
 
 import android.os.Build
+import android.os.Parcelable
 import androidx.room.Ignore
+import kotlinx.parcelize.Parcelize
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
@@ -9,6 +11,7 @@ import java.time.temporal.ChronoUnit
 const val CLOSED = "closed"
 const val WILL_CLOSE_IN = "תסגר בעוד "
 
+@Parcelize
 data class RestaurantForRv(
     val restaurantId: Int,
     val addressId: Int,
@@ -26,8 +29,8 @@ data class RestaurantForRv(
     val apartment: Int?,
     val locationInstructions: String?,
     val deliveryPrice: String?,
-    val estimatedDeliveryTime: String?,
-) {
+    val estimatedDeliveryTime: Int?,
+): Parcelable {
     @Ignore
     var isLiked = false
 

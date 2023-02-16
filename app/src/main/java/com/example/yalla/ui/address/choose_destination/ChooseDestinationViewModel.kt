@@ -16,4 +16,8 @@ class ChooseDestinationViewModel : BaseViewModel() {
 
     val destinationsLive: LiveData<List<Destination>> =
         YallaApplication.repository.getDestinations()
+
+    override suspend fun refresh() {
+        YallaApplication.repository.refreshRoomFromAPI()
+    }
 }

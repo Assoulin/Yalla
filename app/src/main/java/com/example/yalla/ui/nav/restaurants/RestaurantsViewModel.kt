@@ -26,6 +26,10 @@ class RestaurantsViewModel : BaseViewModel() {
     fun getDeliveryDetails(chosenDestinationId: Int, restaurantId: Int) =
         YallaApplication.repository.getDeliveryDetails(chosenDestinationId, restaurantId)
 
+    override suspend fun refresh() {
+        YallaApplication.repository.refreshRoomFromAPI()
+    }
+
 //    fun getDailyByResId(restaurantId: Int): DailySchedule {
 //        TODO("Not yet implemented")
 //    }
