@@ -1,4 +1,4 @@
-package com.example.yalla.models
+package com.example.yalla.models.x_retrofit_models
 
 import android.os.Build
 import android.os.Parcelable
@@ -30,19 +30,13 @@ data class RestaurantForRv(
     val locationInstructions: String?,
     val deliveryPrice: String?,
     val estimatedDeliveryTime: Int?,
-): Parcelable {
-    @Ignore
-    var isLiked = false
-
+) : Parcelable {
     val getDeliveryPrice
         get() = "₪$deliveryPrice"
 
     val getOpeningStatusMessage
         get() = "${closingHour.slice(0..4)} ~ ${openingHour.slice(0..4)}"
 
-    fun unlike(){
-        isLiked = false
-    }
     fun getOpenStatusMessage(): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val openingHour: LocalTime =
@@ -73,10 +67,5 @@ data class RestaurantForRv(
         } else {
             return getOpeningStatusMessage
         }
-
-//        val israelLocale = Locale.Builder().setLanguage("iw").setRegion("IL").build()
-//        val timeFormat: DateFormat = SimpleDateFormat("HH:mm", israelLocale)
-//        timeFormat.timeZone = TimeZone.getTimeZone("Asia/Jerusalem")
-//        val curTime = timeFormat.format(Date())
     }
 }

@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -112,9 +114,7 @@ class RestaurantsFragment : BaseFragment() {
 
     private fun buildRvs(restaurantsForRv: List<RestaurantForRv>) {
         binding.rvRestaurants.adapter =
-            RestaurantAdapter(restaurantsForRv, navigateToResFrag()) {
-                //Todo: change icon color to "#F0BD23" and save to room.
-            }
+            RestaurantAdapter(restaurantsForRv, navigateToResFrag(), handleLikeButtonClicked())
 
         val cuisineTagsMap = getCuisineTagsMap(restaurantsForRv)
         val mutableRestaurantsForRv = mutableSetOf<RestaurantForRv>()
@@ -142,12 +142,16 @@ class RestaurantsFragment : BaseFragment() {
                 buildRvs(restaurantsForRv)
             } else {
                 binding.rvRestaurants.adapter =
-                    RestaurantAdapter(mutableRestaurantsForRv.toList(), navigateToResFrag()) {
-                        //Todo: change icon color to "#F0BD23" and save to room.
-                    }
-
+                    RestaurantAdapter(
+                        mutableRestaurantsForRv.toList(),
+                        navigateToResFrag(),
+                        handleLikeButtonClicked()
+                    )
             }
         }
+    }
+    private fun handleLikeButtonClicked(): (Boolean) -> Unit = {
+        Toast.makeText(requireContext(), "Like Button Pressed", LENGTH_SHORT).show()
     }
 
     private fun navigateToResFrag(): (RestaurantForRv) -> Unit = {

@@ -1,9 +1,10 @@
 package com.example.yalla.dao
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.yalla.models.*
+import com.example.yalla.models.x_retrofit_models.LikedRestaurant
+import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 
 @Dao
 interface RestaurantDao {
@@ -47,6 +48,11 @@ interface RestaurantDao {
     //Entity that does not exist in the API
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLikedRestaurant(likedRestaurant: LikedRestaurant)
+
+//    @Delete()
 
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")

@@ -8,7 +8,8 @@
     android:background="@color/orange"
     android:layout_height="wrap_content"
     android:elevation="8dp"
-    android:paddingVertical="8dp">
+    android:paddingTop="1dp"
+    android:paddingBottom="5dp">
 
     <ImageView
         android:layout_width="30dp"

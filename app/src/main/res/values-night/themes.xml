@@ -13,7 +13,5 @@
         <item name="android:statusBarColor">@color/pale_smoky_white</item>
         <item name="android:navigationBarColor">@color/pale_smoky_white</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/open_sans_hebrew_regular</item>
-
     </style>
 </resources>

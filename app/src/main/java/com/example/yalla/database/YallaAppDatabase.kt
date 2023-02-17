@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.*
+import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 
 
-const val DB_VERSION = 2
+const val DB_VERSION = 3
 const val DB_NAME = "YallaDatabase"
 @Database(
     entities = [
@@ -26,6 +27,7 @@ const val DB_NAME = "YallaDatabase"
         Order::class,
         OrderDetail::class,
         FullAddressRoom::class,
+        LikedRestaurant::class
     ],
 
     version = DB_VERSION
