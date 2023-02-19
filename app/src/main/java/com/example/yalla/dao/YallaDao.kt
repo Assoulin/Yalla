@@ -8,22 +8,12 @@ import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 
 @Dao
 interface RestaurantDao {
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addRestaurants(restaurants: List<Restaurant>)
-
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addDishes(dishes: List<Dish>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestination(destination: Destination)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDestinations(destinations: List<Destination>)
 
-    //    @Query("insert into address (destinationId,street,houseNumber,entrance,apartment,locationInstructions)" +
-//            " VALUES(:addressModel.destinationId,:addressModel.street,:addressModel.houseNumber,:addressModel.entrance,:addressModel.apartment,:addressModel.locationInstructions) "
-//    + "if not exist (select * from address WHERE street =:addressModel.street AND houseNumber =:addressModel.houseNumber)")
-//    @Transaction
     @Insert
     suspend fun insertAddress(addressModel: Address)
 
@@ -50,9 +40,14 @@ interface RestaurantDao {
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLikedRestaurant(likedRestaurant: LikedRestaurant)
+    suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>)
 
-//    @Delete()
+    @Update
+    suspend fun updateLikedRestaurants(likedRestaurants: List<LikedRestaurant>)
+
+    @Query("SELECT * FROM LikedRestaurant")
+    fun getLikedRestaurants(): LiveData<List<LikedRestaurant>>
+
 
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
@@ -62,10 +57,10 @@ interface RestaurantDao {
     @Transaction
     @Query(
         "select * from restaurant " +
-            "inner join destinationrestaurant on restaurant.restaurantId=destinationrestaurant.restaurantId " +
-            "and destinationrestaurant.destinationId=:chosenDestinationId and isActive=1 " +
-            "inner join address on restaurant.addressId=address.addressId " +
-            "inner join dailyschedule on dailyschedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
+                "inner join destinationrestaurant on restaurant.restaurantId=destinationrestaurant.restaurantId " +
+                "and destinationrestaurant.destinationId=:chosenDestinationId and isActive=1 " +
+                "inner join address on restaurant.addressId=address.addressId " +
+                "inner join dailyschedule on dailyschedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
     )
     fun getRestaurantsForRv(
         chosenDestinationId: Int,
@@ -78,9 +73,6 @@ interface RestaurantDao {
 
     @Query("SELECT * FROM Destination")
     fun getDestinations(): LiveData<List<Destination>>
-
-//    @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:")
-//    fun getRestaurants(): LiveData<List<Restaurant>>
 
     @Query("SELECT * FROM Address WHERE addressId=:currentAddressId")
     fun getAddress(currentAddressId: Int): LiveData<Address>
@@ -101,22 +93,7 @@ interface RestaurantDao {
         restaurantId: Int
     ): LiveData<DestinationRestaurant>
 
-
-//    //TODO: Ask a teacher about how the joint object looks like
-//    @Transaction
-//    @Query("SELECT * FROM Destination WHERE destinationId=:chosenDestinationId LIMIT 1")
-//    suspend fun getRestaurantsByDestination(chosenDestinationId: Int): RestaurantsByDestination
-//
-//    @Query("SELECT * FROM DailySchedule WHERE dayOfWeek =:today ORDER BY restaurantId")
-//    suspend fun getDailyScheduleForToday(today: Int): List<DailySchedule>
-//
-//    @Transaction
-//    @Query("SELECT * FROM Restaurant WHERE restaurantId =:chosenRestaurantId")
-//    suspend fun getDishesByRestaurant(chosenRestaurantId: Int): RestaurantDishes
-//
-//    @Transaction
-//    @Query("SELECT * FROM dish WHERE restaurantId =:chosenDishId")
-//    suspend fun getAdditionsByDish(chosenDishId: Int): AdditionsByDish
-
+//    @Query("delete * from LikedRestaurant")
+//    suspend fun deleteAllLikedRestaurants()
 
 }

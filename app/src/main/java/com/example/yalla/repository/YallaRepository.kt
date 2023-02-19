@@ -3,7 +3,7 @@ package com.example.yalla.repository
 import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.Address
 import com.example.yalla.models.FullAddressRoom
-import com.example.yalla.models.RestaurantsByDestination
+import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,21 +12,11 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
 
     fun getDestinations() = restaurantDao.getDestinations()
 
-    fun getRestaurantsByDestination(chosenDestinationId: Int) =
-        restaurantDao.getRestaurantsByDestination(chosenDestinationId)
+    fun getRestaurantsForRv(chosenDestinationId: Int, currentDay: Int) =
+        restaurantDao.getRestaurantsForRv(chosenDestinationId, currentDay)
 
-    fun getAddress(currentAddressId: Int) = restaurantDao.getAddress(currentAddressId)
-
-    fun getTodayScheduleByRestaurant(chosenRestaurantId: Int, dayOfWeek: Int) =
-        restaurantDao.getTodayScheduleByRestaurant(chosenRestaurantId, dayOfWeek)
-
-    fun getRestaurantAddress(addressId: Int) = restaurantDao.getRestaurantAddress(addressId)
-
-    fun getDeliveryDetails(chosenDestinationId: Int, restaurantId: Int) =
-        restaurantDao.getDeliveryDetails(chosenDestinationId, restaurantId)
-
-    fun getRestaurantsForRv(chosenDestinationId:Int, currentDay:Int) =
-        restaurantDao.getRestaurantsForRv(chosenDestinationId,currentDay)
+    fun getLikedRestaurants() =
+        restaurantDao.getLikedRestaurants()
 
     suspend fun refreshRoomFromAPI() {
         withContext(Dispatchers.IO) {
@@ -48,11 +38,19 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
         }
     }
 
+    suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>) {
+        restaurantDao.insertLikedRestaurants(likedRestaurants)
+    }
+
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom) {
         restaurantDao.insertFullAddress(fullAddressRoom)
     }
 
     suspend fun insertAddress(address: Address) {
         restaurantDao.insertAddress(address)
+    }
+
+    suspend fun updateLikedRestaurants(likedRestaurants: List<LikedRestaurant>) {
+        restaurantDao.updateLikedRestaurants(likedRestaurants)
     }
 }

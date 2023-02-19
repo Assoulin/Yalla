@@ -8,7 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.yalla.R
-import com.example.yalla.models.RestaurantForRv
+import com.example.yalla.models.x_retrofit_models.RestaurantForRv
+
 import com.example.yalla.ui.nav.restaurants.CHOSEN_RESTAURANT
 
 class RestaurantMenu : Fragment() {

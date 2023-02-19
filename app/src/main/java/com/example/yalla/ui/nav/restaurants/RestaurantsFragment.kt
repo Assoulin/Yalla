@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import androidx.navigation.findNavController
+
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yalla.MainActivity
@@ -17,17 +15,15 @@ import com.example.yalla.adapters.FilterTagsAdapter
 import com.example.yalla.adapters.RestaurantAdapter
 import com.example.yalla.databinding.FragmentRestaurantsBinding
 import com.example.yalla.models.Destination
-import com.example.yalla.models.RestaurantForRv
+import com.example.yalla.models.x_retrofit_models.LikedRestaurant
+import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
 import com.example.yalla.ui.address.choose_destination.SHOW
 import com.example.yalla.utils.hideBnv
-import com.example.yalla.utils.hideToolbar
 import com.example.yalla.utils.showBnv
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
-import android.app.Activity as Activity1
 
 const val DELIMITER = ", "
 const val CHOSEN_RESTAURANT = "chosen restaurant"
@@ -37,7 +33,6 @@ class RestaurantsFragment : BaseFragment() {
     private lateinit var viewModel: RestaurantsViewModel
     private var _binding: FragmentRestaurantsBinding? = null
     private val binding: FragmentRestaurantsBinding get() = _binding!!
-    private lateinit var bottomNavView: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +52,9 @@ class RestaurantsFragment : BaseFragment() {
         val chosenDestination = Gson().fromJson(
             requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
         )
+        //init rvs and destination label:
         initViews(chosenDestination)
+
 
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
             .observe(viewLifecycleOwner) { restaurantsForRv ->
@@ -68,6 +65,7 @@ class RestaurantsFragment : BaseFragment() {
             }
 //
         binding.fabSettings.setOnClickListener {
+            handleLikedRestaurantRoomUpdate()
             (requireActivity() as MainActivity).hideBnv()
             findNavController().navigate(
                 R.id.chooseDestinationFragment,
@@ -101,6 +99,12 @@ class RestaurantsFragment : BaseFragment() {
         }
     }
 
+    private fun handleLikedRestaurantRoomUpdate() {
+        //viewModel.currentChangesInLikedRestaurants.observe(viewLifecycleOwner) {
+            viewModel.updateLikedRestaurantsToRoom(mutableListOf(LikedRestaurant(0)))
+//        }
+    }
+
     private fun initViews(chosenDestination: Destination) {
         binding.tvDestination.text =
             getString(R.string.delivery_to, chosenDestination.destinationName)
@@ -113,9 +117,16 @@ class RestaurantsFragment : BaseFragment() {
     }
 
     private fun buildRvs(restaurantsForRv: List<RestaurantForRv>) {
-        binding.rvRestaurants.adapter =
-            RestaurantAdapter(restaurantsForRv, navigateToResFrag(), handleLikeButtonClicked())
-
+        viewModel.likedRestaurantsLive.observe(viewLifecycleOwner) { likedRestaurants ->
+            viewModel.initCurrentChangesInLikedRestaurants(likedRestaurants)
+            binding.rvRestaurants.adapter =
+                RestaurantAdapter(
+                    restaurantsForRv,
+                    likedRestaurants,
+                    navigateToResFrag(),
+                    handleLikeButtonClicked()
+                )
+        }
         val cuisineTagsMap = getCuisineTagsMap(restaurantsForRv)
         val mutableRestaurantsForRv = mutableSetOf<RestaurantForRv>()
 
@@ -123,8 +134,6 @@ class RestaurantsFragment : BaseFragment() {
             cuisineTagsMap.keys.toList()
         ) {
             cuisineTagsMap[it.first] = it.second
-
-
             resLoop@
             for (res in restaurantsForRv) {
                 val cuisines = res.cuisine.split(DELIMITER)
@@ -141,20 +150,30 @@ class RestaurantsFragment : BaseFragment() {
             if (mutableRestaurantsForRv.size == 0) {
                 buildRvs(restaurantsForRv)
             } else {
-                binding.rvRestaurants.adapter =
-                    RestaurantAdapter(
-                        mutableRestaurantsForRv.toList(),
-                        navigateToResFrag(),
-                        handleLikeButtonClicked()
-                    )
+                viewModel.likedRestaurantsLive.observe(viewLifecycleOwner) { likedRestaurants ->
+                    binding.rvRestaurants.adapter =
+                        RestaurantAdapter(
+                            mutableRestaurantsForRv.toList(),
+                            likedRestaurants,
+                            navigateToResFrag(),
+                            handleLikeButtonClicked()
+                        )
+                }
             }
         }
     }
-    private fun handleLikeButtonClicked(): (Boolean) -> Unit = {
-        Toast.makeText(requireContext(), "Like Button Pressed", LENGTH_SHORT).show()
+
+    private fun handleLikeButtonClicked(): (Int, Boolean) -> Unit = { id, isLikedStatus ->
+        val currentLikedRestaurant = LikedRestaurant(id)
+        if (isLikedStatus) {
+            viewModel.addLikedRestaurant(currentLikedRestaurant)
+        } else {
+            viewModel.removeLikedRestaurant(currentLikedRestaurant)
+        }
     }
 
     private fun navigateToResFrag(): (RestaurantForRv) -> Unit = {
+        handleLikedRestaurantRoomUpdate()
         val bundle = Bundle()
         bundle.putParcelable(CHOSEN_RESTAURANT, it)
         findNavController().navigate(R.id.action_navigation_restaurants_to_restaurantMenu, bundle)

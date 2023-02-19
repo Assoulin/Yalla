@@ -156,13 +156,11 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/toggle_btn_style"
             android:backgroundTint="@color/turquoise"
-            android:elevation="3dp"
             android:contentDescription="@string/like_the_restaurant_button"
-            android:foregroundTint="@color/smoky_white"
+            android:elevation="3dp"
+            android:foreground="@drawable/ic_unliked"
             android:minWidth="48dp"
             android:minHeight="48dp"
-
-            android:src="@drawable/ic_liked"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
