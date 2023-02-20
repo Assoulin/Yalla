@@ -50,7 +50,7 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
         restaurantDao.insertAddress(address)
     }
 
-    suspend fun updateLikedRestaurants(likedRestaurants: List<LikedRestaurant>) {
-        restaurantDao.updateLikedRestaurants(likedRestaurants)
+    suspend fun deleteUnlikedRestaurants(unlikedRestaurants: List<LikedRestaurant>) {
+        restaurantDao.deleteLikedRestaurants(unlikedRestaurants)
     }
 }

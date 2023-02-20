@@ -100,9 +100,12 @@ class RestaurantsFragment : BaseFragment() {
     }
 
     private fun handleLikedRestaurantRoomUpdate() {
-        //viewModel.currentChangesInLikedRestaurants.observe(viewLifecycleOwner) {
-            viewModel.updateLikedRestaurantsToRoom(mutableListOf(LikedRestaurant(0)))
-//        }
+        viewModel.liveLikedRestaurantsOriginal.observe(viewLifecycleOwner) { originalLikes ->
+            viewModel.currentChangesInLikedRestaurants.observe(viewLifecycleOwner) { updatedLikes ->
+                viewModel.insertLikedRestaurantsToRoom(updatedLikes - originalLikes.toSet())
+                viewModel.deleteUnlikedRestaurantsFromRoom(originalLikes - updatedLikes.toSet())
+            }
+        }
     }
 
     private fun initViews(chosenDestination: Destination) {
@@ -117,7 +120,7 @@ class RestaurantsFragment : BaseFragment() {
     }
 
     private fun buildRvs(restaurantsForRv: List<RestaurantForRv>) {
-        viewModel.likedRestaurantsLive.observe(viewLifecycleOwner) { likedRestaurants ->
+        viewModel.liveLikedRestaurantsOriginal.observe(viewLifecycleOwner) { likedRestaurants ->
             viewModel.initCurrentChangesInLikedRestaurants(likedRestaurants)
             binding.rvRestaurants.adapter =
                 RestaurantAdapter(
@@ -150,7 +153,7 @@ class RestaurantsFragment : BaseFragment() {
             if (mutableRestaurantsForRv.size == 0) {
                 buildRvs(restaurantsForRv)
             } else {
-                viewModel.likedRestaurantsLive.observe(viewLifecycleOwner) { likedRestaurants ->
+                viewModel.liveLikedRestaurantsOriginal.observe(viewLifecycleOwner) { likedRestaurants ->
                     binding.rvRestaurants.adapter =
                         RestaurantAdapter(
                             mutableRestaurantsForRv.toList(),

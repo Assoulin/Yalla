@@ -11,9 +11,8 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class RestaurantsViewModel : BaseViewModel() {
-    private var _likedRestaurantsLive: LiveData<List<LikedRestaurant>> = YallaApplication.repository.getLikedRestaurants()
-    val likedRestaurantsLive
-        get() = _likedRestaurantsLive
+    val liveLikedRestaurantsOriginal: LiveData<List<LikedRestaurant>> = YallaApplication.repository.getLikedRestaurants()
+
 
     private lateinit var _currentChangesInLikedRestaurants: MutableLiveData<MutableList<LikedRestaurant>>
     val currentChangesInLikedRestaurants: LiveData<MutableList<LikedRestaurant>>
@@ -27,18 +26,19 @@ class RestaurantsViewModel : BaseViewModel() {
         _currentChangesInLikedRestaurants.value!!.remove(lr)
     }
     //Todo: Below is not working!! try delete or check how to write update correctly.
-    fun updateLikedRestaurantsToRoom(list: List<LikedRestaurant>) {
+    fun deleteUnlikedRestaurantsFromRoom(list: List<LikedRestaurant>) {
         viewModelScope.launch {
-            YallaApplication.repository.updateLikedRestaurants(list)
+            YallaApplication.repository.deleteUnlikedRestaurants(list)
+        }
+    }
+
+    fun insertLikedRestaurantsToRoom(list: List<LikedRestaurant>) {
+        viewModelScope.launch {
+            YallaApplication.repository.insertLikedRestaurants(list)
         }
     }
 
     fun initCurrentChangesInLikedRestaurants(list: List<LikedRestaurant>) {
-        if (list.isEmpty()) {
-            _currentChangesInLikedRestaurants =
-                MutableLiveData(mutableListOf(LikedRestaurant(0)))
-            return
-        }
         _currentChangesInLikedRestaurants = MutableLiveData(list.toMutableList())
     }
 

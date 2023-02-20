@@ -37,10 +37,10 @@ class RestaurantAdapter(
             //Like button handler:
             val unlikedDrawable = ResourcesCompat.getDrawable(
                 btnLike.resources, R.drawable.ic_unliked, null
-            ) //btnLike.context.getDrawable(R.drawable.ic_unliked)
+            )
             val likedDrawable = ResourcesCompat.getDrawable(
                 btnLike.resources, R.drawable.ic_liked, null
-            ) //btnLike.context.getDrawable(R.drawable.ic_liked)
+            )
 
             if (likedRestaurants.isNotEmpty()) {
                 val isLiked =

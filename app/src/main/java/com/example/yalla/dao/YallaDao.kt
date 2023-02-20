@@ -42,8 +42,8 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>)
 
-    @Update
-    suspend fun updateLikedRestaurants(likedRestaurants: List<LikedRestaurant>)
+    @Delete
+    suspend fun deleteLikedRestaurants(unlikedRestaurants: List<LikedRestaurant>)
 
     @Query("SELECT * FROM LikedRestaurant")
     fun getLikedRestaurants(): LiveData<List<LikedRestaurant>>
