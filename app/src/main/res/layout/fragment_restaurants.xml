@@ -24,8 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/toggle_btn_style"
-            android:backgroundTint="@color/turquoise"
+            android:background="@drawable/btn_style"
             android:contentDescription="@string/settings"
             android:padding="10dp"
             android:src="@drawable/ic_baseline_settings_24"
@@ -64,8 +63,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="3dp"
-            android:background="@drawable/toggle_btn_style"
-            android:backgroundTint="@color/turquoise"
+            android:background="@drawable/btn_style"
             android:contentDescription="@string/clear_selection"
             android:elevation="8dp"
             android:layoutDirection="ltr"
@@ -104,6 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_cuisine_tags"
         tools:listitem="@layout/restaurant_item"
+
         tools:visibility="visible" />
 
     <TextView

@@ -60,12 +60,12 @@ class RestaurantsFragment : BaseFragment() {
             .observe(viewLifecycleOwner) { restaurantsForRv ->
                 buildRvs(restaurantsForRv)
                 binding.clearSelection.setOnClickListener {
+                    handleLikedRestaurantRoomUpdate()
                     buildRvs(restaurantsForRv)
                 }
             }
 //
         binding.fabSettings.setOnClickListener {
-            handleLikedRestaurantRoomUpdate()
             (requireActivity() as MainActivity).hideBnv()
             findNavController().navigate(
                 R.id.chooseDestinationFragment,
@@ -111,7 +111,6 @@ class RestaurantsFragment : BaseFragment() {
     private fun initViews(chosenDestination: Destination) {
         binding.tvDestination.text =
             getString(R.string.delivery_to, chosenDestination.destinationName)
-
         //RV appliances:
         binding.rvRestaurants.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -136,6 +135,7 @@ class RestaurantsFragment : BaseFragment() {
         binding.rvCuisineTags.adapter = FilterTagsAdapter(
             cuisineTagsMap.keys.toList()
         ) {
+            handleLikedRestaurantRoomUpdate()
             cuisineTagsMap[it.first] = it.second
             resLoop@
             for (res in restaurantsForRv) {
@@ -176,7 +176,6 @@ class RestaurantsFragment : BaseFragment() {
     }
 
     private fun navigateToResFrag(): (RestaurantForRv) -> Unit = {
-        handleLikedRestaurantRoomUpdate()
         val bundle = Bundle()
         bundle.putParcelable(CHOSEN_RESTAURANT, it)
         findNavController().navigate(R.id.action_navigation_restaurants_to_restaurantMenu, bundle)
@@ -192,6 +191,11 @@ class RestaurantsFragment : BaseFragment() {
             map[s] = false
         }
         return map
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handleLikedRestaurantRoomUpdate()
     }
 
     override fun onDestroy() {

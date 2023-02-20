@@ -6,6 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.R
 import com.example.yalla.databinding.RestaurantItemBinding
+
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.squareup.picasso.Picasso
@@ -51,13 +52,13 @@ class RestaurantAdapter(
                 }
             }
             btnLike.setOnClickListener { btnLike ->
-                var isLikedStatus = true
+                var isLikedStatus = false
                 val currentForeground = btnLike.foreground
-                if (currentForeground == unlikedDrawable) {
-                    btnLike.foreground = likedDrawable
-                } else {
+                if (currentForeground == likedDrawable) {
                     btnLike.foreground = unlikedDrawable
-                    isLikedStatus = false
+                } else {
+                    btnLike.foreground = likedDrawable
+                    isLikedStatus = true
                 }
                 onLikeClicked.invoke(restaurantForRv.restaurantId, isLikedStatus)
             }
