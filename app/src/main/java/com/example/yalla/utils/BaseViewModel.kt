@@ -30,8 +30,7 @@ abstract class BaseViewModel : ViewModel() {
         viewModelScope.launch {
             if (YallaApplication.networkStatusChecker.hasInternet()) {
                 _loading.value = true
-//                refresh()
-                YallaApplication.repository.refreshRoomFromAPI()
+                refresh()
                 _loading.value = false
                 _errors.value = HAS_INTERNET
             } else {

@@ -18,7 +18,7 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getLikedRestaurants() =
         restaurantDao.getLikedRestaurants()
 
-    suspend fun refreshRoomFromAPI() {
+    suspend fun chooseDestinationRefreshRoomFromAPI() {
         withContext(Dispatchers.IO) {
             with(YallaService.create()) {
                 //get data from API:
@@ -37,6 +37,21 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
             }
         }
     }
+//    suspend fun restaurantRefreshRoomFromAPI() {
+//        withContext(Dispatchers.IO) {
+//            with(YallaService.create()) {
+//                //get data from API:
+//                val destinations = allDestinations().destinations
+//                val restaurants = allRestaurants().restaurants
+//
+//
+//                //save data to Room:
+//                restaurantDao.insertDestinationsRestaurants(destinationsRestaurants)
+//                restaurantDao.insertRestaurants(restaurants)
+//
+//            }
+//        }
+//    }
 
     suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>) {
         restaurantDao.insertLikedRestaurants(likedRestaurants)

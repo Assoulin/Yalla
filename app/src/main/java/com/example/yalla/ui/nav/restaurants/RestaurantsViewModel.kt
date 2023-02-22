@@ -7,12 +7,19 @@ import com.example.yalla.YallaApplication
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.utils.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class RestaurantsViewModel : BaseViewModel() {
-    val liveLikedRestaurantsOriginal: LiveData<List<LikedRestaurant>> = YallaApplication.repository.getLikedRestaurants()
+    init {
 
+    }
+
+    private lateinit var _liveLikedRestaurantsOriginal: LiveData<List<LikedRestaurant>>
+    val liveLikedRestaurantsOriginal
+        get() = _liveLikedRestaurantsOriginal
 
     private lateinit var _currentChangesInLikedRestaurants: MutableLiveData<MutableList<LikedRestaurant>>
     val currentChangesInLikedRestaurants: LiveData<MutableList<LikedRestaurant>>
@@ -25,7 +32,7 @@ class RestaurantsViewModel : BaseViewModel() {
     fun removeLikedRestaurant(lr: LikedRestaurant) {
         _currentChangesInLikedRestaurants.value!!.remove(lr)
     }
-    //Todo: Below is not working!! try delete or check how to write update correctly.
+
     fun deleteUnlikedRestaurantsFromRoom(list: List<LikedRestaurant>) {
         viewModelScope.launch {
             YallaApplication.repository.deleteUnlikedRestaurants(list)
@@ -33,8 +40,9 @@ class RestaurantsViewModel : BaseViewModel() {
     }
 
     fun insertLikedRestaurantsToRoom(list: List<LikedRestaurant>) {
+
         viewModelScope.launch {
-            YallaApplication.repository.insertLikedRestaurants(list)
+                YallaApplication.repository.insertLikedRestaurants(list)
         }
     }
 
@@ -50,7 +58,7 @@ class RestaurantsViewModel : BaseViewModel() {
         YallaApplication.repository.getRestaurantsForRv(chosenDestinationId, currentDay)
 
     override suspend fun refresh() {
-        YallaApplication.repository.refreshRoomFromAPI()
+        _liveLikedRestaurantsOriginal = YallaApplication.repository.getLikedRestaurants()
     }
 
 

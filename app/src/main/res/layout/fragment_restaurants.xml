@@ -1,123 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.nav.restaurants.RestaurantsFragment">
 
-    <LinearLayout
-        android:id="@+id/ll_top_line"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/fab_settings"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_top_line"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/btn_style"
-            android:contentDescription="@string/settings"
-            android:padding="10dp"
-            android:src="@drawable/ic_baseline_settings_24"
-            app:borderWidth="3dp" />
+            android:gravity="start"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_destination"
+            <ImageButton
+                android:id="@+id/fab_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_style"
+                android:contentDescription="@string/settings"
+                android:foregroundTint="@color/orange"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_location_city_24"
+                app:borderWidth="3dp"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/tv_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/open_sans_hebrew_extrabold"
+                android:textColor="@color/turquoise"
+                android:textSize="22sp"
+                tools:text="מסעדות זמינות במשלוח ליעד" />
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/clear_selection_frame"
             android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/orange"
+
+            android:paddingHorizontal="5dp"
+            android:visibility="invisible"
+
+
+            app:layout_constraintBottom_toBottomOf="@+id/rv_cuisine_tags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rv_cuisine_tags"
+            tools:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/clear_selection"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/btn_style"
+                android:contentDescription="@string/clear_selection"
+                android:elevation="8dp"
+                android:layoutDirection="ltr"
+                android:minWidth="50dp"
+                android:src="@drawable/ic_baseline_clear_all_24"
+                tools:ignore="ImageContrastCheck" />
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cuisine_tags"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="13dp"
-            android:textColor="@color/turquoise"
-            android:textSize="22sp"
-            android:fontFamily="@font/open_sans_hebrew_extrabold"
-            tools:text="מסעדות זמינות במשלוח ליעד" />
-    </LinearLayout>
+            android:background="@color/orange"
+            android:foregroundGravity="right"
+            android:paddingHorizontal="1dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/clear_selection_frame"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_top_line"
+            app:singleSelection="false"
+            tools:layout_height="50dp"
+            tools:listitem="@layout/category_tag_item"
+            tools:visibility="visible" />
 
 
-    <FrameLayout
-        android:id="@+id/clear_selection_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@color/orange"
-        android:layoutDirection="rtl"
-        android:visibility="invisible"
-        android:paddingHorizontal="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_cuisine_tags"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rv_cuisine_tags"
-        tools:visibility="visible">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_restaurants"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_cuisine_tags"
+            tools:layout_height="600dp"
+            tools:listitem="@layout/restaurant_item"
 
-        <ImageButton
-            android:id="@+id/clear_selection"
-            android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="3dp"
-            android:background="@drawable/btn_style"
-            android:contentDescription="@string/clear_selection"
-            android:elevation="8dp"
-            android:layoutDirection="ltr"
-            android:minWidth="50dp"
-            android:src="@drawable/ic_baseline_clear_all_24" />
-    </FrameLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cuisine_tags"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@color/orange"
-        android:layoutDirection="rtl"
-        android:paddingHorizontal="1dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/clear_selection_frame"
-        app:layout_constraintTop_toBottomOf="@+id/ll_top_line"
-        app:singleSelection="false"
-        tools:layout_height="50dp"
-        tools:listitem="@layout/category_tag_item"
-        tools:visibility="visible" />
+            tools:visibility="visible" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_restaurants"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="2dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_cuisine_tags"
-        tools:listitem="@layout/restaurant_item"
-
-        tools:visibility="visible" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-
-    <include
-        layout="@layout/error_message_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="gone" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            layout="@layout/error_message_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

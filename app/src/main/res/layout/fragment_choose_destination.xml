@@ -13,7 +13,7 @@
         android:id="@+id/tv_top_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="55dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +23,8 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
+        android:gravity="center"
+        android:minHeight="60dp"
         android:layout_height="wrap_content"
         android:background="@color/orange"
         android:text="@string/where_do_we_send_the_order"

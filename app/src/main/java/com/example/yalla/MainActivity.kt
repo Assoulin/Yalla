@@ -1,10 +1,8 @@
 package com.example.yalla
 
 import android.os.Bundle
-import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,8 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportActionBar!!.hide();
-        val splashScreen = installSplashScreen()
+
+        supportActionBar!!.hide()
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.toolbar.arrowBack.setOnClickListener {
+        binding.arrowBack.setOnClickListener {
             navController.popBackStack()
         }
     }
@@ -63,7 +62,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }
