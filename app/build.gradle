@@ -29,7 +29,9 @@ android {
         buildConfigField('String', 'RESTAURANTS', apiKeyProperties['RESTAURANTS'])
         buildConfigField('String', 'ADDRESSES', apiKeyProperties['ADDRESSES'])
         buildConfigField('String', 'DESTINATION_RESTAURANTS', apiKeyProperties['DESTINATION_RESTAURANTS'])
-        buildConfigField('String', 'DAILY_SCHEDULE', apiKeyProperties['DAILY_SCHEDULE'])
+        buildConfigField('String', 'DAILY_SCHEDULES', apiKeyProperties['DAILY_SCHEDULES'])
+        buildConfigField('String', 'DISHES', apiKeyProperties['DISHES'])
+        buildConfigField('String', 'MENU_TITLES', apiKeyProperties['MENU_TITLES'])
     }
 
     buildTypes {
@@ -51,6 +53,9 @@ android {
 }
 
 dependencies {
+    //splash:
+
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
@@ -60,13 +65,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
-
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'com.google.devtools.ksp:symbol-processing-api:1.7.22-1.0.8'
     def room_version = "2.5.0"
@@ -93,6 +95,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //splash screen
     implementation 'androidx.core:core-splashscreen:1.0.0'
 }

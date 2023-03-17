@@ -2,45 +2,52 @@ package com.example.yalla.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.room.OnConflictStrategy.Companion.REPLACE
 import com.example.yalla.models.*
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 
 @Dao
 interface RestaurantDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertDestination(destination: Destination)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertDestinations(destinations: List<Destination>)
 
     @Insert
     suspend fun insertAddress(addressModel: Address)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertAddresses(addresses: List<Address>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertRestaurant(restaurant: Restaurant)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertRestaurants(restaurants: List<Restaurant>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertDestinationsRestaurants(destinationRestaurants: List<DestinationRestaurant>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertDailySchedules(dailySchedules: List<DailySchedule>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertDailySchedule(dailySchedule: DailySchedule)
 
     //Entity that does not exist in the API
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertFullAddress(fullAddressRoom: FullAddressRoom)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = REPLACE)
     suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertDishes(dishes: List<Dish>)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertMenuTitles(menuTitles: List<MenuTitle>)
 
     @Delete
     suspend fun deleteLikedRestaurants(unlikedRestaurants: List<LikedRestaurant>)
@@ -53,14 +60,20 @@ interface RestaurantDao {
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
     fun getRestaurantsByDestination(chosenDestinationId: Int): LiveData<RestaurantsByDestination>
 
+    @Transaction
+    @Query("SELECT * FROM MenuTitle WHERE restaurantId=:chosenRestaurantId")
+    fun getMenuTitleDishes(chosenRestaurantId:Int): LiveData<List<MenuTitleDishes>>
+
+
+
 
     @Transaction
     @Query(
         "select * from restaurant " +
-                "inner join destinationrestaurant on restaurant.restaurantId=destinationrestaurant.restaurantId " +
-                "and destinationrestaurant.destinationId=:chosenDestinationId and isActive=1 " +
-                "inner join address on restaurant.addressId=address.addressId " +
-                "inner join dailyschedule on dailyschedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
+                "join destinationRestaurant on restaurant.restaurantId=destinationRestaurant.restaurantId " +
+                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive=1 " +
+                "join address on restaurant.addressId=address.addressId " +
+                "join dailySchedule on dailySchedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
     )
     fun getRestaurantsForRv(
         chosenDestinationId: Int,
@@ -83,17 +96,16 @@ interface RestaurantDao {
         dayOfWeek: Int
     ): LiveData<DailySchedule>
 
-    @Transaction
-    @Query("SELECT * FROM Restaurant WHERE addressId=:addressId")
-    fun getRestaurantAddress(addressId: Int): LiveData<RestaurantAddress>
-
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId AND restaurantId=:restaurantId LIMIT 1")
     fun getDeliveryDetails(
         chosenDestinationId: Int,
         restaurantId: Int
     ): LiveData<DestinationRestaurant>
 
-//    @Query("delete * from LikedRestaurant")
-//    suspend fun deleteAllLikedRestaurants()
+
+    @Query("SELECT destinationName FROM DESTINATION WHERE destinationId=:chosenRestaurantDestinationId LIMIT 1")
+    fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String>
+
+
 
 }

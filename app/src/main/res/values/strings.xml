@@ -52,7 +52,12 @@
     <string name="apt_summary">דירה:%s</string>
     <string name="entrance_summary">כניסה:%s</string>
     <string name="delivery_to">במשלוח ל%s</string>
-    <string name="clear_selection">נקה בחירה</string>
     <string name="coming_soon">בקרוב!</string>
     <string name="firm_logo">Firm Logo</string>
+    <string name="selection_cleared">"בחירה נוקתה"</string>
+    <string name="delivery_time_is">"עד %d דקות"</string>
+    <string name="address">"%s %d, "</string>
+    <string name="opening_hours">"%s-%s"</string>
+    <string name="out_of_stock">אזל!</string>
+
 </resources>

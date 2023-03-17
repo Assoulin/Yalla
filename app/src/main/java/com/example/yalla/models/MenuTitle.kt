@@ -24,7 +24,7 @@ data class MenuTitleDishes(
     val menuTitle: MenuTitle,
     @Relation(
         parentColumn = "menuTitleId",
-        entityColumn = "dishId"
+        entityColumn = "menuTitleId"
     )
     val dishes: List<Dish>
 )

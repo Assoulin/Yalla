@@ -37,18 +37,18 @@
         android:name="com.example.yalla.ui.address.choose_destination.ChooseDestinationFragment"
         tools:layout="@layout/fragment_choose_destination" >
         <action
-            android:id="@+id/action_chooseDestinationFragment_to_navigation_restaurants"
-            app:destination="@id/navigation_restaurants" />
-        <action
             android:id="@+id/action_chooseDestinationFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_chooseDestinationFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.yalla.ui.address.AddressFragment"/>
     <fragment
         android:id="@+id/restaurantMenu"
-        android:name="com.example.yalla.ui.nav.restaurant_menu.RestaurantMenu"
+        android:name="com.example.yalla.ui.nav.restaurants.restaurant_menu.FragmentRestaurantMenu"
         android:label="fragment_restaurant_menu"
         tools:layout="@layout/fragment_restaurant_menu" />
 </navigation>

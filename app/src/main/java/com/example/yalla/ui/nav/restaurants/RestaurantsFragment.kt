@@ -15,7 +15,6 @@ import com.example.yalla.databinding.FragmentRestaurantsBinding
 import com.example.yalla.models.Destination
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
-import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
 import com.example.yalla.ui.address.choose_destination.SHOW
@@ -31,7 +30,7 @@ class RestaurantsFragment : BaseFragment() {
     private lateinit var viewModel: RestaurantsViewModel
     private var _binding: FragmentRestaurantsBinding? = null
     private val binding: FragmentRestaurantsBinding get() = _binding!!
-    private lateinit var yallaActivity: MainActivity
+    private var yallaActivity: MainActivity? = null
     private lateinit var restaurantsForRv: List<RestaurantForRv>
 
     //Updatable Restaurants list for filtering purposes.
@@ -49,11 +48,11 @@ class RestaurantsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         yallaActivity = (requireActivity() as MainActivity)
-        yallaActivity.hideArrowBack()
-        yallaActivity.showBnv()
+        yallaActivity!!.hideArrowBack()
+        yallaActivity!!.showBnv()
         //rebuild the Destination object:
         val chosenDestination = Gson().fromJson(
-            requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
+            (requireActivity() as MainActivity).chosenDestinationJson, Destination::class.java
         )
         //Get the original restaurants for the rv
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
@@ -63,15 +62,8 @@ class RestaurantsFragment : BaseFragment() {
             }
 
         //init rvs and destination label:
-        initViews(chosenDestination)
-
+        initViews()
         clearSelectionClickedHandler()
-        binding.fabSettings.setOnClickListener {
-            yallaActivity.hideBnv()
-            findNavController().navigate(
-                R.id.chooseDestinationFragment,
-            )
-        }
 
         viewModel.errors.observe(viewLifecycleOwner) { indicator ->
             if (indicator == NO_INTERNET) {
@@ -105,6 +97,11 @@ class RestaurantsFragment : BaseFragment() {
         binding.clearSelection.setOnClickListener {
             handleLikedRestaurantRoomUpdate()
             buildRvs()
+            Snackbar.make(
+                requireView(),
+                getString(R.string.selection_cleared),
+                Snackbar.ANIMATION_MODE_SLIDE
+            ).show()
         }
     }
 
@@ -117,14 +114,14 @@ class RestaurantsFragment : BaseFragment() {
         }
     }
 
-    private fun initViews(chosenDestination: Destination) {
-        binding.tvDestination.text =
-            getString(R.string.delivery_to, chosenDestination.destinationName)
+    private fun initViews() {
+//        binding.tvDestination.text =
+//            getString(R.string.delivery_to, chosenDestination.destinationName)
         //RV appliances:
         binding.rvRestaurants.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvCuisineTags.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun buildRvs() {
@@ -155,7 +152,11 @@ class RestaurantsFragment : BaseFragment() {
             }
         } else {
             buildRvs()
-            Snackbar.make(requireView(), "בחירה נוקתה", Snackbar.ANIMATION_MODE_SLIDE).show()
+            Snackbar.make(
+                requireView(),
+                getString(R.string.selection_cleared),
+                Snackbar.ANIMATION_MODE_SLIDE
+            ).show()
         }
     }
 
@@ -185,6 +186,7 @@ class RestaurantsFragment : BaseFragment() {
                 navigateToResFrag(),
                 handleLikeButtonClicked()
             )
+        binding.rvRestaurants.scrollToPosition(0)
     }
 
 
@@ -218,11 +220,11 @@ class RestaurantsFragment : BaseFragment() {
     override fun onPause() {
         super.onPause()
         handleLikedRestaurantRoomUpdate()
-        yallaActivity.hideBnv()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        yallaActivity = null
     }
 }

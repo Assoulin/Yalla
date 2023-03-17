@@ -1,79 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.nav.restaurant_menu.RestaurantMenu">
+    tools:context=".ui.nav.restaurants.restaurant_menu.FragmentRestaurantMenu">
 
-    <ImageView
-        android:id="@+id/iv_restaurant_poster"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/restaurant_poster"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_restaurant_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_restaurant_poster"
-        tools:text="שם המסעדה" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_restaurant_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_name"
-        tools:text=" תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור " />
+        <ImageView
+            android:id="@+id/iv_restaurant_poster"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
 
-    <TextView
-        android:id="@+id/rv_restaurant_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_restaurant_description"
-        app:layout_constraintStart_toStartOf="@+id/tv_restaurant_description"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_description"
-        tools:text="כתובת כתובת כתובת" />
+            android:contentDescription="@string/restaurant_poster"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/bag" />
 
-    <TextView
-        android:id="@+id/tv_opening_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/rv_restaurant_address"
-        app:layout_constraintTop_toBottomOf="@+id/rv_restaurant_address"
-        tools:text="20:00-20:00" />
+        <TextView
+            android:id="@+id/tv_restaurant_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/open_sans_hebrew_extrabold"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_restaurant_poster"
+            tools:text="שם המסעדה" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:textDirection="rtl"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_opening_time">
+        <TextView
+            android:id="@+id/tv_restaurant_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/open_sans_hebrew_regular"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_name"
+            tools:text=" תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור " />
+
+        <TextView
+            android:id="@+id/tv_restaurant_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_hebrew_regular"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_restaurant_description"
+            app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_description"
+            tools:text="ארלוזורוב 57 קניון רננים " />
+
+        <TextView
+            android:id="@+id/tv_opening_hours2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_hebrew_regular"
+            app:layout_constraintEnd_toEndOf="@+id/tv_restaurant_address"
+            app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_address"
+            tools:text="20:00-20:00" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_menu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center|top"
+            android:paddingTop="4sp"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_opening_hours2"
+            tools:listitem="@layout/menu_title_item">
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_destination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_hebrew_regular"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_restaurant_address"
+            app:layout_constraintStart_toStartOf="@+id/tv_restaurant_description"
+            app:layout_constraintTop_toTopOf="@+id/tv_restaurant_address"
+            tools:text="אריאל" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

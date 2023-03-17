@@ -1,6 +1,7 @@
 package com.example.yalla
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -9,6 +10,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.yalla.databinding.ActivityMainBinding
+import com.example.yalla.utils.hideBnv
+import com.example.yalla.utils.hideTopLine
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
     private lateinit var navView: BottomNavigationView
+    lateinit var chosenDestinationJson: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -29,15 +34,10 @@ class MainActivity : AppCompatActivity() {
         navView = binding.navView
 
         navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val graph = navController.graph
-        graph.setStartDestination(R.id.chooseDestinationFragment)
-        navController.setGraph(graph, null)
-
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-//                R.id.chooseDestinationFragment,
                 R.id.navigation_search,
                 R.id.navigation_surprise,
                 R.id.navigation_yalla_specials,
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id != R.id.chooseDestinationFragment) {
+            if (destination.id != R.id.navigation_home) {
                 setupActionBarWithNavController(navController, appBarConfiguration)
                 navView.setupWithNavController(navController)
             }
@@ -54,6 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.arrowBack.setOnClickListener {
             navController.popBackStack()
+        }
+
+        binding.fabSettings.setOnClickListener {
+            navController.navigate(R.id.chooseDestinationFragment)
+            hideTopLine()
+            hideBnv()
         }
     }
 

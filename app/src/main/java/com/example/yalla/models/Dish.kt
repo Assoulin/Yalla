@@ -35,7 +35,8 @@ data class Dish(
     val requireQuantity: Boolean,
 
     ) {
-    fun priceToString(): String =
+    @Ignore
+    val priceToString =
         DecimalFormat("#.##").format(price) + "₪"
 }
 
@@ -52,7 +53,7 @@ data class DishWithOrderDetails(
 )
 
 
-@Entity (tableName = "dish_Additions" , primaryKeys = ["dishId", "additionId"])
+@Entity(tableName = "dish_Additions", primaryKeys = ["dishId", "additionId"])
 data class DishAddition(
     @SerializedName("dish_id")
     val dishId: Int,

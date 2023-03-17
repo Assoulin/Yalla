@@ -2,14 +2,15 @@ package com.example.yalla.models.x_retrofit_models
 
 import android.os.Build
 import android.os.Parcelable
-import androidx.room.Ignore
+
 import kotlinx.parcelize.Parcelize
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 
-const val CLOSED = "closed"
-const val WILL_CLOSE_IN = "תסגר בעוד "
+const val AFTER = "yalla.models.x_retrofit_models.AFTER"
+const val BEFORE = "yalla.models.x_retrofit_models.BEFORE"
+const val ZONE_ID = "Asia/Jerusalem"
 
 @Parcelize
 data class RestaurantForRv(
@@ -29,13 +30,13 @@ data class RestaurantForRv(
     val apartment: Int?,
     val locationInstructions: String?,
     val deliveryPrice: String?,
-    val estimatedDeliveryTime: Int?,
+    val deliveryTime: Int?,
 ) : Parcelable {
     val getDeliveryPrice
         get() = "₪$deliveryPrice"
 
-    val getOpeningStatusMessage
-        get() = "${closingHour.slice(0..4)} ~ ${openingHour.slice(0..4)}"
+    val openingHours
+        get() = "${closingHour.slice(0..4)}-${openingHour.slice(0..4)}"
 
     fun getOpenStatusMessage(): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -50,22 +51,21 @@ data class RestaurantForRv(
                     closingHour.slice(3..4).toInt()
                 )
             val nowTimeHourMinute: LocalTime =
-                LocalTime.now(ZoneId.of("Asia/Jerusalem"))
+                LocalTime.now(ZoneId.of(ZONE_ID))
                     .truncatedTo(ChronoUnit.MINUTES)
 
-            if (nowTimeHourMinute.isAfter(closingHour)) {
-                return CLOSED
+            return if (nowTimeHourMinute.isAfter(closingHour)) {
+                AFTER
             } else if (nowTimeHourMinute.isBefore(openingHour)) {
-                return CLOSED
+                BEFORE
             } else {
-                return WILL_CLOSE_IN +
-                        closingHour
-                            .minusHours(nowTimeHourMinute.hour.toLong())
-                            .minusMinutes(nowTimeHourMinute.minute.toLong())
-                            .toString()
+                closingHour
+                    .minusHours(nowTimeHourMinute.hour.toLong())
+                    .minusMinutes(nowTimeHourMinute.minute.toLong())
+                    .toString()
             }
         } else {
-            return getOpeningStatusMessage
+            return openingHours
         }
     }
 }

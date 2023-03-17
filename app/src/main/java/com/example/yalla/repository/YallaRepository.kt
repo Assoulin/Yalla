@@ -1,8 +1,8 @@
 package com.example.yalla.repository
 
+import androidx.lifecycle.LiveData
 import com.example.yalla.dao.RestaurantDao
-import com.example.yalla.models.Address
-import com.example.yalla.models.FullAddressRoom
+import com.example.yalla.models.*
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +18,15 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getLikedRestaurants() =
         restaurantDao.getLikedRestaurants()
 
+    fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>> =
+        restaurantDao.getMenuTitleDishes(chosenRestaurantId)
+
+    fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String> =
+        restaurantDao.getDestinationNameById(chosenRestaurantDestinationId)
+
+
+
+
     suspend fun chooseDestinationRefreshRoomFromAPI() {
         withContext(Dispatchers.IO) {
             with(YallaService.create()) {
@@ -27,13 +36,16 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
                 val addresses = allAddresses().addresses
                 val destinationsRestaurants = allDestinationsRestaurants().destinationsRestaurants
                 val dailySchedules = allDailySchedules().dailySchedules
-
+                val dishes = allDishes().dishes
+                val menuTitles = allMenuTitles().menuTitles
                 //save data to Room:
                 restaurantDao.insertDestinationsRestaurants(destinationsRestaurants)
                 restaurantDao.insertRestaurants(restaurants)
                 restaurantDao.insertAddresses(addresses)
                 restaurantDao.insertDestinations(destinations)
                 restaurantDao.insertDailySchedules(dailySchedules)
+                restaurantDao.insertDishes(dishes)
+                restaurantDao.insertMenuTitles(menuTitles)
             }
         }
     }
@@ -68,4 +80,6 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     suspend fun deleteUnlikedRestaurants(unlikedRestaurants: List<LikedRestaurant>) {
         restaurantDao.deleteLikedRestaurants(unlikedRestaurants)
     }
+
+
 }

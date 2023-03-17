@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 
 
@@ -25,8 +26,15 @@ interface YallaService {
     @GET(BuildConfig.DESTINATION_RESTAURANTS)
     suspend fun allDestinationsRestaurants(): DestinationsRestaurantsResponse
 
-    @GET(BuildConfig.DAILY_SCHEDULE)
+    @GET(BuildConfig.DAILY_SCHEDULES)
     suspend fun allDailySchedules(): DailySchedulesResponse
+
+    @GET(BuildConfig.DISHES)
+    suspend fun allDishes(): DishResponse
+
+    @GET(BuildConfig.MENU_TITLES)
+    suspend fun allMenuTitles(): MenuTitleResponse
+
 
 
     //Setup:

@@ -5,6 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 class AddressResponse(
     @SerializedName("address")
-    val addresses:List<Address>
-) {
-}
+    val addresses: List<Address>
+)

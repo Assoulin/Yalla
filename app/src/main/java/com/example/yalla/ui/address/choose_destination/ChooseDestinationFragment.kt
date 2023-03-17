@@ -5,18 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.yalla.utils.BaseFragment
+import com.example.yalla.MainActivity
 import com.example.yalla.R
 import com.example.yalla.adapters.DestinationAdapter
 import com.example.yalla.databinding.FragmentChooseDestinationBinding
 import com.example.yalla.models.Destination
 import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
+import com.example.yalla.utils.*
 import com.google.gson.Gson
 
-const val COLUMN_NUMBER = 3
+private const val COLUMN_NUMBER = 3
 const val SHOW = true
 const val HIDE = false
 
@@ -26,6 +28,7 @@ class ChooseDestinationFragment : BaseFragment() {
     private var _binding: FragmentChooseDestinationBinding? = null
 
     private val binding: FragmentChooseDestinationBinding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +44,13 @@ class ChooseDestinationFragment : BaseFragment() {
 
     private val onDestinationSelected: (Destination) -> Unit = { chosenDestination ->
         val json = Gson().toJson(chosenDestination)
+        with(requireActivity() as MainActivity) {
+            initTvDestination(destination = chosenDestination.destinationName)
+            setChosenDestinationJson(json)
+        }
         findNavController().navigate(
-            R.id.action_chooseDestinationFragment_to_navigation_restaurants,
-            bundleOf(Pair(CHOSEN_DESTINATION_TAG, json))
+            R.id.action_chooseDestinationFragment_to_navigation_home,
+//            bundleOf(Pair(CHOSEN_DESTINATION_TAG, json))
         )
     }
 
@@ -53,6 +60,7 @@ class ChooseDestinationFragment : BaseFragment() {
         binding.rvDestinations.layoutManager = GridLayoutManager(requireContext(), COLUMN_NUMBER)
 
         viewModel.destinationsLive.observe(viewLifecycleOwner) { destinationList ->
+
             binding.rvDestinations.adapter =
                 DestinationAdapter(destinationList, onDestinationSelected)
         }
@@ -74,6 +82,22 @@ class ChooseDestinationFragment : BaseFragment() {
                 manageProgressLoadingVisibility(HIDE)
                 binding.rvDestinations.visibility = View.VISIBLE
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        with((requireActivity() as MainActivity)) {
+            hideBnv()
+            hideTopLine()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        with((requireActivity() as MainActivity)) {
+            showBnv()
+            showTopLine()
         }
     }
 

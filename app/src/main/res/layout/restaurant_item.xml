@@ -6,15 +6,17 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="25dp"
     android:layout_marginTop="16dp"
+    android:visibility="visible"
     app:cardCornerRadius="8dp"
-    app:cardElevation="3dp">
+    app:cardElevation="3dp"
+    tools:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/ll_restaurant"
+            android:id="@+id/ll_restaurant_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient"
@@ -119,7 +121,7 @@
                     android:textColor="#616161" />
 
                 <TextView
-                    android:id="@+id/tv_opening_hours"
+                    android:id="@+id/tv_delivery_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -129,7 +131,7 @@
                     android:maxLines="1"
                     android:textColor="#616161"
                     android:textSize="14sp"
-                    tools:text="הזמנה עד 20:00" />
+                    tools:text="עד 40 דקות" />
 
                 <TextView
                     android:id="@+id/tv_flower2"
@@ -141,6 +143,18 @@
                     android:text="@string/separator"
                     android:textColor="#616161" />
 
+                <TextView
+                    android:id="@+id/tv_opening_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/open_sans_hebrew_italic"
+                    android:maxLines="1"
+                    android:textColor="#616161"
+                    android:textSize="14sp"
+                    tools:text="הזמנה עד 20:00" />
 
             </LinearLayout>
 
