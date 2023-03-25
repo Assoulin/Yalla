@@ -62,16 +62,13 @@ interface RestaurantDao {
 
     @Transaction
     @Query("SELECT * FROM MenuTitle WHERE restaurantId=:chosenRestaurantId")
-    fun getMenuTitleDishes(chosenRestaurantId:Int): LiveData<List<MenuTitleDishes>>
-
-
-
+    fun getMenuTitleDishes(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>>
 
     @Transaction
     @Query(
         "select * from restaurant " +
                 "join destinationRestaurant on restaurant.restaurantId=destinationRestaurant.restaurantId " +
-                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive=1 " +
+                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive = 1 " +
                 "join address on restaurant.addressId=address.addressId " +
                 "join dailySchedule on dailySchedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
     )
@@ -79,6 +76,20 @@ interface RestaurantDao {
         chosenDestinationId: Int,
         currentDay: Int
     ): LiveData<List<RestaurantForRv>>
+
+    @Transaction
+    @Query(
+        "select * from restaurant " +
+                "join destinationRestaurant on restaurant.restaurantId=destinationRestaurant.restaurantId " +
+                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive=1 and promoted = 1 " +
+                "join address on restaurant.addressId=address.addressId " +
+                "join dailySchedule on dailySchedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
+    )
+    fun getHotRestaurantsForRv(
+        chosenDestinationId: Int,
+        currentDay: Int
+    ): LiveData<List<RestaurantForRv>>
+
 
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant")
@@ -105,7 +116,5 @@ interface RestaurantDao {
 
     @Query("SELECT destinationName FROM DESTINATION WHERE destinationId=:chosenRestaurantDestinationId LIMIT 1")
     fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String>
-
-
 
 }

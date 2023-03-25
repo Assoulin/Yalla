@@ -1,10 +1,10 @@
 package com.example.yalla.ui.nav.restaurants
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yalla.MainActivity
@@ -18,12 +18,16 @@ import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.ui.address.choose_destination.HIDE
 import com.example.yalla.ui.address.choose_destination.NO_INTERNET
 import com.example.yalla.ui.address.choose_destination.SHOW
-import com.example.yalla.utils.*
+import com.example.yalla.utils.BaseFragment
+import com.example.yalla.utils.hideArrowBack
+import com.example.yalla.utils.hideBnv
+import com.example.yalla.utils.showBnv
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 
 const val DELIMITER = ", "
 const val CHOSEN_RESTAURANT = "chosen restaurant"
+const val CHOSEN_DESTINATION_NAME = "ui.nav.restaurants.RestaurantsFragment.CHOSEN_DESTINATION_NAME"
 
 class RestaurantsFragment : BaseFragment() {
 
@@ -32,6 +36,7 @@ class RestaurantsFragment : BaseFragment() {
     private val binding: FragmentRestaurantsBinding get() = _binding!!
     private var yallaActivity: MainActivity? = null
     private lateinit var restaurantsForRv: List<RestaurantForRv>
+    private lateinit var chosenDestination: Destination
 
     //Updatable Restaurants list for filtering purposes.
     private var mutableRestaurantsForRv: MutableSet<RestaurantForRv> = mutableSetOf()
@@ -51,7 +56,7 @@ class RestaurantsFragment : BaseFragment() {
         yallaActivity!!.hideArrowBack()
         yallaActivity!!.showBnv()
         //rebuild the Destination object:
-        val chosenDestination = Gson().fromJson(
+        chosenDestination = Gson().fromJson(
             (requireActivity() as MainActivity).chosenDestinationJson, Destination::class.java
         )
         //Get the original restaurants for the rv
@@ -183,7 +188,7 @@ class RestaurantsFragment : BaseFragment() {
             RestaurantAdapter(
                 restaurants,
                 likedRestaurants,
-                navigateToResFrag(),
+                navigateToMenuFrag(),
                 handleLikeButtonClicked()
             )
         binding.rvRestaurants.scrollToPosition(0)
@@ -199,9 +204,11 @@ class RestaurantsFragment : BaseFragment() {
         }
     }
 
-    private fun navigateToResFrag(): (RestaurantForRv) -> Unit = {
+    private fun navigateToMenuFrag(): (RestaurantForRv) -> Unit = {
+        yallaActivity!!.hideBnv()
         val bundle = Bundle()
         bundle.putParcelable(CHOSEN_RESTAURANT, it)
+        bundle.putString(CHOSEN_DESTINATION_NAME, chosenDestination.destinationName)
         findNavController().navigate(R.id.action_navigation_restaurants_to_restaurantMenu, bundle)
     }
 

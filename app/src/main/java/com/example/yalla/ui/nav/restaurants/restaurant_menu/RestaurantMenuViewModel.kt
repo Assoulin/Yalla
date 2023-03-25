@@ -11,8 +11,5 @@ class RestaurantMenuViewModel : ViewModel() {
     fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>> =
         YallaApplication.repository.getMenuTitleDishesByRestaurantId(chosenRestaurantId)
 
-    fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String> =
-        YallaApplication.repository.getDestinationNameById(chosenRestaurantDestinationId)
-
 
 }

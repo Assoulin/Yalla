@@ -33,7 +33,7 @@ data class Dish(
     val available: Boolean,
     @SerializedName("require_quantity")
     val requireQuantity: Boolean,
-
+    val promoted: Boolean,
     ) {
     @Ignore
     val priceToString =

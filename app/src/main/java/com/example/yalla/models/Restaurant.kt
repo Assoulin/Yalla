@@ -24,6 +24,7 @@ data class Restaurant(
     val isActive: Boolean,
     @SerializedName("restaurant_name")
     val restaurantName: String,
+    val promoted: Boolean
 )
 
 //Views

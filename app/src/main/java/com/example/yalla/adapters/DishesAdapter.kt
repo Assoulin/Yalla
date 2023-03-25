@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.DishItemBinding
-import com.example.yalla.databinding.MenuTitleItemBinding
-import com.example.yalla.databinding.RestaurantItemBinding
 import com.example.yalla.models.Dish
 import com.squareup.picasso.Picasso
 
@@ -40,7 +38,7 @@ class DishesAdapter(
                 rightSizeDescriptionString = descriptionWordsList.joinToString(" ", postfix = "...")
             }
             tvDishDescription.text = rightSizeDescriptionString
-            tvDishKosher.text = dish.kosherTag
+            tvKosher.text = dish.kosherTag.split(", ")[0]
             tvKosherGroup.text = dish.groupTag
 
             Picasso.get().load(dish.imageUrl).into(dishPoster)

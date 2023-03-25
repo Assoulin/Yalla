@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.yalla.dao.RestaurantDao
 import com.example.yalla.models.*
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
+import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.services.YallaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,6 +16,10 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getRestaurantsForRv(chosenDestinationId: Int, currentDay: Int) =
         restaurantDao.getRestaurantsForRv(chosenDestinationId, currentDay)
 
+    fun getHotRestaurantsForRv(
+        chosenDestinationId: Int, currentDay: Int): LiveData<List<RestaurantForRv>> =
+        restaurantDao.getHotRestaurantsForRv(chosenDestinationId, currentDay)
+
     fun getLikedRestaurants() =
         restaurantDao.getLikedRestaurants()
 
@@ -23,8 +28,6 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
 
     fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String> =
         restaurantDao.getDestinationNameById(chosenRestaurantDestinationId)
-
-
 
 
     suspend fun chooseDestinationRefreshRoomFromAPI() {
