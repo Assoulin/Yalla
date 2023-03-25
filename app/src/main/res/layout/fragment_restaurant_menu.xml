@@ -2,13 +2,13 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sv_main"
+    android:id="@+id/nsv_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.nav.restaurants.restaurant_menu.FragmentRestaurantMenu">
 
     <LinearLayout
-        android:id="@+id/layTry"
+        android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="ltr"
@@ -23,53 +23,51 @@
             android:layout_height="150dp"
             android:contentDescription="@string/restaurant_poster"
             android:scaleType="centerCrop"
+            tools:ignore="ImageContrastCheck"
             tools:src="@drawable/bag" />
 
         <TextView
             android:id="@+id/tv_restaurant_name"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/open_sans_hebrew_extrabold"
             android:textSize="22sp"
             tools:text="שם המסעדה" />
 
         <TextView
             android:id="@+id/tv_restaurant_description"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/open_sans_hebrew_regular"
             android:textSize="16sp"
             tools:text=" תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור תיאור " />
 
         <TextView
             android:id="@+id/tv_restaurant_address"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/open_sans_hebrew_regular"
             android:textSize="16sp"
             tools:text="ארלוזורוב 57 קניון רננים " />
 
-        <TextView
-            android:id="@+id/tv_destination"
-            android:layout_gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_hebrew_regular"
-            android:textSize="16sp"
-            tools:text="אריאל" />
 
         <TextView
             android:id="@+id/tv_opening_hours2"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/open_sans_hebrew_regular"
             tools:text="20:00-20:00" />
 

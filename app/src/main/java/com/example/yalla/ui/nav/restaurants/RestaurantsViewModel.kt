@@ -3,18 +3,16 @@ package com.example.yalla.ui.nav.restaurants
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide.init
 import com.example.yalla.YallaApplication
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.utils.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 
 class RestaurantsViewModel : BaseViewModel() {
-
+    fun getRestaurantsForRv(chosenDestinationId: Int): LiveData<List<RestaurantForRv>> =
+        YallaApplication.repository.getRestaurantsForRv(chosenDestinationId, currentDay)
 
     private lateinit var _liveLikedRestaurantsOriginal: LiveData<List<LikedRestaurant>>
     val liveLikedRestaurantsOriginal
@@ -26,7 +24,7 @@ class RestaurantsViewModel : BaseViewModel() {
 
     private var currentDay = 0
 
-        init {
+    init {
         currentDay =
             Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
     }
@@ -55,8 +53,6 @@ class RestaurantsViewModel : BaseViewModel() {
         _currentChangesInLikedRestaurants = MutableLiveData(list.toMutableList())
     }
 
-    fun getRestaurantsForRv(chosenDestinationId: Int): LiveData<List<RestaurantForRv>> =
-        YallaApplication.repository.getRestaurantsForRv(chosenDestinationId, currentDay)
 
     override suspend fun refresh() {
         _liveLikedRestaurantsOriginal = YallaApplication.repository.getLikedRestaurants()

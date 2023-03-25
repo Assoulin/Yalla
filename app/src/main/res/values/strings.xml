@@ -56,8 +56,9 @@
     <string name="firm_logo">Firm Logo</string>
     <string name="selection_cleared">"בחירה נוקתה"</string>
     <string name="delivery_time_is">"עד %d דקות"</string>
-    <string name="address">"%s %d, "</string>
+    <string name="address">"%s %d, %s"</string>
     <string name="opening_hours">"%s-%s"</string>
     <string name="out_of_stock">אזל!</string>
+    <string name="hot_restaurants">מסעדות חמות באזור 🔥</string>
 
 </resources>

@@ -9,8 +9,9 @@ import com.example.yalla.models.*
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 
 
-const val DB_VERSION = 4
+const val DB_VERSION = 1
 const val DB_NAME = "YallaDatabase"
+
 @Database(
     entities = [
         Destination::class,

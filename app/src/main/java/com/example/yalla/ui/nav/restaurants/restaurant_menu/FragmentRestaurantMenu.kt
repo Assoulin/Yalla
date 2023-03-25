@@ -3,32 +3,26 @@ package com.example.yalla.ui.nav.restaurants.restaurant_menu
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.yalla.MainActivity
 import com.example.yalla.R
 import com.example.yalla.adapters.MainMenuAdapter
 import com.example.yalla.databinding.FragmentRestaurantMenuBinding
-
-import com.example.yalla.models.Dish
-import com.example.yalla.models.MenuTitle
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
+import com.example.yalla.ui.nav.restaurants.CHOSEN_DESTINATION_NAME
 import com.example.yalla.ui.nav.restaurants.CHOSEN_RESTAURANT
 import com.example.yalla.utils.showArrowBack
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
-import java.lang.Exception
-import kotlin.math.log
 
 class FragmentRestaurantMenu : Fragment() {
     private lateinit var viewModel: RestaurantMenuViewModel
@@ -36,6 +30,7 @@ class FragmentRestaurantMenu : Fragment() {
     private val binding: FragmentRestaurantMenuBinding
         get() = _binding!!
     private lateinit var chosenRest: RestaurantForRv
+    private lateinit var chosenDestinationName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,9 +45,10 @@ class FragmentRestaurantMenu : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val myActivity = (requireActivity() as MainActivity)
         myActivity.showArrowBack()
-
+        chosenDestinationName = arguments?.getString(CHOSEN_DESTINATION_NAME)!!
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             chosenRest = arguments?.getParcelable(CHOSEN_RESTAURANT, RestaurantForRv::class.java)!!
+
         } else {
             @Suppress("DEPRECATION")
             chosenRest = arguments?.getParcelable(CHOSEN_RESTAURANT)!!
@@ -68,17 +64,15 @@ class FragmentRestaurantMenu : Fragment() {
             with(chosenRest) {
                 tvRestaurantName.text = restaurantName
                 tvRestaurantDescription.text = description
-                tvRestaurantAddress.text = getString(R.string.address, street, houseNumber)
-                viewModel.getDestinationNameById(destinationId)
-                    .observe(viewLifecycleOwner) { name ->
-                        binding.tvDestination.text = name
-                    }
+                tvRestaurantAddress.text =
+                    getString(R.string.address, street, houseNumber, chosenDestinationName)
+
                 tvOpeningHours2.text = openingHours
 
                 viewModel.getMenuTitleDishesByRestaurantId(chosenRest.restaurantId)
-                    .observe(viewLifecycleOwner){
-                        Log.e("tag",it.toString())
-                        rvMainMenu.adapter= MainMenuAdapter(it){
+                    .observe(viewLifecycleOwner) {
+                        Log.e("tag", it.toString())
+                        rvMainMenu.adapter = MainMenuAdapter(it) {
 
                         }
                     }

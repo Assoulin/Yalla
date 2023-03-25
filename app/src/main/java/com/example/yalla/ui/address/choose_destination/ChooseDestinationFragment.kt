@@ -1,12 +1,10 @@
 package com.example.yalla.ui.address.choose_destination
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yalla.MainActivity
@@ -14,13 +12,13 @@ import com.example.yalla.R
 import com.example.yalla.adapters.DestinationAdapter
 import com.example.yalla.databinding.FragmentChooseDestinationBinding
 import com.example.yalla.models.Destination
-import com.example.yalla.ui.address.CHOSEN_DESTINATION_TAG
 import com.example.yalla.utils.*
 import com.google.gson.Gson
 
 private const val COLUMN_NUMBER = 3
 const val SHOW = true
 const val HIDE = false
+const val DESTINATION_ID = "yalla.ui.address.choose_destination.DESTINATION_ID"
 
 class ChooseDestinationFragment : BaseFragment() {
     private lateinit var viewModel: ChooseDestinationViewModel
@@ -48,10 +46,12 @@ class ChooseDestinationFragment : BaseFragment() {
             initTvDestination(destination = chosenDestination.destinationName)
             setChosenDestinationJson(json)
         }
+        val bundle = Bundle()
+        bundle.putInt(DESTINATION_ID,chosenDestination.destinationId)
         findNavController().navigate(
             R.id.action_chooseDestinationFragment_to_navigation_home,
-//            bundleOf(Pair(CHOSEN_DESTINATION_TAG, json))
-        )
+            bundle
+            )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

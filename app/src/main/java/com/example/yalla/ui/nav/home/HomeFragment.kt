@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.yalla.adapters.HotRestaurantsAdapter
 import com.example.yalla.databinding.HomeFragmentBinding
+import com.example.yalla.ui.address.choose_destination.DESTINATION_ID
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -23,16 +25,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
+            ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView2.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        homeViewModel.hotRestaurants(arguments?.getInt(DESTINATION_ID)!!)
+            .observe(viewLifecycleOwner) {hotRestaurants->
+                binding.recyclerView2.adapter=HotRestaurantsAdapter(hotRestaurants)
+            }
     }
 
     override fun onDestroyView() {

@@ -1,0 +1,44 @@
+{
+  "restaurant": [
+    {
+      "restaurant_id": 1,
+      "restaurant_name": "ג'אפן ג'אפן JAPAN JAPAN",
+      "description": "אסייתי, סושי",
+      "image_url": "https://raw.githubusercontent.com/Assoulin/Yalla/master/app/src/main/res/drawable/japan_japan.jpg",
+      "is_active": true,
+      "address_id": 2,
+      "cuisine": "אסייתי, סושי",
+      "promoted": true
+    },
+    {
+      "restaurant_id": 2,
+      "restaurant_name": "ג'אפן ג'אפן JAPAN JAPAN2",
+      "description": "אסייתי, יפני, דים סאם",
+      "image_url": "https://raw.githubusercontent.com/Assoulin/Yalla/master/app/src/main/res/drawable/japan_japan.jpg",
+      "is_active": true,
+      "address_id": 2,
+      "cuisine": "אסייתי, יפני, דים סאם",
+      "promoted": true
+    },
+    {
+      "restaurant_id": 3,
+      "restaurant_name": "ג'אפן ג'אפן JAPAN JAPAN3",
+      "description": "סיני",
+      "image_url": "https://raw.githubusercontent.com/Assoulin/Yalla/master/app/src/main/res/drawable/japan_japan.jpg",
+      "is_active": true,
+      "address_id": 2,
+      "cuisine": "סיני",
+      "promoted": false
+    },
+    {
+      "restaurant_id": 4,
+      "restaurant_name": "ג'אפן ג'אפן JAPAN JAPAN4",
+      "description": "גיוזה, אסייתי, מוקפצים",
+      "image_url": "https://raw.githubusercontent.com/Assoulin/Yalla/master/app/src/main/res/drawable/japan_japan.jpg",
+      "is_active": true,
+      "address_id": 1,
+      "cuisine": "גיוזה, אסייתי, מוקפצים",
+      "promoted": true
+    }
+  ]
+}
