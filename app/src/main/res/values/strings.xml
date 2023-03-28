@@ -60,5 +60,7 @@
     <string name="opening_hours">"%s-%s"</string>
     <string name="out_of_stock">אזל!</string>
     <string name="hot_restaurants">מסעדות חמות באזור 🔥</string>
+    <string name="hot_offers">הצעות שוות 💰</string>
+    <string name="already_enjoyed">כבר אהבתם 🤤</string>
 
 </resources>

@@ -26,8 +26,11 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>> =
         restaurantDao.getMenuTitleDishes(chosenRestaurantId)
 
-    fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String> =
-        restaurantDao.getDestinationNameById(chosenRestaurantDestinationId)
+    fun getLikedRestaurantsByDestId(chosenDestIdByArg: Int, currentDay: Int): LiveData<List<RestaurantForRv>> =
+        restaurantDao.getLikedRestaurantsByDestId(chosenDestIdByArg,currentDay)
+
+    fun getHotOffers(chosenDestId: Int, currentDay: Int): LiveData<List<Dish>> =
+        restaurantDao.getHotOffers(chosenDestId, currentDay)
 
 
     suspend fun chooseDestinationRefreshRoomFromAPI() {
@@ -83,6 +86,8 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     suspend fun deleteUnlikedRestaurants(unlikedRestaurants: List<LikedRestaurant>) {
         restaurantDao.deleteLikedRestaurants(unlikedRestaurants)
     }
+
+
 
 
 }

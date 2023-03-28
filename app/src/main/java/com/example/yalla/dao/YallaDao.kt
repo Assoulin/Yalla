@@ -7,6 +7,31 @@ import com.example.yalla.models.*
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 
+const val LIKED_RESTAURANT_FOR_RV_QUERY =
+    "SELECT res.restaurantId, res.cuisine, res.description, res.imageUrl, res.restaurantName, address.apartment, address.entrance, address.houseNumber, address.street, ds.openingHour, ds.closingHour, dr.deliveryPrice, dr.deliveryTime\n" +
+            "FROM restaurant AS res\n" +
+            " JOIN destinationRestaurant AS dr ON res.restaurantId=dr.restaurantId \n" +
+            " AND dr.destinationId=:chosenDestIdByArg AND isActive = 1 \n" +
+            " JOIN address ON res.addressId=address.addressId \n" +
+            " JOIN dailySchedule AS ds ON ds.restaurantId = res.restaurantId AND dayOfWeek=:currentDay\n" +
+            "JOIN LikedRestaurant AS lr ON lr.restaurantId = res.restaurantId"
+
+const val HOT_RESTAURANT_FOR_RV_QUERY =
+    "SELECT res.restaurantId, res.cuisine, res.description, res.imageUrl, res.restaurantName, address.apartment, address.entrance, address.houseNumber, address.street, ds.openingHour, ds.closingHour, dr.deliveryPrice, dr.deliveryTime\n" +
+            "FROM restaurant AS res\n" +
+            " JOIN destinationRestaurant AS dr ON res.restaurantId=dr.restaurantId \n" +
+            " AND dr.destinationId=:chosenDestinationId AND isActive = 1 and promoted = 1 \n" +
+            " JOIN address ON res.addressId=address.addressId \n" +
+            " JOIN dailySchedule AS ds ON ds.restaurantId = res.restaurantId AND dayOfWeek=:currentDay"
+
+const val RESTAURANT_FOR_RV_QUERY =
+    "SELECT res.restaurantId, res.cuisine, res.description, res.imageUrl, res.restaurantName, address.apartment, address.entrance, address.houseNumber, address.street, ds.openingHour, ds.closingHour, dr.deliveryPrice, dr.deliveryTime\n" +
+            "FROM restaurant AS res\n" +
+            " JOIN destinationRestaurant AS dr ON res.restaurantId=dr.restaurantId \n" +
+            " AND dr.destinationId=:chosenDestinationId AND isActive = 1 \n" +
+            " JOIN address ON res.addressId=address.addressId \n" +
+            " JOIN dailySchedule AS ds ON ds.restaurantId = res.restaurantId AND dayOfWeek=:currentDay"
+
 @Dao
 interface RestaurantDao {
     @Insert(onConflict = REPLACE)
@@ -55,6 +80,23 @@ interface RestaurantDao {
     @Query("SELECT * FROM LikedRestaurant")
     fun getLikedRestaurants(): LiveData<List<LikedRestaurant>>
 
+    @Transaction
+    @Query(LIKED_RESTAURANT_FOR_RV_QUERY)
+    fun getLikedRestaurantsByDestId(
+        chosenDestIdByArg: Int,
+        currentDay: Int
+    ): LiveData<List<RestaurantForRv>>
+
+    @Transaction
+    @Query("SELECT D.dishName,D.dishId, D.imageUrl, D.restaurantId, D.description, D.available, D.categoryTag, D.groupTag, D.kosherTag, D.promoted, D.requireQuantity, D.price, D.menuTitleId,DS.closingHour,DS.openingHour\n" +
+            "            FROM Dish AS D\n" +
+            "            JOIN Restaurant AS RES ON RES.restaurantId =  D.restaurantId \n" +
+            "            JOIN DestinationRestaurant AS DR ON DR.restaurantId = RES.restaurantId \n" +
+            "            AND DR.destinationId =:chosenDestId\n" +
+            "            JOIN dailySchedule AS DS ON DS.restaurantId = RES.restaurantId AND dayOfWeek=:currentDay  \n" +
+            "            where D.promoted = 0 AND D.available = 1")
+    fun getHotOffers(chosenDestId: Int, currentDay: Int): LiveData<List<Dish>>
+
 
     @Transaction
     @Query("SELECT * FROM DestinationRestaurant WHERE destinationId=:chosenDestinationId")
@@ -65,26 +107,14 @@ interface RestaurantDao {
     fun getMenuTitleDishes(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>>
 
     @Transaction
-    @Query(
-        "select * from restaurant " +
-                "join destinationRestaurant on restaurant.restaurantId=destinationRestaurant.restaurantId " +
-                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive = 1 " +
-                "join address on restaurant.addressId=address.addressId " +
-                "join dailySchedule on dailySchedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
-    )
+    @Query(RESTAURANT_FOR_RV_QUERY)
     fun getRestaurantsForRv(
         chosenDestinationId: Int,
         currentDay: Int
     ): LiveData<List<RestaurantForRv>>
 
     @Transaction
-    @Query(
-        "select * from restaurant " +
-                "join destinationRestaurant on restaurant.restaurantId=destinationRestaurant.restaurantId " +
-                "and destinationRestaurant.destinationId=:chosenDestinationId and isActive=1 and promoted = 1 " +
-                "join address on restaurant.addressId=address.addressId " +
-                "join dailySchedule on dailySchedule.restaurantId = restaurant.restaurantId and dayOfWeek=:currentDay"
-    )
+    @Query(HOT_RESTAURANT_FOR_RV_QUERY)
     fun getHotRestaurantsForRv(
         chosenDestinationId: Int,
         currentDay: Int
@@ -113,8 +143,5 @@ interface RestaurantDao {
         restaurantId: Int
     ): LiveData<DestinationRestaurant>
 
-
-    @Query("SELECT destinationName FROM DESTINATION WHERE destinationId=:chosenRestaurantDestinationId LIMIT 1")
-    fun getDestinationNameById(chosenRestaurantDestinationId: Int): LiveData<String>
 
 }

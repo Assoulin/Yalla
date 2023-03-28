@@ -12,19 +12,19 @@ import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 
-class HotRestaurantsAdapter(
-    private val hotRestaurants: List<RestaurantForRv>,
+class LikedRestaurantsAdapter(
+    private val likedRestaurants: List<RestaurantForRv>,
     // private val onHotRestClicked: (RestaurantForRv) -> Unit
 ) :
-    RecyclerView.Adapter<HotRestaurantsViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotRestaurantsViewHolder {
+    RecyclerView.Adapter<LikedRestaurantsViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikedRestaurantsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = MainPageRestaurantItemBinding.inflate(inflater, parent, false)
-        return HotRestaurantsViewHolder(binding)
+        return LikedRestaurantsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HotRestaurantsViewHolder, position: Int) {
-        val restaurantForRv = hotRestaurants[position]
+    override fun onBindViewHolder(holder: LikedRestaurantsViewHolder, position: Int) {
+        val restaurantForRv = likedRestaurants[position]
         with(holder.binding) {
             tvDescription.text = restaurantForRv.description
             tvName.text = restaurantForRv.restaurantName
@@ -77,9 +77,9 @@ class HotRestaurantsAdapter(
     }
 
     override fun getItemCount() =
-        hotRestaurants.size
+        likedRestaurants.size
 
 }
 
-class HotRestaurantsViewHolder(val binding: MainPageRestaurantItemBinding) :
+class LikedRestaurantsViewHolder(val binding: MainPageRestaurantItemBinding) :
     RecyclerView.ViewHolder(binding.root)

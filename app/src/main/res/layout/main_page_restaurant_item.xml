@@ -4,57 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="220dp"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="25dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginHorizontal="5dp"
     android:padding="3dp"
-    android:visibility="visible"
     app:cardCornerRadius="8dp"
-    app:cardElevation="3dp"
-    tools:visibility="visible">
+    app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hg_49"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.49" />
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:minHeight="200dp"
+            android:contentDescription="@string/restaurant_poster"
+            android:scaleType="centerCrop"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/hg_49"/>
 
         <LinearLayout
             android:id="@+id/ll_restaurant_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/gradient"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/iv_poster"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:contentDescription="@string/restaurant_poster"
-                android:scaleType="centerCrop"
-                tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars">
-
-
-            </ImageView>
-
-            <TextView
-                android:id="@+id/tv_image_separator"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/smoky_white" />
+            app:layout_constraintTop_toBottomOf="@id/hg_49">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/open_sans_hebrew_extra_bold_italic"
                 android:paddingStart="2dp"
-                android:textSize="18sp"
+                android:textColor="#616161"
+                android:textSize="11sp"
                 tools:ignore="RtlSymmetry"
                 tools:text="שם המסעדה" />
 
@@ -64,13 +63,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/open_sans_hebrew_italic"
                 android:maxLines="2"
                 android:paddingStart="2dp"
                 android:textColor="#616161"
-                android:textSize="14sp"
+                android:textSize="11sp"
                 tools:ignore="RtlSymmetry"
                 tools:text="בדרך כלל תיאור המסעדה יחסית ארוך כי המטרה שלו למשוך את הלקוח להכנס ולהתעניין" />
 
@@ -79,7 +78,7 @@
                 android:id="@+id/tv_separator"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/smoky_white" />
 
             <LinearLayout
@@ -92,7 +91,7 @@
                 <ImageView
                     android:id="@+id/iv_bike"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_marginVertical="4dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="4dp"
@@ -103,19 +102,19 @@
                     android:id="@+id/tv_delivery_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/open_sans_hebrew_italic"
                     android:textColor="#616161"
-                    android:textSize="14sp"
+                    android:textSize="11sp"
                     tools:text="15₪" />
 
                 <TextView
                     android:id="@+id/tv_flower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:text="@string/separator"
@@ -125,20 +124,20 @@
                     android:id="@+id/tv_delivery_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:fontFamily="@font/open_sans_hebrew_italic"
                     android:maxLines="1"
                     android:textColor="#616161"
-                    android:textSize="14sp"
+                    android:textSize="11sp"
                     tools:text="עד 40 דקות" />
 
                 <TextView
                     android:id="@+id/tv_flower2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:text="@string/separator"
@@ -148,19 +147,21 @@
                     android:id="@+id/tv_opening_hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:fontFamily="@font/open_sans_hebrew_italic"
                     android:maxLines="1"
                     android:textColor="#616161"
-                    android:textSize="14sp"
+                    android:textSize="11sp"
                     tools:text="הזמנה עד 20:00" />
 
             </LinearLayout>
 
 
         </LinearLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

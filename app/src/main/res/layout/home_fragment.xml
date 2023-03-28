@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nsv_main"
     android:layout_width="match_parent"
@@ -19,6 +18,13 @@
             android:layout_height="60dp"
             android:background="@color/orange">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans_hebrew_bold"
+
+                android:text="שטח פרסום" />
         </FrameLayout>
 
         <TextView
@@ -26,42 +32,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"
             android:fontFamily="@font/open_sans_hebrew_bold"
+            android:labelFor="@id/rv_hot_restaurants"
             android:text="@string/hot_restaurants"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/rv_hot_restaurants"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"
             android:fontFamily="@font/open_sans_hebrew_bold"
-            android:text="עסקיות והנחות"
+            android:labelFor="@id/rv_hot_offers"
+            android:text="@string/hot_offers"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView3"
+            android:id="@+id/rv_hot_offers"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl" />
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_liked_restaurants_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"
             android:fontFamily="@font/open_sans_hebrew_bold"
-            android:text="כבר אהבתם 🧡"
+            android:labelFor="@id/rv_liked_restaurants"
+            android:text="@string/already_enjoyed"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_liked_restaurants"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="1dp" />
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

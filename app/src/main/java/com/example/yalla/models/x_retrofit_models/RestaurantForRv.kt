@@ -15,15 +15,15 @@ const val ZONE_ID = "Asia/Jerusalem"
 @Parcelize
 data class RestaurantForRv(
     val restaurantId: Int,
-    val addressId: Int,
+//    val addressId: Int,
     val cuisine: String,
     val description: String,
     val imageUrl: String,
-    val isActive: Boolean,
+//    val isActive: Boolean,
     val restaurantName: String,
     val openingHour: String,
     val closingHour: String,
-    val destinationId: Int,
+//    val destinationId: Int,
     val street: String,
     val houseNumber: Int?,
     val entrance: String?,
