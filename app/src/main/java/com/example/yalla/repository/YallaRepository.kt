@@ -17,7 +17,8 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
         restaurantDao.getRestaurantsForRv(chosenDestinationId, currentDay)
 
     fun getHotRestaurantsForRv(
-        chosenDestinationId: Int, currentDay: Int): LiveData<List<RestaurantForRv>> =
+        chosenDestinationId: Int, currentDay: Int
+    ): LiveData<List<RestaurantForRv>> =
         restaurantDao.getHotRestaurantsForRv(chosenDestinationId, currentDay)
 
     fun getLikedRestaurants() =
@@ -26,12 +27,24 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>> =
         restaurantDao.getMenuTitleDishes(chosenRestaurantId)
 
-    fun getLikedRestaurantsByDestId(chosenDestIdByArg: Int, currentDay: Int): LiveData<List<RestaurantForRv>> =
-        restaurantDao.getLikedRestaurantsByDestId(chosenDestIdByArg,currentDay)
+    fun getLikedRestaurantsByDestId(
+        chosenDestIdByArg: Int,
+        currentDay: Int
+    ): LiveData<List<RestaurantForRv>> =
+        restaurantDao.getLikedRestaurantsByDestId(chosenDestIdByArg, currentDay)
 
     fun getHotOffers(chosenDestId: Int, currentDay: Int): LiveData<List<Dish>> =
         restaurantDao.getHotOffers(chosenDestId, currentDay)
 
+    fun getAdditionsForRvByDishId(id: Int): LiveData<List<AdditionForRv>> =
+        restaurantDao.getAdditionsForRvByDishId(id)
+
+    fun getRestaurantForRv(
+        restaurantId: Int,
+        currentDay: Int,
+        chosenDestinationId: Int
+    ): LiveData<RestaurantForRv> =
+        restaurantDao.getRestaurantForRv(restaurantId, chosenDestinationId, currentDay)
 
     suspend fun chooseDestinationRefreshRoomFromAPI() {
         withContext(Dispatchers.IO) {
@@ -44,6 +57,8 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
                 val dailySchedules = allDailySchedules().dailySchedules
                 val dishes = allDishes().dishes
                 val menuTitles = allMenuTitles().menuTitles
+                val additions = allAdditions().additions
+                val dishAdditions = allDishAddition().dishAdditions
                 //save data to Room:
                 restaurantDao.insertDestinationsRestaurants(destinationsRestaurants)
                 restaurantDao.insertRestaurants(restaurants)
@@ -52,24 +67,12 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
                 restaurantDao.insertDailySchedules(dailySchedules)
                 restaurantDao.insertDishes(dishes)
                 restaurantDao.insertMenuTitles(menuTitles)
+                restaurantDao.insertAdditions(additions)
+                restaurantDao.insertDishAdditions(dishAdditions)
             }
         }
     }
-//    suspend fun restaurantRefreshRoomFromAPI() {
-//        withContext(Dispatchers.IO) {
-//            with(YallaService.create()) {
-//                //get data from API:
-//                val destinations = allDestinations().destinations
-//                val restaurants = allRestaurants().restaurants
-//
-//
-//                //save data to Room:
-//                restaurantDao.insertDestinationsRestaurants(destinationsRestaurants)
-//                restaurantDao.insertRestaurants(restaurants)
-//
-//            }
-//        }
-//    }
+
 
     suspend fun insertLikedRestaurants(likedRestaurants: List<LikedRestaurant>) {
         restaurantDao.insertLikedRestaurants(likedRestaurants)
@@ -86,8 +89,6 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     suspend fun deleteUnlikedRestaurants(unlikedRestaurants: List<LikedRestaurant>) {
         restaurantDao.deleteLikedRestaurants(unlikedRestaurants)
     }
-
-
 
 
 }

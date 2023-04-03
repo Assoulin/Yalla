@@ -1,7 +1,6 @@
 package com.example.yalla
 
 import android.os.Bundle
-import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -10,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.yalla.databinding.ActivityMainBinding
+import com.example.yalla.models.Destination
 import com.example.yalla.utils.hideBnv
 import com.example.yalla.utils.hideTopLine
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
     private lateinit var navView: BottomNavigationView
-    lateinit var chosenDestinationJson: String
+    lateinit var chosenDestination: Destination
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

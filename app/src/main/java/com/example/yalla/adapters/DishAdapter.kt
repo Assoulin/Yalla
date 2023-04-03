@@ -10,9 +10,9 @@ import com.squareup.picasso.Picasso
 
 private const val RIGHT_WORD_COUNT = 12
 
-class DishesAdapter(
+class DishAdapter(
     private val dishList: List<Dish>,
-    private val onDishClicked: () -> Unit
+    private val onDishClicked: (Dish) -> Unit
 ) :
     RecyclerView.Adapter<DishViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
@@ -24,14 +24,12 @@ class DishesAdapter(
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val dish = dishList[position]
         with(holder.binding) {
+            Picasso.get().load(dish.imageUrl).into(dishPoster)
             tvDishName.text = dish.dishName
             tvPrice.text = dish.priceToString
-
             var descriptionWordsList =
                 dish.description.split(" ")
-
             var rightSizeDescriptionString = dish.description
-
             if (descriptionWordsList.size > RIGHT_WORD_COUNT) {
                 descriptionWordsList =
                     descriptionWordsList.slice(0 until RIGHT_WORD_COUNT)
@@ -40,11 +38,13 @@ class DishesAdapter(
             tvDishDescription.text = rightSizeDescriptionString
             tvKosher.text = dish.kosherTag.split(", ")[0]
             tvKosherGroup.text = dish.groupTag
-
-            Picasso.get().load(dish.imageUrl).into(dishPoster)
-
+            //Handle out of stock situation
             if (!dish.available) {
                 tvOutOfStock.visibility = View.VISIBLE
+            }else{
+                root.setOnClickListener {
+                    onDishClicked.invoke(dish)
+                }
             }
         }
     }

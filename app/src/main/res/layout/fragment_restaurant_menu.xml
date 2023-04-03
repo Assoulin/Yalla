@@ -83,6 +83,8 @@
             tools:listitem="@layout/menu_title_item">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

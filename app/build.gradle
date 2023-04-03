@@ -32,6 +32,8 @@ android {
         buildConfigField('String', 'DAILY_SCHEDULES', apiKeyProperties['DAILY_SCHEDULES'])
         buildConfigField('String', 'DISHES', apiKeyProperties['DISHES'])
         buildConfigField('String', 'MENU_TITLES', apiKeyProperties['MENU_TITLES'])
+        buildConfigField('String', 'ADDITIONS', apiKeyProperties['ADDITIONS'])
+        buildConfigField('String', 'DISHES_ADDITIONS', apiKeyProperties['DISHES_ADDITIONS'])
     }
 
     buildTypes {

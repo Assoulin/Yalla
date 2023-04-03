@@ -3,11 +3,9 @@ package com.example.yalla.utils
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.fragment.findNavController
 import com.example.yalla.MainActivity
 import com.example.yalla.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.yalla.models.Destination
 
 
 val MainActivity.isArrowVisible: Boolean
@@ -43,10 +41,15 @@ fun MainActivity.showTopLine() {
 }
 
 
-fun MainActivity.setChosenDestinationJson(destJson: String) {
-    chosenDestinationJson = destJson
+val MainActivity.chosenDestinationName: String
+    get() = chosenDestination.destinationName
+
+fun MainActivity.setChosenDestination(chosenDest: Destination) {
+    chosenDestination = chosenDest
 }
 
+val MainActivity.getChosenDestinationId: Int
+    get() = chosenDestination.destinationId
 
 val View.inflater: LayoutInflater
     get() = LayoutInflater.from(context)

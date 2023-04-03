@@ -12,7 +12,7 @@ private const val RIGHT_WORD_COUNT = 12
 
 class HotOffersAdapter(
     private val hotOffers: List<Dish>,
-    private val onHotOfferClicked: () -> Unit
+    private val onHotOfferClicked: (Dish) -> Unit
 ) :
     RecyclerView.Adapter<HotOfferViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotOfferViewHolder {
@@ -45,6 +45,9 @@ class HotOffersAdapter(
 
             if (!hotOffer.available) {
                 tvOutOfStock.visibility = View.VISIBLE
+            }
+            root.setOnClickListener {
+                onHotOfferClicked.invoke(hotOffer)
             }
         }
     }

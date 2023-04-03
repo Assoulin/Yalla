@@ -1495,20 +1495,106 @@
     "addition": [
       {
         "addition_id": 1,
-        "addition_name": "זיתים",
+        "addition_name": "גזר",
         "price": 4.0,
-        "image_url": "קישור",
-        "available": true,
-        "require_quantity": false
+        "available": true
+      },
+      {
+        "addition_id": 2,
+        "addition_name": "שיטקי",
+        "price": 3.0,
+        "available": true
+      },
+      {
+        "addition_id": 3,
+        "addition_name": "בטטה",
+        "price": 6.0,
+        "available": true
+      },
+      {
+        "addition_id": 4,
+        "addition_name": "אבוקדו",
+        "price": 9.0,
+        "available": true
+      },
+      {
+        "addition_id": 5,
+        "addition_name": "אושימיצה",
+        "price": 14.0,
+        "available": true
+      },
+      {
+        "addition_id": 6,
+        "addition_name": "טריאקי",
+        "price": 0.0,
+        "available": true
+      },
+      {
+        "addition_id": 7,
+        "addition_name": "ספייסי מיו",
+        "price": 0.0,
+        "available": true
+      },
+      {
+        "addition_id": 8,
+        "addition_name": "ג'ינג'ר",
+        "price": 0.0,
+        "available": true
+      },
+      {
+        "addition_id": 9,
+        "addition_name": "ווסאבי",
+        "price": 4.0,
+        "available": false
       }
     ]
   },
   {
     "dish_addition": [
       {
-        "dish_id": 1,
+        "dish_id": 10,
         "addition_id": 1,
         "extra_price": 1.4
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 2,
+        "extra_price": 2.5
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 3,
+        "extra_price": 3.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 4,
+        "extra_price": 4.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 5,
+        "extra_price": 5.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 6,
+        "extra_price": 0.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 7,
+        "extra_price": 0.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 8,
+        "extra_price": 0.0
+      },
+      {
+        "dish_id": 10,
+        "addition_id": 9,
+        "extra_price": 0.0
       }
     ]
   },

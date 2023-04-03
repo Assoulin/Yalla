@@ -1,12 +1,16 @@
 package com.example.yalla.models
 
 
+import android.os.Parcelable
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 import java.text.DecimalFormat
 
 
 @Entity
+@Parcelize
 data class Dish(
     @PrimaryKey
     @SerializedName("dish_id")
@@ -21,7 +25,9 @@ data class Dish(
     //Asian, Italian, Eastern, Sushi, Pizza etc', mainly meant for search!
     @SerializedName("category_tag")
     val categoryTag: String,
+    //פרווה, בשרי חלבי וכו'
     @SerializedName("group_tag")
+    //
     val groupTag: String,
     @SerializedName("kosher_tag")
     val kosherTag: String,
@@ -34,8 +40,9 @@ data class Dish(
     @SerializedName("require_quantity")
     val requireQuantity: Boolean,
     val promoted: Boolean,
-    ) {
+) : Parcelable {
     @Ignore
+    @IgnoredOnParcel
     val priceToString =
         DecimalFormat("#.##").format(price) + "₪"
 }
@@ -53,7 +60,7 @@ data class DishWithOrderDetails(
 )
 
 
-@Entity(tableName = "dish_Additions", primaryKeys = ["dishId", "additionId"])
+@Entity(primaryKeys = ["dishId", "additionId"])
 data class DishAddition(
     @SerializedName("dish_id")
     val dishId: Int,
@@ -65,16 +72,18 @@ data class DishAddition(
 )
 
 
-data class AdditionsByDish(
-    @Embedded
-    val dish: Dish,
-    @Relation(
-        parentColumn = "dishId",
-        entityColumn = "additionId",
-        associateBy = Junction(DishAddition::class)
-    )
-    val additions: List<Addition>
-)
+data class AdditionForRv(
+    //Addition:
+    val additionId: Int,
+    val additionName: String,
+    private val price: Double,
+    val available: Boolean,
+    private val extraPrice: Double,
+    val dishId: Int
+) {
+    val totalPrice: Double
+        get() = price + extraPrice
+}
 
 
 

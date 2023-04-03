@@ -42,6 +42,7 @@
             android:id="@+id/rv_hot_restaurants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layoutDirection="rtl" />
 
         <TextView
@@ -59,6 +60,7 @@
             android:id="@+id/rv_hot_offers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layoutDirection="rtl" />
 
 
@@ -77,6 +79,7 @@
             android:id="@+id/rv_liked_restaurants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layoutDirection="rtl" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

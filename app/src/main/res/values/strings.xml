@@ -54,13 +54,21 @@
     <string name="delivery_to">במשלוח ל%s</string>
     <string name="coming_soon">בקרוב!</string>
     <string name="firm_logo">Firm Logo</string>
-    <string name="selection_cleared">"בחירה נוקתה"</string>
-    <string name="delivery_time_is">"עד %d דקות"</string>
+    <string name="selection_cleared">בחירה נוקתה</string>
+    <string name="delivery_time_is">עד %d דקות</string>
     <string name="address">"%s %d, %s"</string>
     <string name="opening_hours">"%s-%s"</string>
     <string name="out_of_stock">אזל!</string>
     <string name="hot_restaurants">מסעדות חמות באזור 🔥</string>
     <string name="hot_offers">הצעות שוות 💰</string>
     <string name="already_enjoyed">כבר אהבתם 🤤</string>
-
+    <string name="add_to_cart">הוסף להזמנה ₪%,.2f</string>
+    <string name="notes_to_the_restaurant">משהו להגיד למסעדה?</string>
+    <string name="plus">➕</string>
+    <string name="minus">➖</string>
+    <string name="diner_name">שם הסועד</string>
+    <string name="price_in_nis">₪%,.2f</string>
+    <string name="addition_name_with_price">%s - ₪%,.2f</string>
+    <string name="addition_out_of_stock">%S - אזל</string>
+    <string name="one">1</string>
 </resources>

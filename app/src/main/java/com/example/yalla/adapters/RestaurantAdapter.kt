@@ -3,7 +3,6 @@ package com.example.yalla.adapters
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +44,7 @@ class RestaurantAdapter(
                 }
 
                 override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                    ivPoster.setImageDrawable(errorDrawable)
+//                    ivPoster.setImageDrawable(errorDrawable)
                 }
 
                 override fun onPrepareLoad(placeHolderDrawable: Drawable?) {

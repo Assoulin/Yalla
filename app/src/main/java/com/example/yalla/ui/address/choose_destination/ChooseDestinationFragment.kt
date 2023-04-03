@@ -44,7 +44,7 @@ class ChooseDestinationFragment : BaseFragment() {
         val json = Gson().toJson(chosenDestination)
         with(requireActivity() as MainActivity) {
             initTvDestination(destination = chosenDestination.destinationName)
-            setChosenDestinationJson(json)
+            setChosenDestination(chosenDestination)
         }
         val bundle = Bundle()
         bundle.putInt(DESTINATION_ID,chosenDestination.destinationId)

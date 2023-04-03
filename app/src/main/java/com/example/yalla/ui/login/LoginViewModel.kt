@@ -1,4 +1,4 @@
-package com.example.yalla.ui
+package com.example.yalla.ui.login
 
 import androidx.lifecycle.ViewModel
 

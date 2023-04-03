@@ -27,22 +27,16 @@ class FilterTagsAdapter(
             textOn = tagName
             textOff = tagName
 
-            val textSelected = ResourcesCompat.getColor(this.resources, R.color.pink, null)
+            val textSelectedColor = ResourcesCompat.getColor(this.resources, R.color.pink, null)
 
             setOnCheckedChangeListener { cuisineToggleBtn, isChecked ->
-                val defaultTextSize = cuisineToggleBtn.textSize
                 if (isChecked) {
-                    cuisineToggleBtn.setTextColor(textSelected)
-                    cuisineToggleBtn.textSize = defaultTextSize.div(2.5f)
+                    cuisineToggleBtn.setTextColor(textSelectedColor)
                     onTagClicked.invoke(Pair(tagName, true))
                 } else {
-                    cuisineToggleBtn.textSize = defaultTextSize.div(3)
                     cuisineToggleBtn.setTextColor(Color.WHITE)
-                    cuisineToggleBtn.background = background
                     onTagClicked.invoke(Pair(tagName, false))
                 }
-
-
             }
         }
     }

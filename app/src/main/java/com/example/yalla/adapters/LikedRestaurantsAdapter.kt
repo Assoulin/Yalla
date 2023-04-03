@@ -14,7 +14,7 @@ import com.squareup.picasso.Target
 
 class LikedRestaurantsAdapter(
     private val likedRestaurants: List<RestaurantForRv>,
-    // private val onHotRestClicked: (RestaurantForRv) -> Unit
+     private val onHotRestClicked: (RestaurantForRv) -> Unit
 ) :
     RecyclerView.Adapter<LikedRestaurantsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikedRestaurantsViewHolder {
@@ -68,8 +68,8 @@ class LikedRestaurantsAdapter(
                 root.context.getString(R.string.delivery_time_is, restaurantForRv.deliveryTime)
 
 
-            llRestaurantItem.setOnClickListener {
-                //onHotRestClicked.invoke(restaurantForRv)
+            root.setOnClickListener {
+                onHotRestClicked.invoke(restaurantForRv)
             }
         }
 

@@ -22,12 +22,9 @@ class RestaurantsViewModel : BaseViewModel() {
     val currentChangesInLikedRestaurants
         get() = _currentChangesInLikedRestaurants
 
-    private var currentDay = 0
+    private var currentDay =
+        Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
 
-    init {
-        currentDay =
-            Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-    }
 
     fun addLikedRestaurant(lr: LikedRestaurant) {
         _currentChangesInLikedRestaurants.value!!.add(lr)

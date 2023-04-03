@@ -23,7 +23,6 @@ import com.example.yalla.utils.hideArrowBack
 import com.example.yalla.utils.hideBnv
 import com.example.yalla.utils.showBnv
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 
 const val DELIMITER = ", "
 const val CHOSEN_RESTAURANT = "chosen restaurant"
@@ -56,9 +55,7 @@ class RestaurantsFragment : BaseFragment() {
         yallaActivity!!.hideArrowBack()
         yallaActivity!!.showBnv()
         //rebuild the Destination object:
-        chosenDestination = Gson().fromJson(
-            (requireActivity() as MainActivity).chosenDestinationJson, Destination::class.java
-        )
+        chosenDestination = (requireActivity() as MainActivity).chosenDestination
         //Get the original restaurants for the rv
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
             .observe(viewLifecycleOwner) {
@@ -188,7 +185,7 @@ class RestaurantsFragment : BaseFragment() {
             RestaurantAdapter(
                 restaurants,
                 likedRestaurants,
-                navigateToMenuFrag(),
+                navigateToResMenuFrag(),
                 handleLikeButtonClicked()
             )
         binding.rvRestaurants.scrollToPosition(0)
@@ -204,11 +201,10 @@ class RestaurantsFragment : BaseFragment() {
         }
     }
 
-    private fun navigateToMenuFrag(): (RestaurantForRv) -> Unit = {
+    private fun navigateToResMenuFrag(): (RestaurantForRv) -> Unit = {
         yallaActivity!!.hideBnv()
         val bundle = Bundle()
         bundle.putParcelable(CHOSEN_RESTAURANT, it)
-        bundle.putString(CHOSEN_DESTINATION_NAME, chosenDestination.destinationName)
         findNavController().navigate(R.id.action_navigation_restaurants_to_restaurantMenu, bundle)
     }
 
