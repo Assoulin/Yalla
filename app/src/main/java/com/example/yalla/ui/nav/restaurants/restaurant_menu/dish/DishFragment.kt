@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,7 @@ class DishFragment : Fragment() {
         _binding = FragmentDishBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -97,9 +99,10 @@ class DishFragment : Fragment() {
                     viewModel.removeDishFromCounter()
                 }
                 tvAddToCart.setOnClickListener {
+
                     val dishNotes = tilDishNotes.editText!!.text.toString()
                     val dinerName = tilDinerName.editText!!.text.toString()
-                    viewModel.addOrderItem(dishNotes, dinerName)
+                    viewModel.addOrderItemToCart(dishNotes, dinerName)
                     val bundle = Bundle()
                     viewModel.chosenRestLive.observe(viewLifecycleOwner) { chosenRest ->
                         bundle.putParcelable(CHOSEN_RESTAURANT, chosenRest)
@@ -107,6 +110,12 @@ class DishFragment : Fragment() {
                             R.id.action_dishFragment_to_restaurantMenu,
                             bundle
                         )
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.successfully_added_to_cart),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
                     }
                 }
             }

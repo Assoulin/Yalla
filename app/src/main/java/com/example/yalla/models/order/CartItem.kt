@@ -6,7 +6,7 @@ import com.example.yalla.models.AdditionForRv
 import com.example.yalla.models.Dish
 import kotlin.streams.toList
 
-data class OrderItem(
+data class CartItem(
     val chosenDish: Dish,
     val additions: List<AdditionForRv>,
     val dishNoted: String,

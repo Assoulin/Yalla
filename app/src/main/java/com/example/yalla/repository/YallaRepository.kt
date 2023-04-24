@@ -24,7 +24,7 @@ class YallaRepository(private val restaurantDao: RestaurantDao) {
     fun getLikedRestaurants() =
         restaurantDao.getLikedRestaurants()
 
-    fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>> =
+    fun getMenuTitleDishesByRestaurantId(chosenRestaurantId: Int): LiveData<List<MenuTitleWithDishes>> =
         restaurantDao.getMenuTitleDishes(chosenRestaurantId)
 
     fun getLikedRestaurantsByDestId(

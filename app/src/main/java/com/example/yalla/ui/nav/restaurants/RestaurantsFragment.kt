@@ -26,7 +26,6 @@ import com.google.android.material.snackbar.Snackbar
 
 const val DELIMITER = ", "
 const val CHOSEN_RESTAURANT = "chosen restaurant"
-const val CHOSEN_DESTINATION_NAME = "ui.nav.restaurants.RestaurantsFragment.CHOSEN_DESTINATION_NAME"
 
 class RestaurantsFragment : BaseFragment() {
 
@@ -55,7 +54,7 @@ class RestaurantsFragment : BaseFragment() {
         yallaActivity!!.hideArrowBack()
         yallaActivity!!.showBnv()
         //rebuild the Destination object:
-        chosenDestination = (requireActivity() as MainActivity).chosenDestination
+        chosenDestination = (requireActivity() as MainActivity).chosenDestination!!
         //Get the original restaurants for the rv
         viewModel.getRestaurantsForRv(chosenDestination.destinationId)
             .observe(viewLifecycleOwner) {

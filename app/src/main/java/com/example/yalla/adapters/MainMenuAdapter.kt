@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.databinding.MenuTitleItemBinding
 import com.example.yalla.models.Dish
-import com.example.yalla.models.MenuTitleDishes
+import com.example.yalla.models.MenuTitleWithDishes
 
 private const val COLUMN_NUMBER = 2
 
 
 class MainMenuAdapter(
-    private val menuTitleDishesList: List<MenuTitleDishes>,
+    private val menuTitleDishesList: List<MenuTitleWithDishes>,
     private val onDishClicked: (Dish) -> Unit
 ) :
     RecyclerView.Adapter<MainMenuViewHolder>() {

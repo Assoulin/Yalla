@@ -125,7 +125,7 @@ interface RestaurantDao {
 
     @Transaction
     @Query("SELECT * FROM MenuTitle WHERE restaurantId=:chosenRestaurantId")
-    fun getMenuTitleDishes(chosenRestaurantId: Int): LiveData<List<MenuTitleDishes>>
+    fun getMenuTitleDishes(chosenRestaurantId: Int): LiveData<List<MenuTitleWithDishes>>
 
     @Transaction
     @Query(RESTAURANTS_FOR_RV_QUERY)

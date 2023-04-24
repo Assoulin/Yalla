@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
     private lateinit var navView: BottomNavigationView
-    lateinit var chosenDestination: Destination
+    var chosenDestination: Destination? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,11 +61,17 @@ class MainActivity : AppCompatActivity() {
             hideTopLine()
             hideBnv()
         }
+        binding.btnGoToCart.setOnClickListener {
+            navController.navigate(R.id.cartFragment)
+            hideBnv()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+
 
 }

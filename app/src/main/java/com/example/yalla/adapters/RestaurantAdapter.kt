@@ -1,7 +1,5 @@
 package com.example.yalla.adapters
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -11,8 +9,6 @@ import com.example.yalla.databinding.RestaurantItemBinding
 import com.example.yalla.models.x_retrofit_models.LikedRestaurant
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
-import java.lang.Exception
 
 
 class RestaurantAdapter(
@@ -35,23 +31,6 @@ class RestaurantAdapter(
             tvDescription.text = restaurantForRv.description
             tvName.text = restaurantForRv.restaurantName
 
-
-            val target = object : Target {
-
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    // bitmap
-                    ivPoster.setImageBitmap(bitmap)
-                }
-
-                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-//                    ivPoster.setImageDrawable(errorDrawable)
-                }
-
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                    ivPoster.setImageDrawable(placeHolderDrawable)
-                }
-            }
-
             Picasso.get()
                 .load(restaurantForRv.imageUrl)
                 .placeholder(
@@ -59,12 +38,7 @@ class RestaurantAdapter(
                         root.resources, R.drawable.proggress, null
                     )!!
                 )
-                .error(
-                    ResourcesCompat.getDrawable(
-                        root.resources, R.drawable.bag, null
-                    )!!
-                )
-                .into(target)
+                .into(ivPoster)
 
             tvDeliveryPrice.text = restaurantForRv.getDeliveryPrice
             val result = restaurantForRv.getOpenStatusMessage()

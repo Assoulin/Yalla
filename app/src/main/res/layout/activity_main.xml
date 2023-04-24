@@ -46,7 +46,28 @@
             android:fontFamily="@font/open_sans_hebrew_extrabold"
             android:textColor="@color/turquoise"
             android:textSize="20sp"
-            tools:text="מסעדות זמינות במשלוח ליעד" />
+            tools:text="במשלוח ליעד" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_go_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_style_orange"
+            android:contentDescription="@string/settings"
+            android:foregroundTint="@color/orange"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_shopping_cart_checkout_24"
+            app:borderWidth="3dp"
+            tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
     <TextView
@@ -131,5 +152,4 @@
         tools:ignore="FragmentTagUsage" />
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

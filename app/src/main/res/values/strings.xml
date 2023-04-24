@@ -71,4 +71,8 @@
     <string name="addition_name_with_price">%s - ₪%,.2f</string>
     <string name="addition_out_of_stock">%S - אזל</string>
     <string name="one">1</string>
+    <string name="im_done">סיימתי</string>
+    <string name="remove_item_from_cart">remove item from cart</string>
+    <string name="successfully_added_to_cart">הפריט נוסף לעגלה</string>
+    <string name="cart_is_empty">העגלה נוקתה</string>
 </resources>

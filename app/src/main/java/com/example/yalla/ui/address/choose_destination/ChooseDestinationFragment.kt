@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yalla.MainActivity
 import com.example.yalla.R
+import com.example.yalla.YallaApplication
 import com.example.yalla.adapters.DestinationAdapter
 import com.example.yalla.databinding.FragmentChooseDestinationBinding
 import com.example.yalla.models.Destination
 import com.example.yalla.utils.*
-import com.google.gson.Gson
 
 private const val COLUMN_NUMBER = 3
 const val SHOW = true
@@ -40,18 +41,27 @@ class ChooseDestinationFragment : BaseFragment() {
         return binding.root
     }
 
-    private val onDestinationSelected: (Destination) -> Unit = { chosenDestination ->
-        val json = Gson().toJson(chosenDestination)
+    private val onDestinationSelected: (Destination) -> Unit = { destination ->
         with(requireActivity() as MainActivity) {
-            initTvDestination(destination = chosenDestination.destinationName)
-            setChosenDestination(chosenDestination)
+            initTvDestination(destination = destination.destinationName)
+            if (destination != appChosenDestination) {
+                appChosenDestination?.let {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.cart_is_empty),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                setChosenDestination(destination)
+                YallaApplication.emptyCart()
+            }
         }
         val bundle = Bundle()
-        bundle.putInt(DESTINATION_ID,chosenDestination.destinationId)
+        bundle.putInt(DESTINATION_ID, destination.destinationId)
         findNavController().navigate(
             R.id.action_chooseDestinationFragment_to_navigation_home,
             bundle
-            )
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

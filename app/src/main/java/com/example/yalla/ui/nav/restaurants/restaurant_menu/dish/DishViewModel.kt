@@ -1,13 +1,12 @@
 package com.example.yalla.ui.nav.restaurants.restaurant_menu.dish
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.yalla.YallaApplication
 import com.example.yalla.models.AdditionForRv
 import com.example.yalla.models.Dish
-import com.example.yalla.models.order.OrderItem
+import com.example.yalla.models.order.CartItem
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import java.util.*
 
@@ -65,9 +64,9 @@ class DishViewModel : ViewModel() {
         _chosenAdditionsLive.postValue(chosenAdditions)
     }
 
-    fun addOrderItem(dishNotes: String, dinerName: String) {
-        val orderItem = OrderItem(chosenDish, chosenAdditions, dishNotes, dinerName, dishCount)
-        Log.e("TAG", "addOrderItem: $orderItem")
+    fun addOrderItemToCart(dishNotes: String, dinerName: String) {
+        val cartItem = CartItem(chosenDish, chosenAdditions, dishNotes, dinerName, dishCount)
+        YallaApplication.addToCart(cartItem)
     }
 
     fun setRestaurantForRv(chosenDestinationId: Int) {
@@ -79,5 +78,6 @@ class DishViewModel : ViewModel() {
             )
 
     }
+
 
 }

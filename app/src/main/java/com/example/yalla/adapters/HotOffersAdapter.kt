@@ -3,7 +3,9 @@ package com.example.yalla.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yalla.R
 import com.example.yalla.databinding.HotOfferItemBinding
 import com.example.yalla.models.Dish
 import com.squareup.picasso.Picasso
@@ -41,7 +43,13 @@ class HotOffersAdapter(
             tvKosher.text = hotOffer.kosherTag.split(", ")[0]
             tvKosherGroup.text = hotOffer.groupTag
 
-            Picasso.get().load(hotOffer.imageUrl).into(hotOfferPoster)
+            Picasso.get()
+                .load(hotOffer.imageUrl)
+                .placeholder(
+                    ResourcesCompat.getDrawable(
+                        root.resources, R.drawable.proggress, null
+                    )!!
+                ).into(hotOfferPoster)
 
             if (!hotOffer.available) {
                 tvOutOfStock.visibility = View.VISIBLE

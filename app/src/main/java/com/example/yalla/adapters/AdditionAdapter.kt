@@ -39,9 +39,8 @@ class AdditionAdapter(
                 textOn = textWithPrice
                 textOff = textWithPrice
             }
-
+            val textSelectedColor = ResourcesCompat.getColor(this.resources, R.color.pink, null)
             if (addition.available) {
-                val textSelectedColor = ResourcesCompat.getColor(this.resources, R.color.pink, null)
                 setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         setTextColor(textSelectedColor)

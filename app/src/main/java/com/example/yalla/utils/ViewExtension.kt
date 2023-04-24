@@ -41,18 +41,28 @@ fun MainActivity.showTopLine() {
 }
 
 
-val MainActivity.chosenDestinationName: String
-    get() = chosenDestination.destinationName
+val MainActivity.appChosenDestination: Destination?
+    get() = chosenDestination
 
 fun MainActivity.setChosenDestination(chosenDest: Destination) {
     chosenDestination = chosenDest
 }
 
 val MainActivity.getChosenDestinationId: Int
-    get() = chosenDestination.destinationId
+    get() = chosenDestination!!.destinationId
 
 val View.inflater: LayoutInflater
     get() = LayoutInflater.from(context)
+
+fun MainActivity.hideCartBtn() {
+    binding.btnGoToCart.visibility = View.GONE
+
+}
+
+fun MainActivity.showCartBtn() {
+    binding.btnGoToCart.visibility = View.VISIBLE
+
+}
 
 
 

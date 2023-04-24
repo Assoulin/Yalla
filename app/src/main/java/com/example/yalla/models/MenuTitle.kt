@@ -19,7 +19,7 @@ data class MenuTitle(
     val titleDescription:String,
 )
 //Views
-data class MenuTitleDishes(
+data class MenuTitleWithDishes(
     @Embedded
     val menuTitle: MenuTitle,
     @Relation(

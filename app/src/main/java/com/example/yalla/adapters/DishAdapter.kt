@@ -3,7 +3,9 @@ package com.example.yalla.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yalla.R
 import com.example.yalla.databinding.DishItemBinding
 import com.example.yalla.models.Dish
 import com.squareup.picasso.Picasso
@@ -24,7 +26,13 @@ class DishAdapter(
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val dish = dishList[position]
         with(holder.binding) {
-            Picasso.get().load(dish.imageUrl).into(dishPoster)
+            Picasso.get()
+                .load(dish.imageUrl)
+                .placeholder(
+                    ResourcesCompat.getDrawable(
+                        root.resources, R.drawable.proggress, null
+                    )!!
+                ).into(dishPoster)
             tvDishName.text = dish.dishName
             tvPrice.text = dish.priceToString
             var descriptionWordsList =
@@ -41,7 +49,7 @@ class DishAdapter(
             //Handle out of stock situation
             if (!dish.available) {
                 tvOutOfStock.visibility = View.VISIBLE
-            }else{
+            } else {
                 root.setOnClickListener {
                     onDishClicked.invoke(dish)
                 }

@@ -35,9 +35,6 @@
         <action
             android:id="@+id/action_navigation_restaurants_to_restaurantMenu"
             app:destination="@id/restaurantMenu" />
-        <action
-            android:id="@+id/action_navigation_restaurants_to_chooseDestinationFragment"
-            app:destination="@id/chooseDestinationFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseDestinationFragment"
@@ -70,4 +67,9 @@
             android:id="@+id/action_dishFragment_to_restaurantMenu"
             app:destination="@id/restaurantMenu" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.yalla.ui.order.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
