@@ -31,7 +31,7 @@ class AddressViewModel : ViewModel() {
         if (roomLocationInstructions == EMPTY_STRING) {
             roomLocationInstructions = NOT_REQUIRED_STRING
         }
-        //Todo: check if this is the place to conduct a check before creating a new Address Obj
+
         saveFullAddress(
             chosenDestination, Address(
                 destinationId = chosenDestination.destinationId,

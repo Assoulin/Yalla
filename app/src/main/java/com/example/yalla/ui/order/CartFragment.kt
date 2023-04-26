@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yalla.MainActivity
 import com.example.yalla.R
@@ -46,8 +47,11 @@ class CartFragment : Fragment() {
                 tvTotalPrice.text = totalPrice.toString()
                 btnImDone.isClickable = cartItems.isNotEmpty()
                 if (btnImDone.isClickable) {
+                    handleImDoneBtnClickListener()
+                    ivCart.visibility = View.GONE
                     btnImDone.setBackgroundColor(requireContext().getColor(R.color.orange))
-                }else{
+                } else {
+                    ivCart.visibility = View.VISIBLE
                     btnImDone.setBackgroundColor(requireContext().getColor(R.color.black))
                 }
                 rvCart.adapter = CartItemAdapter(cartItems) { removeItem ->
@@ -56,6 +60,12 @@ class CartFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun handleImDoneBtnClickListener() {
+        binding.btnImDone.setOnClickListener {
+            findNavController().navigate(R.id.action_cartFragment_to_addressFragment)
+        }
     }
 
     override fun onPause() {

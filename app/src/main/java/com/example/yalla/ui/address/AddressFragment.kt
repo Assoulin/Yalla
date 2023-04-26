@@ -3,18 +3,23 @@ package com.example.yalla.ui.address
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Color.WHITE
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.yalla.MainActivity
 import com.example.yalla.R
+import com.example.yalla.YallaApplication
 import com.example.yalla.databinding.FragmentAddressBinding
 import com.example.yalla.models.Destination
-import com.google.gson.Gson
+import com.example.yalla.ui.address.choose_destination.DESTINATION_ID
+import com.example.yalla.utils.appChosenDestination
 
 
 const val CHOSEN_DESTINATION_TAG = "chosenDestination"
@@ -41,9 +46,7 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //rebuild the Destination object:
-        val chosenDestination = Gson().fromJson(
-            requireArguments().getString(CHOSEN_DESTINATION_TAG), Destination::class.java
-        )
+        val chosenDestination = (requireActivity() as MainActivity).appChosenDestination!!
 
         requireAddressDoneListener(chosenDestination)
         editListener()
@@ -115,8 +118,20 @@ class AddressFragment : Fragment() {
                 locationInstructions = binding.tiLocationInstructions.editText?.text?.toString()
                     ?.trim()
             )
-
+            Toast.makeText(requireContext(), getString(R.string.order_completed), Toast.LENGTH_LONG)
+                .show()
+            navigateToHomeFragment(chosenDestination)
+            YallaApplication.emptyCart()
         }
+    }
+
+    private fun navigateToHomeFragment(chosenDestination: Destination) {
+        val bundle = Bundle()
+        bundle.putInt(DESTINATION_ID, chosenDestination.destinationId)
+        findNavController().navigate(
+            R.id.action_addressFragment_to_navigation_home,
+            bundle
+        )
     }
 
     private fun editListener() {
