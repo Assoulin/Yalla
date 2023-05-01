@@ -16,7 +16,9 @@ import com.example.yalla.adapters.MainMenuAdapter
 import com.example.yalla.databinding.FragmentRestaurantMenuBinding
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.ui.nav.restaurants.CHOSEN_RESTAURANT
+import com.example.yalla.utils.hideTopBar
 import com.example.yalla.utils.showArrowBack
+import com.example.yalla.utils.showTopBar
 import com.squareup.picasso.Picasso
 
 const val CHOSEN_DISH = "yalla.ui.nav.restaurants.restaurant_menu.CHOSEN_DISH"
@@ -87,5 +89,15 @@ class FragmentRestaurantMenu : Fragment() {
         Picasso.get()
             .load(chosenRest.imageUrl)
             .into(binding.ivRestaurantPoster)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (requireActivity() as MainActivity).showTopBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as MainActivity).hideTopBar()
     }
 }

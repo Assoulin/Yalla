@@ -5,8 +5,8 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|top"
     android:background="@color/turquoise"
+    android:gravity="center|top"
     tools:context=".ui.address.choose_destination.ChooseDestinationFragment">
 
     <TextView
@@ -23,10 +23,10 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
-        android:gravity="center"
-        android:minHeight="60dp"
         android:layout_height="wrap_content"
         android:background="@color/orange"
+        android:gravity="center"
+        android:minHeight="60dp"
         android:text="@string/where_do_we_send_the_order"
         android:textAlignment="center"
         android:textColor="#CCFFFFFF"
@@ -35,7 +35,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_bottom_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_top_line" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_top_line"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/tv_bottom_line"
@@ -52,9 +53,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:padding="5dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,6 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="gone"/>
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

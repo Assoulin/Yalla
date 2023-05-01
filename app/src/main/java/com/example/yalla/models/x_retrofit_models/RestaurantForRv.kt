@@ -1,8 +1,6 @@
 package com.example.yalla.models.x_retrofit_models
 
-import android.os.Build
 import android.os.Parcelable
-
 import kotlinx.parcelize.Parcelize
 import java.time.LocalTime
 import java.time.ZoneId
@@ -10,7 +8,8 @@ import java.time.temporal.ChronoUnit
 
 const val AFTER = "yalla.models.x_retrofit_models.AFTER"
 const val BEFORE = "yalla.models.x_retrofit_models.BEFORE"
-const val ZONE_ID = "Asia/Jerusalem"
+const val CLOSING_SOON = "yalla.models.x_retrofit_models.CLOSING_SOON"
+private const val ZONE_ID = "Asia/Jerusalem"
 
 @Parcelize
 data class RestaurantForRv(
@@ -36,34 +35,32 @@ data class RestaurantForRv(
     val openingHours
         get() = "${closingHour.slice(0..4)}-${openingHour.slice(0..4)}"
 
-    fun getOpenStatusMessage(): String {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val openingHour: LocalTime =
-                LocalTime.of(
-                    openingHour.slice(0..1).toInt(),
-                    openingHour.slice(3..4).toInt()
-                )
-            val closingHour: LocalTime =
-                LocalTime.of(
-                    closingHour.slice(0..1).toInt(),
-                    closingHour.slice(3..4).toInt()
-                )
-            val nowTimeHourMinute: LocalTime =
-                LocalTime.now(ZoneId.of(ZONE_ID))
-                    .truncatedTo(ChronoUnit.MINUTES)
-
-            return if (nowTimeHourMinute.isAfter(closingHour)) {
-                AFTER
-            } else if (nowTimeHourMinute.isBefore(openingHour)) {
-                BEFORE
-            } else {
-                closingHour
-                    .minusHours(nowTimeHourMinute.hour.toLong())
-                    .minusMinutes(nowTimeHourMinute.minute.toLong())
-                    .toString()
-            }
-        } else {
-            return openingHours
+    fun getOpenStatusMessage(): Pair<String, LocalTime>? {
+        val openingHour: LocalTime =
+            LocalTime.of(
+                openingHour.slice(0..1).toInt(),
+                openingHour.slice(3..4).toInt()
+            )
+        val closingHour: LocalTime =
+            LocalTime.of(
+                closingHour.slice(0..1).toInt(),
+                closingHour.slice(3..4).toInt()
+            )
+        val currentTime: LocalTime =
+            LocalTime.now(ZoneId.of(ZONE_ID))
+                .truncatedTo(ChronoUnit.MINUTES)
+        if (currentTime.isBefore(openingHour)) {
+            return Pair(BEFORE, openingHour)
+        } else if (currentTime.isAfter(closingHour)) {
+            return Pair(AFTER, closingHour)
         }
+        val timeTillClosing = closingHour
+            .minusHours(currentTime.hour.toLong())
+            .minusMinutes(currentTime.minute.toLong())
+        if (timeTillClosing.hour == 0) {
+            return Pair(CLOSING_SOON, timeTillClosing)
+        }
+        return null
+
     }
 }

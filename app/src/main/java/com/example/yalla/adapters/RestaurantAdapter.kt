@@ -6,8 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.R
 import com.example.yalla.databinding.RestaurantItemBinding
-import com.example.yalla.models.x_retrofit_models.LikedRestaurant
-import com.example.yalla.models.x_retrofit_models.RestaurantForRv
+import com.example.yalla.models.x_retrofit_models.*
 import com.squareup.picasso.Picasso
 
 
@@ -41,9 +40,26 @@ class RestaurantAdapter(
                 .into(ivPoster)
 
             tvDeliveryPrice.text = restaurantForRv.getDeliveryPrice
-            val result = restaurantForRv.getOpenStatusMessage()
+            tvOpeningHours.text = "פתוחה כעת"
+            restaurantForRv.getOpenStatusMessage()?.let {
+                val openStatus = it.first
+                val relatedTime = it.second
+                val message: String = when (openStatus) {
+                    BEFORE -> root.context.getString(
+                        R.string.not_opened_yet,
+                        relatedTime.toString()
+                    )
+                    AFTER -> root.context.getString(R.string.already_closed)
 
-            //tvOpeningHours.text = restaurantForRv.getOpenStatusMessage()
+                    CLOSING_SOON -> root.context.getString(
+                        R.string.closing_soon,
+                        relatedTime.minute.toString()
+                    )
+                    else -> ""
+                }
+                tvOpeningHours.text = message
+            }
+
             tvDeliveryTime.text =
                 root.context.getString(R.string.delivery_time_is, restaurantForRv.deliveryTime)
             //Like button handler:

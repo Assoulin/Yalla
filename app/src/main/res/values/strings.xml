@@ -76,4 +76,7 @@
     <string name="successfully_added_to_cart">הפריט נוסף לעגלה</string>
     <string name="cart_is_empty">העגלה נוקתה</string>
     <string name="order_completed">ההזמנה הושלמה בהצחלה!</string>
+    <string name="not_opened_yet">"תפתח בשעה %S"</string>
+    <string name="already_closed">"סגורה כעת"</string>
+    <string name="closing_soon">"תסגר בעוד %S דקות"</string>
 </resources>

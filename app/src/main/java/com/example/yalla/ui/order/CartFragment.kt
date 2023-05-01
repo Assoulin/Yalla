@@ -71,10 +71,12 @@ class CartFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         (requireActivity() as MainActivity).showCartBtn()
+        (requireActivity() as MainActivity).showTopBar()
     }
 
     override fun onResume() {
         super.onResume()
         (requireActivity() as MainActivity).hideCartBtn()
+        (requireActivity() as MainActivity).hideTopBar()
     }
 }

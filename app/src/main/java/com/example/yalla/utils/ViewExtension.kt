@@ -2,14 +2,9 @@ package com.example.yalla.utils
 
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.view.isVisible
 import com.example.yalla.MainActivity
 import com.example.yalla.R
 import com.example.yalla.models.Destination
-
-
-val MainActivity.isArrowVisible: Boolean
-    get() = binding.arrowBack.isVisible
 
 fun MainActivity.showArrowBack() {
     binding.arrowBack.visibility = View.VISIBLE
@@ -18,6 +13,14 @@ fun MainActivity.showArrowBack() {
 fun MainActivity.hideArrowBack() {
     binding.arrowBack.visibility = View.GONE
 }
+fun MainActivity.hideTopBar() {
+    binding.llTopLine.visibility = View.GONE
+}
+fun MainActivity.showTopBar() {
+    binding.llTopLine.visibility = View.VISIBLE
+}
+
+
 
 fun MainActivity.showBnv() {
     binding.navView.visibility = View.VISIBLE
@@ -61,7 +64,6 @@ fun MainActivity.hideCartBtn() {
 
 fun MainActivity.showCartBtn() {
     binding.btnGoToCart.visibility = View.VISIBLE
-
 }
 
 
