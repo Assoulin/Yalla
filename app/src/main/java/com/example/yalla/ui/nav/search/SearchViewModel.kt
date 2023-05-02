@@ -10,6 +10,10 @@ class SearchViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "חפשו ב-Yalla…"
     }
-    val text: LiveData<String> = _text
+    val text: LiveData<String>
+        get() = _text
 
+    fun handleTextChanged(text: String) {
+        _text.postValue(text)
+    }
 }

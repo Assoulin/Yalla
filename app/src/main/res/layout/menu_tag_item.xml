@@ -5,11 +5,8 @@
     android:layout_width="wrap_content"
     tools:layout_height="wrap_content"
     android:layout_height="match_parent"
-    android:layout_marginVertical="8dp"
-    android:layout_marginHorizontal="2dp"
-    android:background="@drawable/btn_style"
     android:textAlignment="center"
-    android:textColor="@color/smoky_white"
+    android:textColor="@color/black"
     android:textSize="14sp"
     android:fontFamily="@font/open_sans_hebrew_bold"
-    tools:textOff="קטגוריה" />
+    tools:textOff="שם תת תפריט" />

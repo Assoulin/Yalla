@@ -22,7 +22,7 @@ class FilterTagsAdapter(
 
     override fun onBindViewHolder(holder: FilterTagViewHolder, position: Int) {
         val tagName = filterTags[position]
-        with(holder.binding.cuisineToggleBtn) {
+        with(holder.binding.tagToggleBtn) {
             text = tagName
             textOn = tagName
             textOff = tagName

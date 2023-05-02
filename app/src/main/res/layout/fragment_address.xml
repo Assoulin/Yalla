@@ -50,8 +50,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/form_style"
         android:elevation="6dp"
-        app:cardBackgroundColor="#59FFFFFF"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,11 +61,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="3dp">
+            android:layout_marginVertical="3dp"
+            android:background="@drawable/form_style">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/form_style"
                 android:gravity="center|top"
                 android:orientation="vertical">
 
@@ -237,7 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:backgroundTint="#A6F08323"
+                    android:background="@drawable/btn_style_orange"
                     android:clickable="false"
                     android:elevation="10dp"
                     android:paddingVertical="10dp"
@@ -360,7 +362,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="60dp"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/orange"
+                android:background="@drawable/btn_style_orange"
                 android:elevation="10dp"
                 android:padding="12dp"
                 android:text="@string/edit"
@@ -378,7 +380,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/orange"
+                android:background="@drawable/btn_style_orange"
                 android:elevation="10dp"
                 android:padding="12dp"
                 android:text="@string/confirm"

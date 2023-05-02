@@ -21,8 +21,6 @@ import com.example.yalla.models.Destination
 import com.example.yalla.ui.address.choose_destination.DESTINATION_ID
 import com.example.yalla.utils.appChosenDestination
 
-
-const val CHOSEN_DESTINATION_TAG = "chosenDestination"
 const val NOT_REQUIRED_STRING = "-"
 const val NOT_REQUIRED_INT = 0
 const val EMPTY_STRING = ""

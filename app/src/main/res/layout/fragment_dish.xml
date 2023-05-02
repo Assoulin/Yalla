@@ -26,264 +26,279 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.25" />
 
-    <TextView
-        android:id="@+id/tv_name_of_dish"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/open_sans_hebrew_light_italic"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_dish_price"
-        app:layout_constraintTop_toBottomOf="@id/gl_25"
-        tools:text="ספגטי" />
-
-    <TextView
-        android:id="@+id/tv_dish_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/open_sans_hebrew_bold"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_name_of_dish"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_name_of_dish"
-        tools:text="$12.99" />
-
-
-    <TextView
-        android:id="@+id/tv_dish_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/open_sans_hebrew_regular"
-        android:textColor="#666666"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name_of_dish"
-        tools:text="אחלה ספגטי שבעולם" />
-
-    <TextView
-        android:id="@+id/tv_Kosher_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_dish_description"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dish_description"
-        tools:text="מהדרין, בדצ וכו'" />
-
-    <TextView
-        android:id="@+id/tv_kosher_class"
-        android:layout_width="99dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_Kosher_tag"
-        app:layout_constraintEnd_toStartOf="@+id/tv_Kosher_tag"
-        app:layout_constraintTop_toTopOf="@+id/tv_Kosher_tag"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="בשרי, חלבי, פרווה" />
-
     <ScrollView
-        android:id="@+id/sv_clickable"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_add_to_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_kosher_class">
-
+        app:layout_constraintTop_toBottomOf="@id/gl_25">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/form_style"
-            android:paddingVertical="5dp">
+            android:layout_height="0dp">
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_additions"
+            <TextView
+                android:id="@+id/tv_name_of_dish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/open_sans_hebrew_light_italic"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_dish_price"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_height="100dp"
-                tools:listitem="@layout/addition_item" />
+                tools:text="ספגטי" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_dish_notes"
+            <TextView
+                android:id="@+id/tv_dish_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/open_sans_hebrew_bold"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name_of_dish"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_name_of_dish"
+                tools:text="$12.99" />
+
+
+            <TextView
+                android:id="@+id/tv_dish_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/notes_to_the_restaurant"
-                app:boxBackgroundColor="@color/white"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
+                android:fontFamily="@font/open_sans_hebrew_regular"
+                android:textColor="#666666"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_additions">
+                app:layout_constraintTop_toBottomOf="@id/tv_name_of_dish"
+                tools:text="אחלה ספגטי שבעולם" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="none"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעפצקרשתםןףץך,.1234567890 "
-                    android:hint="@string/notes_to_the_restaurant"
-                    android:importantForAutofill="auto"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:maxLength="120"
-                    android:maxLines="2"
-                    android:minLines="2"
-                    android:nestedScrollingEnabled="true"
-                    android:outlineProvider="background"
-                    android:textColorHint="#00008683"
-                    android:textSize="15sp"
-                    tools:ignore="RtlHardcoded,TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_diner_name"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_Kosher_tag"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/diner_name"
-                app:boxBackgroundColor="@color/white"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                app:errorEnabled="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/til_dish_notes"
-                app:layout_constraintStart_toStartOf="@+id/til_dish_notes"
-                app:layout_constraintTop_toBottomOf="@+id/til_dish_notes">
+                app:layout_constraintEnd_toEndOf="@+id/tv_dish_description"
+                app:layout_constraintTop_toBottomOf="@+id/tv_dish_description"
+                tools:text="מהדרין, בדצ וכו'" />
 
-                <EditText
+            <TextView
+                android:id="@+id/tv_kosher_class"
+                android:layout_width="99dp"
+                android:layout_height="19dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_Kosher_tag"
+                app:layout_constraintEnd_toStartOf="@+id/tv_Kosher_tag"
+                app:layout_constraintTop_toTopOf="@+id/tv_Kosher_tag"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="בשרי, חלבי, פרווה" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/form_style"
+                android:paddingVertical="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_kosher_class">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_additions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_height="100dp"
+                    tools:listitem="@layout/addition_item" />
+
+                <LinearLayout
+                    android:id="@+id/ll_inputs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="postalAddress"
-                    android:digits="אבגדהוזחטיכלמנסעפצקרשתםןףץך "
-                    android:ems="15"
-                    android:hint="@string/diner_name"
-                    android:inputType="text"
-                    android:maxLength="24"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColorHint="#00008683"
-                    android:textSize="15sp"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@id/separator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_additions">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_diner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/diner_name"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="5dp"
+                        app:boxCornerRadiusBottomStart="5dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="postalAddress"
+                            android:digits="אבגדהוזחטיכלמנסעפצקרשתםןףץך "
+                            android:ems="15"
+                            android:hint="@string/diner_name"
+                            android:inputType="text"
+                            android:maxLength="24"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColorHint="#00008683"
+                            android:textSize="15sp"
+                            tools:ignore="TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_dish_notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="4dp"
+                        android:hint="@string/notes_to_the_restaurant"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="5dp"
+                        app:boxCornerRadiusBottomStart="5dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="none"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZאבגדהוזחטיכלמנסעפצקרשתםןףץך,.1234567890 "
+                            android:hint="@string/notes_to_the_restaurant"
+                            android:importantForAutofill="auto"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLength="120"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:nestedScrollingEnabled="true"
+                            android:outlineProvider="background"
+                            android:textColorHint="#00008683"
+                            android:textSize="15sp"
+                            tools:ignore="RtlHardcoded,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/pale_smoky_white"
+                    app:layout_constraintBottom_toTopOf="@id/tv_add_to_cart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_add_to_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btn_style"
+                    android:fontFamily="@font/open_sans_hebrew_bold"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="TextContrastCheck"
+                    tools:text="הוסף להזמנה  ₪250.00" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@drawable/btn_style_orange"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_add_to_cart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_add_to_cart"
+                    app:layout_constraintTop_toTopOf="@id/tv_add_to_cart">
+
+                    <TextView
+                        android:id="@+id/tv_add_dish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/open_sans_hebrew_extrabold"
+                        android:gravity="center"
+                        android:minWidth="45dp"
+                        android:paddingHorizontal="15dp"
+                        android:text="@string/plus"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/pale_smoky_white" />
+
+                    <TextView
+                        android:id="@+id/tv_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/open_sans_hebrew_bold"
+                        android:gravity="center"
+                        android:paddingHorizontal="15dp"
+                        android:text="@string/one"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/pale_smoky_white" />
+
+                    <TextView
+                        android:id="@+id/tv_remove_dish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/open_sans_hebrew_bold"
+                        android:gravity="center"
+                        android:paddingHorizontal="15dp"
+                        android:text="@string/minus"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/separator"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-
-        android:background="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sv_clickable" />
-
-    <TextView
-        android:id="@+id/tv_add_to_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/btn_style"
-        android:fontFamily="@font/open_sans_hebrew_bold"
-        android:gravity="center"
-        android:minHeight="48dp"
-        android:paddingHorizontal="8dp"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextContrastCheck"
-        tools:text="הוסף להזמנה  ₪250.00" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@drawable/btn_style_orange"
-        android:orientation="horizontal"
-
-        app:layout_constraintBottom_toBottomOf="@id/tv_add_to_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_add_to_cart"
-        app:layout_constraintTop_toTopOf="@id/tv_add_to_cart">
-
-        <TextView
-            android:id="@+id/tv_add_dish"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/open_sans_hebrew_extrabold"
-            android:gravity="center"
-            android:minWidth="45dp"
-            android:paddingHorizontal="15dp"
-            android:text="@string/plus"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/pale_smoky_white" />
-
-        <TextView
-            android:id="@+id/tv_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/open_sans_hebrew_bold"
-            android:gravity="center"
-            android:paddingHorizontal="15dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            tools:ignore="TextContrastCheck"
-            android:text="@string/one"/>
-
-        <TextView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/pale_smoky_white" />
-
-        <TextView
-            android:id="@+id/tv_remove_dish"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/open_sans_hebrew_bold"
-            android:gravity="center"
-            android:paddingHorizontal="15dp"
-            android:text="@string/minus"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            tools:ignore="TextContrastCheck" />
-
-
-    </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

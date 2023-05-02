@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nsv_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.nav.restaurants.restaurant_menu.FragmentRestaurantMenu">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_restaurant_poster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/restaurant_poster"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/gl_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@drawable/bag" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_20"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
 
     <LinearLayout
-        android:id="@+id/ll_main"
+        android:id="@+id/ll_israel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="ltr"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/gl_20">
 
-        <ImageView
-            android:id="@+id/iv_restaurant_poster"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:contentDescription="@string/restaurant_poster"
-            android:scaleType="centerCrop"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@drawable/bag" />
 
         <TextView
             android:id="@+id/tv_restaurant_name"
@@ -58,7 +67,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/open_sans_hebrew_regular"
             android:textSize="16sp"
-            tools:text="ארלוזורוב 57 קניון רננים " />
+            tools:text="ארלוזורוב 57 קניון רננים" />
 
 
         <TextView
@@ -71,20 +80,54 @@
             android:fontFamily="@font/open_sans_hebrew_regular"
             tools:text="20:00-20:00" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:gravity="center|top"
-            android:paddingTop="4sp"
-            tools:listitem="@layout/menu_title_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
 
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_menu_titles_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_israel"
+        tools:layout_height="60dp"
+        tools:listitem="@layout/category_tag_item" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_menu_titles_bar"
+        tools:context=".ui.nav.restaurants.restaurant_menu.FragmentRestaurantMenu">
+
+        <LinearLayout
+            android:id="@+id/ll_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:gravity="center|top"
+                android:paddingTop="4sp"
+                tools:listitem="@layout/menu_title_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

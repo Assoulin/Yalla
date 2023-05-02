@@ -131,7 +131,6 @@ class DishFragment : Fragment() {
                 viewModel.removeAddition(addition)
             }
         }
-
     override fun onPause() {
         super.onPause()
         (requireActivity() as MainActivity).showTopBar()

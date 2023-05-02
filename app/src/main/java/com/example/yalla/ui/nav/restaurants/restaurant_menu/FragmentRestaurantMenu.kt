@@ -5,21 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.yalla.MainActivity
 import com.example.yalla.R
 import com.example.yalla.adapters.MainMenuAdapter
+import com.example.yalla.adapters.MenuTagAdapter
 import com.example.yalla.databinding.FragmentRestaurantMenuBinding
 import com.example.yalla.models.x_retrofit_models.RestaurantForRv
 import com.example.yalla.ui.nav.restaurants.CHOSEN_RESTAURANT
-import com.example.yalla.utils.hideTopBar
 import com.example.yalla.utils.showArrowBack
-import com.example.yalla.utils.showTopBar
 import com.squareup.picasso.Picasso
+import kotlin.streams.toList
+
 
 const val CHOSEN_DISH = "yalla.ui.nav.restaurants.restaurant_menu.CHOSEN_DISH"
 
@@ -39,6 +42,7 @@ class FragmentRestaurantMenu : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val myActivity = (requireActivity() as MainActivity)
@@ -54,9 +58,11 @@ class FragmentRestaurantMenu : Fragment() {
             @Suppress("DEPRECATION")
             viewModel.setChosenRest(arguments?.getParcelable(CHOSEN_RESTAURANT))
         }
-
         //init the top views
         initRestaurantPoster(viewModel.chosenRest)
+
+        binding.rvMenuTitlesBar.layoutManager =
+            LinearLayoutManager(requireContext(), HORIZONTAL, false)
 
         binding.rvMainMenu.layoutManager =
             LinearLayoutManager(requireContext(), VERTICAL, false)
@@ -72,6 +78,16 @@ class FragmentRestaurantMenu : Fragment() {
 
                 viewModel.getMenuTitleDishesByRestaurantId(restaurantId)
                     .observe(viewLifecycleOwner) { menus ->
+
+                        val menuTitleList = menus.stream().map { mtwd -> mtwd.menuTitle }.toList()
+                        rvMenuTitlesBar.adapter = MenuTagAdapter(menuTitleList) {
+
+                            // scroll to position
+                            val scrollY =
+                                rvMainMenu.getChildAt(menuTitleList.indexOf(it)).y + rvMainMenu.y
+                            nsvMain.smoothScrollTo(0, scrollY.toInt())
+                        }
+
                         rvMainMenu.adapter = MainMenuAdapter(menus) { dish ->
                             val bundle = Bundle()
                             bundle.putParcelable(CHOSEN_DISH, dish)
@@ -91,13 +107,4 @@ class FragmentRestaurantMenu : Fragment() {
             .into(binding.ivRestaurantPoster)
     }
 
-    override fun onPause() {
-        super.onPause()
-        (requireActivity() as MainActivity).showTopBar()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (requireActivity() as MainActivity).hideTopBar()
-    }
 }
