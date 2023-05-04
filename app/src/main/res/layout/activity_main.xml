@@ -16,6 +16,7 @@
         android:layoutDirection="rtl"
         android:orientation="horizontal"
         android:visibility="gone"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -28,7 +29,7 @@
             android:layout_marginVertical="5dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/btn_style"
-            android:contentDescription="@string/settings"
+            android:contentDescription="@string/change_destination"
             android:foregroundTint="@color/orange"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -60,7 +61,7 @@
             android:layout_marginVertical="5dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/btn_style_orange"
-            android:contentDescription="@string/settings"
+            android:contentDescription="@string/cart_button"
             android:foregroundTint="@color/orange"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -79,14 +80,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_top_line" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange"
         android:elevation="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:paddingTop="1dp"
         android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,28 +96,24 @@
             android:id="@+id/arrowBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="start"
+            android:layout_gravity="start|center"
             android:layout_marginEnd="8dp"
+            android:rotation="180"
+            android:layout_marginStart="4dp"
             android:contentDescription="@string/arrow_back"
             android:src="@drawable/ic_baseline_arrow_forward_24"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <ImageView
             android:layout_width="65dp"
             android:layout_height="65dp"
+            android:layout_gravity="center"
             android:contentDescription="@string/firm_logo"
             android:src="@drawable/logo_for_toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

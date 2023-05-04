@@ -25,7 +25,7 @@
     <string name="bike_icon">bike icon</string>
     <string name="restaurant_poster">restaurant poster</string>
     <string name="like_the_restaurant_button">like the restaurant button</string>
-    <string name="settings">settings</string>
+    <string name="change_destination">change destination</string>
     <string name="back_to_previous_screen">back to previous screen</string>
     <string name="dish_poster">dish poster</string>
     <string name="where_do_we_send_the_order">לאן מזמינים?</string>
@@ -79,4 +79,6 @@
     <string name="not_opened_yet">"תפתח בשעה %S"</string>
     <string name="already_closed">"סגורה כעת"</string>
     <string name="closing_soon">"תסגר בעוד %S דקות"</string>
+    <string name="cart_button">cart_button</string>
+    <string name="dish_bottom_container">dish bottom container</string>
 </resources>

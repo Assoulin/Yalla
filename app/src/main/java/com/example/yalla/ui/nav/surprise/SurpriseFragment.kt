@@ -1,4 +1,4 @@
-package com.example.yalla.network.surprise
+package com.example.yalla.ui.nav.surprise
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

@@ -53,7 +53,7 @@ class DishFragment : Fragment() {
             viewModel.setDish(arguments?.getParcelable(CHOSEN_DISH, Dish::class.java)!!)
         } else {
             @Suppress("DEPRECATION")
-            viewModel.setDish(arguments?.getParcelable(CHOSEN_RESTAURANT)!!)
+            viewModel.setDish(arguments?.getParcelable(CHOSEN_DISH)!!)
         }
         viewModel.setRestaurantForRv((requireActivity() as MainActivity).getChosenDestinationId)
         //init views:

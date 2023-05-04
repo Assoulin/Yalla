@@ -24,6 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -79,7 +80,8 @@
             app:layout_constraintTop_toTopOf="@id/guideline_88"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/dish_bottom_container" />
 
         <TextView
             android:id="@+id/tv_kosher"
@@ -92,6 +94,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_88"
+            tools:ignore="TextContrastCheck"
             tools:text="כשר כשר" />
 
         <TextView
@@ -104,7 +107,8 @@
             android:text="@string/separator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_kosher"
-            app:layout_constraintTop_toTopOf="@+id/tv_kosher" />
+            app:layout_constraintTop_toTopOf="@+id/tv_kosher"
+            tools:ignore="TextContrastCheck" />
 
 
         <TextView
@@ -117,6 +121,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_text_separator1"
             app:layout_constraintTop_toTopOf="@+id/tv_text_separator1"
+            tools:ignore="TextContrastCheck"
             tools:text="גרופ גרופ" />
 
         <TextView
@@ -129,7 +134,8 @@
             android:text="@string/separator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_kosher_group"
-            app:layout_constraintTop_toTopOf="@+id/tv_kosher_group" />
+            app:layout_constraintTop_toTopOf="@+id/tv_kosher_group"
+            tools:ignore="TextContrastCheck" />
 
 
         <TextView
@@ -146,6 +152,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_text_separator2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_text_separator2"
+            tools:ignore="TextContrastCheck"
             tools:visibility="visible" />
 
 

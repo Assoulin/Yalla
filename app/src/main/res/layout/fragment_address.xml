@@ -10,7 +10,7 @@
         android:id="@+id/tv_top_separator"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="30dp"
+
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,14 +60,11 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="3dp"
-            android:background="@drawable/form_style">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/form_style"
                 android:gravity="center|top"
                 android:orientation="vertical">
 
@@ -258,7 +255,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:backgroundTint="#B39ED6DF"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -267,12 +264,10 @@
         tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
-            tools:visibility="gone">
+            android:padding="8dp">
 
             <LinearLayout
                 android:id="@+id/ll_full_address"
@@ -356,7 +351,6 @@
 
             <Button
                 android:id="@+id/btn_edit"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -364,7 +358,6 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_style_orange"
                 android:elevation="10dp"
-                android:padding="12dp"
                 android:text="@string/edit"
                 android:textColor="@color/smoky_white"
                 android:textSize="20sp"
@@ -374,15 +367,13 @@
 
             <Button
                 android:id="@+id/btn_confirm"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/btn_style_orange"
+                android:background="@drawable/btn_style"
                 android:elevation="10dp"
-                android:padding="12dp"
                 android:text="@string/confirm"
                 android:textColor="@color/smoky_white"
                 android:textSize="20sp"

@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/navigation_surprise"
-        android:name="com.example.yalla.network.surprise.SurpriseFragment"
+        android:name="com.example.yalla.ui.nav.surprise.SurpriseFragment"
         tools:layout="@layout/fragment_surprise" />
     <fragment
         android:id="@+id/navigation_home"
