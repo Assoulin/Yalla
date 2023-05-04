@@ -1,7 +1,9 @@
 package com.example.yalla.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yalla.R
@@ -23,6 +25,7 @@ class HotRestaurantsAdapter(
         return HotRestaurantsViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: HotRestaurantsViewHolder, position: Int) {
         val restaurantForRv = hotRestaurants[position]
         with(holder.binding) {

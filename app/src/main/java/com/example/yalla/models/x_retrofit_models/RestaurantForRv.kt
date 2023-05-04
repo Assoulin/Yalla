@@ -1,6 +1,8 @@
 package com.example.yalla.models.x_retrofit_models
 
+import android.os.Build
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
 import kotlinx.parcelize.Parcelize
 import java.time.LocalTime
 import java.time.ZoneId
@@ -35,6 +37,7 @@ data class RestaurantForRv(
     val openingHours
         get() = "${closingHour.slice(0..4)}-${openingHour.slice(0..4)}"
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getOpenStatusMessage(): Pair<String, LocalTime>? {
         val openingHour: LocalTime =
             LocalTime.of(
